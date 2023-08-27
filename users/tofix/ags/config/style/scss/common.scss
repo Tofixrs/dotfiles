@@ -1,0 +1,11 @@
+@import "./theme.scss";
+* {
+  color: $text;
+  font-size: 16px;
+}
+
+window {
+  background-color: transparent;
+}
+
+// @mixin slider($width: .7em, $sider_width: .5em, $gradient: )

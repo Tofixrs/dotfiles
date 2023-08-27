@@ -1,0 +1,16 @@
+{
+  "name": "ags-dotfiles",
+  "version": "1.0.0",
+  "description": "Ags configs",
+  "main": "./config.js",
+  "types": "./lib/config.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

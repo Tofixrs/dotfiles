@@ -1,0 +1,10 @@
+image=~/screen-lock.jpg
+show-failed-attempts
+indicator-radius=40
+indicator-thickness=7.5
+indicator-x-position=80
+indicator-y-position=1000
+line-uses-inside
+clock
+indicator
+effect-blur=10x0.1

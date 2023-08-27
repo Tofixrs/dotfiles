@@ -1,0 +1,10 @@
+@import '../theme.scss';
+
+window#quicksettings .quicksettings {
+  margin: max($spacing, 8px);
+  border: ($radii / 2) solid $crust;
+  border-radius: $radii;
+  background-color: $base;
+  padding: $popover_padding;
+  box-shadow: 0 0 6px 0 $mauve;
+}
