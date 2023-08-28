@@ -15,7 +15,8 @@
     viewnior
     libsForQt5.ark
     lxqt.pcmanfm-qt
-    hyprpaper
     gh
+    playerctl
+    swww
   ];
 }

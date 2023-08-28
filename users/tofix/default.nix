@@ -63,6 +63,7 @@ in {
       };
     }
   '';
+  home.file."Pictures/Wallpapers".source = ./Wallpapers;
   home.username = "tofix";
   home.homeDirectory = "/home/tofix";
   home.stateVersion = "22.11";

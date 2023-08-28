@@ -18,6 +18,14 @@
       pulse.enable = true;
     };
     printing.enable = true;
+    printing.drivers = with pkgs; [
+      brlaser
+    ];
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
     udisks2 = {
       enable = true;
       mountOnMedia = true;
@@ -48,4 +56,5 @@
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
+  programs.system-config-printer.enable = true;
 }

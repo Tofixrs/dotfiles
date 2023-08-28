@@ -5,9 +5,6 @@
 }: let
   anyrun-stdin = "${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so";
 in {
-  home.packages = with pkgs; [
-    playerctl
-  ];
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -97,13 +94,14 @@ in {
         "opacity 0.85, class:^(kitty)$"
       ];
       exec-once = [
+        "swww init"
+        "swww img ~/Pictures/Wallpapers/astro_catpuccin-mocha.png --transition-type center"
         "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
         "hyprctl setcursor Bibata-Modern-Classic 12"
         "~/.config/hypr/autostart.sh"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "swaync"
-        "hyprpaper"
         "ags"
         "swayidle -w"
       ];
@@ -179,6 +177,4 @@ in {
   };
   xdg.configFile."clipboard".source = ../clipboard;
   xdg.configFile."power-menu".source = ../power-menu;
-  xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
-  home.file."Pictures/Wallpapers".source = ./Wallpapers;
 }
