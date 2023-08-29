@@ -1,3 +1,3 @@
 _: {
-  imports = [./gtk.nix ./qt.nix];
+  imports = [./catpuccin];
 }

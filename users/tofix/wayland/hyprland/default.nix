@@ -92,10 +92,10 @@ in {
         "noinitialfocus, class:^(steam)$, title:^(notificationtoasts)"
         "float, class:^(com-atlauncher-App)$ title:^(ATLauncher Console)$"
         "opacity 0.85, class:^(kitty)$"
+        "opacity 0.9, class:^(WebCord)$"
       ];
       exec-once = [
-        "swww init"
-        "swww img ~/Pictures/Wallpapers/astro_catpuccin-mocha.png --transition-type center"
+        "sleep 3 && swww init && swww img /home/tofix/Pictures/Wallpapers/astro_catpuccin-mocha.png"
         "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
         "hyprctl setcursor Bibata-Modern-Classic 12"
         "~/.config/hypr/autostart.sh"
@@ -125,7 +125,7 @@ in {
       decoration = {
         rounding = 5;
         "col.shadow" = "rgb(11111b)";
-        inactive_opacity = 0.95;
+        inactive_opacity = 0.9;
       };
       animations = {
         enabled = true;
