@@ -18,5 +18,11 @@
     gh
     playerctl
     swww
+    hyprpicker
+    swappy
+    prismlauncher-qt5
+    nodePackages.pnpm
+    nodejs_20
+    rustup
   ];
 }

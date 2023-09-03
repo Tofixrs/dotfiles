@@ -8,8 +8,5 @@
   };
   home.packages = with pkgs; [
     nvchad
-    nodePackages.pnpm
-    nodejs_20
-    cargo
   ];
 }

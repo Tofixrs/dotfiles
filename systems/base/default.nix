@@ -33,6 +33,7 @@
       inherit pkgs;
     };
   };
+nix.trustedUsers = [ "root" "@wheel" ];
   nixpkgs.config.allowUnfree = true;
   time.timeZone = "Europe/Warsaw";
 

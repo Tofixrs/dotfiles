@@ -37,6 +37,5 @@ function RemoveValue(s,k)
     local a=s:gsub(p,"")
     return a
 end
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin:" .. vim.env.PATH
 opt.autoread = true
 --#endregion

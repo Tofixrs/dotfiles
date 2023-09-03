@@ -4,6 +4,7 @@
   ...
 }: let
   anyrun-stdin = "${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so";
+  grimblast = mode: "grimblast --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -62,8 +63,8 @@ in {
         "$mainMod SHIFT, down, movewindow, d"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-        "$mainMod, Print, exec, grimblast --notify copysave area ~/Pictures/screenshots/$(date +'%s_grim.png')  "
-        ", Print, exec, grimblast --notify copysave screen ~/Pictures/screenshots/$(date +'%s_grim.png')"
+        "$mainMod, Print, exec, ${grimblast "area"}"
+        ", Print, exec, ${grimblast "screen"}"
         "$mainMod, TAB, exec, swaync-client -t"
         "$mainMod, V, exec, cliphist list | anyrun --plugins ${anyrun-stdin} -c ~/.config/clipboard | cliphist decode | wl-copy"
         "$mainMod, X, exec, ~/.config/hypr/power.sh"

@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+_: {
   boot.kernelModules = ["nvidia-modeset" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
-  boot.blacklistedKernelModules = ["amdgpu"]; #fix for blank ttys
+  boot.blacklistedKernelModules = ["amdgpu" "nouveau"]; #fix for blank ttys
   hardware.opengl = {
     enable = true;
     driSupport = true;
