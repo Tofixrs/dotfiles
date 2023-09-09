@@ -2,7 +2,7 @@
   imports = [./wayland ./themes ./programs ./ags ../base ./defaultApps.nix ./env.nix];
 
   home.shellAliases = {
-    home-switch = "home-manager switch --flake ${flake_path}#tofix";
+    home-switch = "home-manager switch --flake ${flake_path}?submodules=1#tofix";
   };
 
   home.username = "tofix";
