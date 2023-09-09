@@ -1,8 +1,8 @@
 import {cpuUsage} from "../../modules/cpu.js"
 
-const {Box} = ags.Widget; 
+const {Box} = ags.Widget;
 
 export const sysStats = () => Box({
-  className: "panel-button",
-  children: [cpuUsage()]
+	className: "panel-button",
+	children: [cpuUsage()]
 })

@@ -1,4 +1,4 @@
-@import '../theme.scss';
+@import "../theme.scss";
 .panel-button {
   background-color: $base;
 }
@@ -15,9 +15,8 @@
 .panel {
   margin: 5px;
   .workspaces {
-
     button {
-      all:unset;
+      all: unset;
 
       .indicator {
         min-height: 10px;
@@ -32,12 +31,19 @@
           margin: 2px;
           min-width: 6px;
           min-height: 6px;
-          border-radius: max(calc($radii * 0.7 - 4px), 0);/*max(9px * 0.7 - 4px, 0)*/
+          border-radius: max(
+            calc($radii * 0.7 - 4px),
+            0
+          ); /*max(9px * 0.7 - 4px, 0)*/
         }
       }
 
-      &:first-child .indicator { margin-left: 9px}
-      &:last-child .indicator { margin-right: 9px}
+      &:first-child .indicator {
+        margin-left: 9px;
+      }
+      &:last-child .indicator {
+        margin-right: 9px;
+      }
 
       &.empty .indicator {
         border-color: transparentize($blue, 0.3);
@@ -45,17 +51,24 @@
 
       &.occupied .indicator {
         border-color: transparentize($blue, 0.1);
-        .fill { background-color: transparentize($blue, 0.1);}
+        .fill {
+          background-color: transparentize($blue, 0.1);
+        }
       }
 
       &:hover .indicator {
         border-color: transparentize($mauve, 0.2);
-        .fill { background-color: transparentize($mauve, 0.2) }
+        .fill {
+          background-color: transparentize($mauve, 0.2);
+        }
       }
 
-       &.active .indicator, &:active .indicator {
+      &.active .indicator,
+      &:active .indicator {
         border-color: $mauve;
-        .fill { background-color: $mauve }
+        .fill {
+          background-color: $mauve;
+        }
       }
 
       &.empty .indicator .fill {
