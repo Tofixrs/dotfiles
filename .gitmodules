@@ -1,4 +1,3 @@
 [submodule "users/tofix/ags/config"]
 	path = users/tofix/ags/config
 	url = https://github.com/Tofixrs/ags-config
-	branch = rewrite-pain
