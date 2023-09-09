@@ -24,5 +24,7 @@
     nodePackages.pnpm
     nodejs_20
     rustup
+    ripgrep
+    lazygit
   ];
 }

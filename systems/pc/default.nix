@@ -18,13 +18,13 @@
   fonts.packages = with pkgs; [
     twitter-color-emoji
   ];
-  
+
   services.flatpak.enable = true;
-  
+
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback.out
   ];
-  
+
   boot.kernelModules = [
     "v4l2loopback"
   ];

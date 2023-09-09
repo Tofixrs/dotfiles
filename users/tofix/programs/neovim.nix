@@ -1,12 +1,17 @@
 {pkgs, ...}: {
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
-  programs.neovim.viAlias = true;
-  programs.neovim.vimAlias = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+    viAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
+  };
   xdg.configFile."nvim" = {
-    source = "${pkgs.nvchad}";
+    source = "${pkgs.astrovim}";
   };
   home.packages = with pkgs; [
-    nvchad
+    astrovim
+    lua-language-server
   ];
 }

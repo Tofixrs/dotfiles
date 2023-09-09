@@ -1,9 +1,10 @@
 import * as audio from "../../modules/audio.js"
 import * as network from "../../modules/network.js"
+import { tray } from "../../modules/tray.js"
 import { fontIcon } from "../../modules/misc.js"
 const { Button, Box, Revealer, Label } = ags.Widget;
 const { Audio } = ags.Service;
-const {App, Service} = ags;
+const { App, Service } = ags;
 
 class QSMenu extends Service {
 	static { Service.register(this); }
@@ -36,12 +37,12 @@ const revealerMenu = (name, child) => Box({
 
 export const quickSettings = () => Button({
 	className: "quickSettings panel-button",
-	onScrollUp: () => {Audio.speaker.volume += 0.05;},
-	onScrollDown: () => {Audio.speaker.volume -= 0.05;},
+	onScrollUp: () => { Audio.speaker.volume += 0.05; },
+	onScrollDown: () => { Audio.speaker.volume -= 0.05; },
 	onClicked: () => App.toggleWindow('quicksettings'),
 	child: Box({
 		children: [
-			audio.microphoneMuteIndicator({ unmuted: null}),
+			audio.microphoneMuteIndicator({ unmuted: null }),
 			audio.volumeIndicator(),
 			network.indicator()
 		]
@@ -53,7 +54,8 @@ export const popupContent = () => Box({
 	vertical: true,
 	hexpand: true,
 	children: [
-		Box({hexpand: true, children: [Label("Quick Settings")]}),
+		Box({ hexpand: true, children: [tray()] }),
+		Box({ hexpand: true, children: [Label("Quick Settings")] }),
 		volumeBox(),
 		Box({
 			className: 'toggles-box',

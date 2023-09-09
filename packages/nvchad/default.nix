@@ -2,6 +2,7 @@
   lib,
   stdenv,
   pkgs,
+  ...
 }: let
   custom = ./custom;
 in

@@ -1,5 +1,5 @@
 _: {
-    services.syncthing = {
+  services.syncthing = {
     enable = true;
     dataDir = "/home/tofix";
     openDefaultPorts = false;

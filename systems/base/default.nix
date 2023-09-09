@@ -33,7 +33,7 @@
       inherit pkgs;
     };
   };
-nix.trustedUsers = [ "root" "@wheel" ];
+  nix.trustedUsers = ["root" "@wheel"];
   nixpkgs.config.allowUnfree = true;
   time.timeZone = "Europe/Warsaw";
 
@@ -69,6 +69,7 @@ nix.trustedUsers = [ "root" "@wheel" ];
     home-manager
     cachix
     gcc
+    alejandra
   ];
   programs.zsh = {
     enable = true;
