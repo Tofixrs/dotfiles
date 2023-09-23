@@ -5,6 +5,7 @@ _: {
     enableCompletion = true;
     syntaxHighlighting.enable = true;
   };
+  programs.carapace.enable = true;
   programs.starship = {
     enable = true;
     settings = {

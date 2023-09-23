@@ -26,5 +26,6 @@
     rustup
     ripgrep
     lazygit
+    #    inputs.getchoo.packages.${pkgs.system}.modrinth-app
   ];
 }

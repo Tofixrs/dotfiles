@@ -1,5 +1,6 @@
-_: {
+{config, ...}: {
   boot.kernelModules = ["nvidia-modeset" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
   boot.blacklistedKernelModules = ["amdgpu" "nouveau"]; #fix for blank ttys
   hardware.opengl = {
     enable = true;
@@ -9,6 +10,7 @@ _: {
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
+    nvidiaSettings = true;
   };
   services.xserver.videoDrivers = ["nvidia"];
   environment.sessionVariables = {
@@ -16,5 +18,6 @@ _: {
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_DRM_DEVICES = "/dev/dri/card0";
   };
 }
