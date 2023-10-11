@@ -60,10 +60,6 @@
       extraGroups = ["wheel" "networkmanager"];
     };
   };
-  programs.hyprland = {
-    enable = true;
-    enableNvidiaPatches = true;
-  };
   environment.systemPackages = with pkgs; [
     neovim
     home-manager
