@@ -19,7 +19,7 @@
   
   fileSystems = {
     "/windows" = {
-      device = "/dev/disk/by-uuid/94289054289036E8";
+      device = "/dev/disk/by-uuid/BC34BD5734BD14FC";
       fsType = "ntfs";
     };
     "/" = {

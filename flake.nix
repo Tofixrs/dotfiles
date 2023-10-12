@@ -11,11 +11,22 @@
     flake_path = "$HOME/dotfiles";
   in {
     nixosConfigurations = {
-      tofipc = nixpkgs.lib.nixosSystem {
+      tofipc = let
+        host="tofipc";
+      in nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs flake_path system;};
+        specialArgs = {inherit inputs flake_path system host;};
         modules = [
-          ./systems/pc
+          ./systems/${host}
+        ];
+      };
+      lapfix = let 
+        host = "lapfix";
+      in nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs flake_path system host;};
+        modules = [
+          ./systems/${host}
         ];
       };
     };

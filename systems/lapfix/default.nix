@@ -2,10 +2,11 @@
   flake_path,
   pkgs,
   config,
+  host,
   ...
 }: {
   imports = [../base ./nvidia.nix ./hardware-configuration.nix ./syncthing.nix ./services.nix];
-  programs.zsh.shellAliases.nix-switch = "sudo nixos-rebuild switch --flake ${flake_path}#tofipc";
+  programs.zsh.shellAliases.nix-switch = "sudo nixos-rebuild switch --flake ${flake_path}#${host}";
 
   programs.steam = {
     enable = true;

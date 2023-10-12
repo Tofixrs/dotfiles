@@ -10,13 +10,16 @@
     open = true;
     nvidiaSettings = true;
     prime = {
-      offload = true;
-      nvidiaBusID = "PCI:1:0:0";
-      amdgpuBusID = "PCI:6:0:0";
+      offload = {
+        enable = true;
+	enableOffloadCmd = true;
+      };
+      nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:6:0:0";
     };
-    powerManagment = {
+    powerManagement = {
       enable = true;
-      fineGrained = true; 
+      finegrained = true; 
     };
   };
   services.xserver.videoDrivers = ["nvidia"];
@@ -25,6 +28,6 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
-    WLR_DRM_DEVICES = "/dev/dri/card1;/dev/dri/card0";
+    WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
   };
 }

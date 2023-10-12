@@ -1,6 +1,7 @@
 {
   pkgs,
   flake_path,
+  host,
   ...
 }: {
   imports = [./services.nix ./networking.nix];
@@ -76,6 +77,7 @@
     shellAliases = {
       all-switch = "nix-switch && home-switch";
       all-update = "sudo nix flake update ${flake_path}# && all-switch";
+      nix-switch = "sudo nixos-rebuild switch --flake ${flake_path}#${host}";
     };
   };
   programs.noisetorch.enable = true;
