@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [ dconf ];
   gtk = {
     enable = true;
     font.name = "JetBrainsMono Nerd Font 12";
@@ -15,14 +16,10 @@
       package = pkgs.catppuccin-gtk.override {variant = "mocha";};
     };
     gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 }

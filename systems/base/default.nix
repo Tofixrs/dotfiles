@@ -81,6 +81,7 @@
     };
   };
   programs.noisetorch.enable = true;
+  programs.dconf.enable = true;
   console.keyMap = "pl2";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   system.stateVersion = "23.11";
