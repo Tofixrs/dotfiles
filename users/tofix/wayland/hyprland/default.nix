@@ -21,7 +21,7 @@ in {
       input = {
         kb_layout = "pl";
         numlock_by_default = true; #why the FUCK isnt this on by default
-        natural_scroll = true;
+        touchpad.natural_scroll = true;
       };
       gestures = {
         workspace_swipe = true;
