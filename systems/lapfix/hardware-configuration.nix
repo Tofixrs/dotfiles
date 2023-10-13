@@ -11,12 +11,12 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
+  boot.kernelParams = ["amdhpu.backlight=0"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  
   fileSystems = {
     "/windows" = {
       device = "/dev/disk/by-uuid/BC34BD5734BD14FC";
@@ -25,21 +25,21 @@
     "/" = {
       device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd"];
+      options = ["subvol=root" "compress=zstd"];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
       fsType = "btrfs";
-      options = [ "subvol=home"  "compress=zstd"];
+      options = ["subvol=home" "compress=zstd"];
     };
-    
+
     "/nix" = {
       device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
       fsType = "btrfs";
-      options = [ "subvol=nix" "noatime" "compress=zstd" ];
+      options = ["subvol=nix" "noatime" "compress=zstd"];
     };
-    
+
     "/boot" = {
       device = "/dev/disk/by-uuid/0F54-4904";
       fsType = "vfat";

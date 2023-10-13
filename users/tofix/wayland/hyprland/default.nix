@@ -1,16 +1,22 @@
 {
   inputs,
   pkgs,
+  host,
   ...
 }: let
   anyrun-stdin = "${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so";
   grimblast = mode: "grimblast --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
+  sys_monitor =
+    if host == "lapfix"
+    then ["eDP-1,1920x1080@144,0x0,1.25"]
+    else [];
 in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enableNvidiaPatches = true;
     settings = {
+      monitor = sys_monitor;
       "$mainMod" = "SUPER";
       input = {
         kb_layout = "pl";

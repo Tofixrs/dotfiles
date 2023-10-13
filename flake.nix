@@ -12,27 +12,46 @@
   in {
     nixosConfigurations = {
       tofipc = let
-        host="tofipc";
-      in nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs flake_path system host;};
-        modules = [
-          ./systems/${host}
-        ];
-      };
-      lapfix = let 
+        host = "tofipc";
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {inherit inputs flake_path system host;};
+          modules = [
+            ./systems/pc
+          ];
+        };
+      lapfix = let
         host = "lapfix";
-      in nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs flake_path system host;};
-        modules = [
-          ./systems/${host}
-        ];
-      };
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {inherit inputs flake_path system host;};
+          modules = [
+            ./systems/${host}
+          ];
+        };
     };
     homeConfigurations = {
-      tofix = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs flake_path system;};
+      "tofix@tofipc" = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = {
+          inherit inputs flake_path system;
+          host = "tofipc";
+        };
+        modules = [./users/tofix];
+        pkgs = import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+          overlays = [(import ./packages)];
+        };
+      };
+      "tofix@lapfix" = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = {
+          inherit inputs flake_path system;
+          host = "lapfix";
+        };
         modules = [./users/tofix];
         pkgs = import nixpkgs {
           inherit system;
