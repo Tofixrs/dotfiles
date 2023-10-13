@@ -5,7 +5,7 @@
   host,
   ...
 }: {
-  imports = [../base ./nvidia.nix ./hardware-configuration.nix ./syncthing.nix ./services.nix];
+  imports = [../base ./bluetooth.nix ./nvidia.nix ./hardware-configuration.nix ./syncthing.nix ./services.nix];
   programs.zsh.shellAliases.nix-switch = "sudo nixos-rebuild switch --flake ${flake_path}#${host}";
 
   programs.steam = {
