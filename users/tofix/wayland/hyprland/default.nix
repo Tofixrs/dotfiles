@@ -21,6 +21,12 @@ in {
       input = {
         kb_layout = "pl";
         numlock_by_default = true; #why the FUCK isnt this on by default
+        natural_scroll = true;
+      };
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_create_new = true;
+        workspace_swipe_forever = true;
       };
       bind = [
         "$mainMod, 1, workspace, 1"
@@ -78,6 +84,9 @@ in {
         ", xf86audionext, exec, playerctl next"
         ", xf86audioprev, exec, playerctl previous"
         ", xf86audiostop, exec, playerctl stop"
+        ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
+        ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
+        ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
         ", code:179, exec, spotify"
         "CTRL, xf86audionext, exec, playerctl position 5"
         "CTRL, xf86audioprev, exec, playerctl position 5 -"

@@ -38,5 +38,6 @@
     options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
 
+  boot.kernelParams = ["acpi_backlight=video"];
   networking.hostName = "lapfix";
 }
