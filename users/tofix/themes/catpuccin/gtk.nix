@@ -1,5 +1,13 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ dconf ];
+  home.packages = with pkgs; [dconf];
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
   gtk = {
     enable = true;
     font.name = "JetBrainsMono Nerd Font 12";
@@ -12,8 +20,12 @@
       package = pkgs.bibata-cursors;
     };
     theme = {
-      name = "Catppuccin-Mocha-Standard-Blue-dark";
-      package = pkgs.catppuccin-gtk.override {variant = "mocha";};
+      name = "Catppuccin-Mocha-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        variant = "mocha";
+        accents = ["pink"];
+        size = "compact";
+      };
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
