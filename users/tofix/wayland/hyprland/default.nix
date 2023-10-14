@@ -8,7 +8,7 @@
   grimblast = mode: "grimblast --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
   sys_monitor =
     if host == "lapfix"
-    then ["eDP-1,1920x1080@144,0x0,1.25"]
+    then ["eDP-1,1920x1080@144,0x0,1"]
     else [];
 in {
   wayland.windowManager.hyprland = {
