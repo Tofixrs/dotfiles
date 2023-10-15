@@ -37,7 +37,7 @@
     # https://github.com/umlaeute/v4l2loopback
     options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
-
+  hardware.enableAllFirmware = true;
   boot.kernelParams = ["acpi_backlight=video"];
   networking.hostName = "lapfix";
 }
