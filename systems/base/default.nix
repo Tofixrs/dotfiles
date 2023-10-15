@@ -84,5 +84,7 @@
   programs.dconf.enable = true;
   console.keyMap = "pl2";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   system.stateVersion = "23.11";
 }
