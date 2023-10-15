@@ -26,6 +26,8 @@
     rustup
     ripgrep
     lazygit
+    lutris
+    wine
     #    inputs.getchoo.packages.${pkgs.system}.modrinth-app
   ];
 }
