@@ -79,7 +79,7 @@ in {
         ", Print, exec, ${grimblast "screen"}"
         "$mainMod, TAB, exec, swaync-client -t"
         "$mainMod, V, exec, cliphist list | anyrun --plugins ${anyrun-stdin} -c ~/.config/clipboard | cliphist decode | wl-copy"
-        "$mainMod, X, exec, ~/.config/hypr/power.sh"
+        "$mainMod, X, exec, ags --toggle-window powermenu"
         ", xf86audioplay, exec, playerctl play-pause"
         ", xf86audionext, exec, playerctl next"
         ", xf86audioprev, exec, playerctl previous"
@@ -172,27 +172,5 @@ in {
     };
   };
   xdg.configFile."hypr/autostart.sh".source = ./autostart.sh;
-  xdg.configFile."hypr/power.sh" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-
-      entries="⇠ Logout\n⏻ Shutdown\n⭮ Reboot"
-      selected=$(echo -e $entries | anyrun --plugins ${anyrun-stdin} -c ~/.config/power-menu/ | awk '{print tolower($2)}')
-      echo $selected
-
-      case $selected in
-        logout)
-          hyprctl dispatch exit;;
-        reboot)
-          exec systemctl reboot;;
-        shutdown)
-          exec systemctl poweroff -i;;
-        #sleep) nvidia drivers go brrr (they fuck you up)
-        #  exec systemctl suspend;;
-      esac
-    '';
-  };
   xdg.configFile."clipboard".source = ../clipboard;
-  xdg.configFile."power-menu".source = ../power-menu;
 }
