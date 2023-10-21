@@ -82,6 +82,11 @@
   };
   programs.noisetorch.enable = true;
   programs.dconf.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
   console.keyMap = "pl2";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
