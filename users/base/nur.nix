@@ -6,6 +6,7 @@ _: {
           inherit pkgs;
         };
       };
+      allowUnfree = true;
     }
   '';
 }
