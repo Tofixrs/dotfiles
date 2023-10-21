@@ -28,6 +28,7 @@
     lutris
     wine
     nil
+    vlc
     #    inputs.getchoo.packages.${pkgs.system}.modrinth-app
   ];
 }

@@ -4,6 +4,7 @@ _: let
   archiver = "org.kde.ark.desktop";
   editor = "nvim.desktop";
   file_manager = "pcmanfm-qt.desktop";
+  media_player = "vlc.desktop";
 in {
   xdg.mimeApps = {
     enable = true;
@@ -36,6 +37,26 @@ in {
       "image/jpeg" = "${image_viewer}";
       "inode/directory" = "${file_manager}";
       "text/plain" = "${editor}";
+      "video/x-flic" = "${media_player}";
+      "video/mpeg" = "${media_player}";
+      "video/vnd.rn-realvideo" = "${media_player}";
+      "video/x-ogm+ogg" = "${media_player}";
+      "video/vnd.mpegurl" = "${media_player}";
+      "video/3gpp" = "${media_player}";
+      "video/x-ms-wmv" = "${media_player}";
+      "video/quicktime" = "${media_player}";
+      "video/x-anim" = "${media_player}";
+      "video/ogg" = "${media_player}";
+      "video/x-nsv" = "${media_player}";
+      "video/mp4" = "${media_player}";
+      "video/webm" = "${media_player}";
+      "video/x-theora+ogg" = "${media_player}";
+      "video/x-msvideo" = "${media_player}";
+      "video/mp2t" = "${media_player}";
+      "video/3gpp2" = "${media_player}";
+      "video/x-matroska" = "${media_player}";
+      "video/x-flv" = "${media_player}";
+      "video/dv" = "${media_player}";
     };
   };
 }
