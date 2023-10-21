@@ -28,13 +28,13 @@
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
+    trusted-users = ["root" "@wheel"];
   };
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
       inherit pkgs;
     };
   };
-  nix.trustedUsers = ["root" "@wheel"];
   nixpkgs.config.allowUnfree = true;
   time.timeZone = "Europe/Warsaw";
 
