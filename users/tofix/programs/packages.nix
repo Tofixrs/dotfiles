@@ -23,11 +23,11 @@
     prismlauncher-qt5
     nodePackages.pnpm
     nodejs_20
-    rustup
     ripgrep
     lazygit
     lutris
     wine
+    nil
     #    inputs.getchoo.packages.${pkgs.system}.modrinth-app
   ];
 }
