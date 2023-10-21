@@ -13,8 +13,8 @@ in
     src = pkgs.fetchFromGitHub {
       owner = "AstroNvim";
       repo = "AstroNvim";
-      rev = "dad0bec1fef2833561d04ea446a544fbfde92539";
-      hash = "sha256-8EEvIud5iaCWxOIkfQqOTnPUF66MwHS4sFI5yn2T6Yc=";
+      rev = "8e1b444a48591c8e3e65b9a01bb34064ed42dcb4";
+      hash = "sha256-+RUxvQxPpyrJFV/toRPauDAmyyVxpqSjHCxtFuw0qA8=";
     };
     installPhase = ''
       mkdir -p "$out/"
