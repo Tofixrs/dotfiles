@@ -1,4 +1,5 @@
 return {
+  
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -50,8 +51,36 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "lua_ls"
+      "lua_ls",
+      "rust_analyzer",
+      "nil_ls"
     },
+
+    config = {
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            procMacro = {
+              enabled = true;
+            },
+          }
+        }
+      },
+      -- nil_ls = {
+      --   cmd = {"nil"}
+      -- },
+      nil_ls = {
+        single_file_support = true;
+        auto_start = true;
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = {"alejandra"}
+            }
+          }
+        }
+      }
+    }
   },
 
   -- Configure require("lazy").setup() options
