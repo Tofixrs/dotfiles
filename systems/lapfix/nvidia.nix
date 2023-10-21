@@ -12,18 +12,19 @@
     prime = {
       offload = {
         enable = true;
-	enableOffloadCmd = true;
+        enableOffloadCmd = true;
       };
       nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "PCI:6:0:0";
     };
     powerManagement = {
       enable = true;
-      finegrained = true; 
+      finegrained = true;
     };
   };
   services.xserver.videoDrivers = ["nvidia"];
   environment.sessionVariables = {
     WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
+    DRI_PRIME = "1";
   };
 }
