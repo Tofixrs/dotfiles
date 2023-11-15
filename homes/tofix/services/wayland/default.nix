@@ -1,3 +1,3 @@
 _: {
-  imports = [./clipboard.nix ./wallpaper.nix];
+  imports = [./clipboard.nix ./wallpaper.nix ./swayidle ./notifs];
 }

@@ -1,3 +1,4 @@
+# Make a module for themes later
 _: {
-  imports = [./catppuccin];
+  imports = [./catppuccin ./qt.nix ./gtk.nix];
 }

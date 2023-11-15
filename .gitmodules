@@ -1,0 +1,4 @@
+[submodule "homes/tofix/graphical/ags/config"]
+	path = homes/tofix/graphical/ags/config
+	url = https://github.com/Tofixrs/ags-config
+	branch = rewrite-pain

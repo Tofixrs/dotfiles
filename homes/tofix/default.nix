@@ -1,5 +1,5 @@
 {lib, ...}: {
-  imports = [./themes ./services];
+  imports = [./themes ./services ./terminal ./other-apps.nix ./graphical];
   home = {
     username = "tofix";
     homeDirectory = "/home/tofix";

@@ -1,3 +1,3 @@
 _: {
-  imports = [./wayland];
+  imports = [./wayland ./shared];
 }

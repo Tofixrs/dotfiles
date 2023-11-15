@@ -10,6 +10,8 @@
     flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
       imports = [
         {config._module.args._inputs = inputs // {inherit (inputs) self;};}
+        inputs.flake-parts.flakeModules.easyOverlay
+        ./flake/pkgs
       ];
       systems = ["x86_64-linux"];
       perSystem = {
@@ -30,24 +32,56 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    xdg-portal-hyprland = {
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-colors = {
       url = "github:Misterio77/nix-colors";
       inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
