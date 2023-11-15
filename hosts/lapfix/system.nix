@@ -8,7 +8,8 @@
         amdBusId = "PCI:6:0:0";
         monitors = ["eDP-1"];
         hasBluetooth = true;
-        hasTPM = true;
+        # TODO: setup tpm on the system
+        hasTPM = false;
       };
       system = {
         boot = {
