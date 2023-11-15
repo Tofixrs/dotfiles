@@ -18,7 +18,7 @@
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
   #TODO: move into module
-  swaylock-cmd = "${lib.getExe pkgs.swaylock} -f --show-failed-attempts --indicator --indicator-radius=200 --clock --effect-blur=10x0.2";
+  swaylock-cmd = "${lib.getExe pkgs.swaylock-effects} -f --show-failed-attempts --indicator --indicator-radius=200 --clock --effect-blur=10x0.2";
 in {
   bind =
     [
@@ -48,8 +48,6 @@ in {
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"
       ", xf86audiostop, exec, playerctl stop"
-      ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
-      ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
       ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
       ", xf86monbrightnessup, exec, brightnessctl set 50-"
       ", xf86monbrightnessdown, exec, brightnessctl set 50+"
@@ -71,5 +69,7 @@ in {
     "$mainMod CONTROL, down, resizeactive, 0 20"
     "$mainMod CONTROL, left, resizeactive, -20 0"
     "$mainMod CONTROL, right, resizeactive, 20 0"
+    ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
+    ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
   ];
 }

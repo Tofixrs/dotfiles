@@ -1,3 +1,3 @@
 _: {
-  imports = [./wms];
+  imports = [./wms ./portals.nix ./env.nix];
 }
