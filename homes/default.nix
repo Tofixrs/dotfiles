@@ -12,7 +12,6 @@
 in {
   home-manager = lib.mkIf env.useHomeManager {
     verbose = true;
-    useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "old";
     extraSpecialArgs = {inherit inputs self inputs' self';};
