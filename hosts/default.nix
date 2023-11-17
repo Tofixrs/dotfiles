@@ -11,9 +11,12 @@
   modules = ../modules;
   coreModules = modules + /core;
   typeModules = coreModules + /types;
+
   laptop = typeModules + /laptop;
   # i suck at naming but this means my desktop vonfig like hyprland etc
   desktop = typeModules + /desktop;
+  gaming = typeModules + /gaming;
+
   common = coreModules + /common;
   options = coreModules + /options;
 
@@ -35,6 +38,7 @@ in {
         {networking.hostName = "tofipc";}
         ./tofipc
         desktop
+        gaming
       ]
       ++ lib.concatLists [shared homes];
     specialargs = sharedArgs;
@@ -48,6 +52,7 @@ in {
         ./lapfix
         laptop
         desktop
+        gaming
       ]
       ++ lib.concatLists [shared homes];
     specialargs = sharedArgs;
