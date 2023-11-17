@@ -8,11 +8,11 @@
 
   dpmsOnCommand =
     if env.desktop == "Hyprland"
-    then "timeout 300 'hyprctl dispatch dpms on' \\"
+    then "after-resume 'hyprctl dispatch dpms on' \\"
     else "";
   dpmsOffCommand =
     if env.desktop == "Hyprland"
-    then "after-resume 'hyprctl dispatch dpms off' \\"
+    then "timeout 300 'hyprctl dispatch dpms off' \\"
     else "";
 
   sleep =
@@ -26,9 +26,9 @@ in {
       Service = {
         ExecStart = ''          ${lib.getExe pkgs.swayidle} -w \
           timeout 150 'swaylock -f' \
-          ${dpmsOnCommand}
-          ${sleep}
           ${dpmsOffCommand}
+          ${sleep}
+          ${dpmsOnCommand}
           before-sleep 'swaylock -f'
         '';
         Restart = "always";

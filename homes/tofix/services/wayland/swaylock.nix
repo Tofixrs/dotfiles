@@ -37,9 +37,6 @@
       line-wrong-color = "${colors.base00}";
       bs-hl-color = "${colors.base08}";
       line-uses-ring = false;
-      grace = 3;
-      grace-no-mouse = true;
-      grace-no-touch = true;
       datestr = "%d/%m/%Y";
       fade-in = "0.1";
       ignore-empty-password = true;
