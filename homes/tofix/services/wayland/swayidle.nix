@@ -2,46 +2,56 @@
   osConfig,
   pkgs,
   lib,
+  config,
   ...
 }: let
   env = osConfig.modules.usrEnv;
-
-  dpmsOnCommand =
+  hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
+  dpms =
     if env.desktop == "Hyprland"
-    then "after-resume 'hyprctl dispatch dpms on' \\"
-    else "";
-  dpmsOffCommand =
-    if env.desktop == "Hyprland"
-    then "timeout 300 'hyprctl dispatch dpms off' \\"
-    else "";
+    then [
+      {
+        timeout = 300;
+        command = "${hyprctl} dispatch dpms off";
+        resumeCommand = "${hyprctl} dispatch on";
+      }
+    ]
+    else [];
 
   sleep =
     if osConfig.networking.hostName != "tofipc"
-    then "timeout 400 'systemctl suspend' \\"
-    else "";
+    then [
+      {
+        timeout = 400;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ]
+    else [];
 in {
   config = lib.mkIf (env.isWayland) {
-    systemd.user.services.swayidle = {
-      Unit.description = "Idle";
-      Service = {
-        ExecStart = ''          ${lib.getExe pkgs.swayidle} -w \
-          timeout 150 'swaylock -f' \
-          ${dpmsOffCommand}
-          ${sleep}
-          ${dpmsOnCommand}
-          before-sleep 'swaylock -f'
-        '';
-        Restart = "always";
-      };
-      Unit = {
-        PartOf = ["graphical-session.target"];
-        After = ["graphical-session.target"];
-      };
-      Install.WantedBy = ["graphical-session.target"];
+    systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
+    services.swayidle = {
+      enable = true;
+      extraArgs = ["-w"];
+      events = [
+        {
+          event = "before-sleep";
+          command = "${pkgs.systemd}/bin/loginctl lock-session";
+        }
+        {
+          event = "lock";
+          command = "${pkgs.swaylock-effects}";
+        }
+      ];
+      timeouts =
+        [
+          {
+            timeout = 150;
+            command = "${pkgs.swaylock-effects}";
+          }
+        ]
+        ++ dpms
+        ++ sleep;
     };
-    home.packages = with pkgs; [
-      swayidle
-      swaylock-effects
-    ];
   };
 }
