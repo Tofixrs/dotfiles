@@ -13,7 +13,7 @@
       {
         timeout = 300;
         command = "${hyprctl} dispatch dpms off";
-        resumeCommand = "${hyprctl} dispatch on";
+        resumeCommand = "${hyprctl} dispatch dpms on";
       }
     ]
     else [];
@@ -32,7 +32,7 @@ in {
     systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
     services.swayidle = {
       enable = true;
-      extraArgs = ["-w"];
+      extraArgs = ["-w" "-d"];
       events = [
         {
           event = "before-sleep";
@@ -40,14 +40,14 @@ in {
         }
         {
           event = "lock";
-          command = "${pkgs.swaylock-effects}";
+          command = "${lib.getExe pkgs.swaylock-effects} -f";
         }
       ];
       timeouts =
         [
           {
             timeout = 150;
-            command = "${pkgs.swaylock-effects}";
+            command = "${lib.getExe pkgs.swaylock-effects} -f";
           }
         ]
         ++ dpms

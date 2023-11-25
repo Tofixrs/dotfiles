@@ -8,6 +8,7 @@ _: {
     ./users.nix
     ./programs.nix
     ./display
+    ./nix.nix
   ];
 
   networking.networkmanager.enable = true;
