@@ -1,5 +1,6 @@
 {
   inputs,
+  inputs',
   pkgs,
   ...
 }: {
@@ -7,13 +8,11 @@
   programs.ags = {
     enable = true;
     extraPackages = [pkgs.libsoup_3];
+    configDir = inputs'.ags-config.packages.default;
   };
 
   home.packages = [
     pkgs.nodePackages.sass
+    inputs'.ags-config.packages.default
   ];
-  xdg.configFile."ags/js".source = ./config/js;
-  xdg.configFile."ags/scss".source = ./config/scss;
-  xdg.configFile."ags/packages.json".source = ./config/package.json;
-  xdg.configFile."ags/config.js".source = ./config/config.js;
 }
