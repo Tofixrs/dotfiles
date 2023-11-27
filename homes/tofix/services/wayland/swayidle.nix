@@ -6,18 +6,6 @@
   ...
 }: let
   env = osConfig.modules.usrEnv;
-  hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
-  dpms =
-    if env.desktop == "Hyprland"
-    then [
-      {
-        timeout = 300;
-        command = "${hyprctl} dispatch dpms off";
-        resumeCommand = "${hyprctl} dispatch dpms on";
-      }
-    ]
-    else [];
-
   sleep =
     if osConfig.networking.hostName != "tofipc"
     then [
@@ -50,7 +38,6 @@ in {
             command = "${lib.getExe pkgs.swaylock-effects} -f";
           }
         ]
-        ++ dpms
         ++ sleep;
     };
   };
