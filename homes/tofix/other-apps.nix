@@ -27,5 +27,6 @@
     nvtop
     brightnessctl
     alejandra
+    obs-studio
   ];
 }
