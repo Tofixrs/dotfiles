@@ -18,7 +18,6 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs'.hyprland.packages.hyprland;
-      enableNvidiaPatches = true;
       settings = {
         "$mainMod" = "SUPER";
         bind = binds.bind;
