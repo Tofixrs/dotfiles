@@ -28,5 +28,6 @@
     brightnessctl
     alejandra
     obs-studio
+    zig
   ];
 }
