@@ -10,6 +10,7 @@
         hasBluetooth = true;
         # TODO: setup tpm on the system
         hasTPM = false;
+        nvEnablePowerManagement = true;
       };
       system = {
         boot = {
@@ -24,5 +25,6 @@
         mainUser = "tofix";
       };
     };
+    hardware.nvidia.open = false;
   };
 }
