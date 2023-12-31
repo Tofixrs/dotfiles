@@ -29,5 +29,6 @@
     alejandra
     obs-studio
     zig
+    vinegar
   ];
 }
