@@ -69,17 +69,6 @@ return {
       -- nil_ls = {
       --   cmd = {"nil"}
       -- },
-      nil_ls = {
-        single_file_support = true;
-        auto_start = true;
-        settings = {
-          ["nil"] = {
-            formatting = {
-              command = {"alejandra"}
-            }
-          }
-        }
-      }
     }
   },
 
