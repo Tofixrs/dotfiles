@@ -9,10 +9,6 @@ in {
 
   programs.spicetify = {
     enable = true;
-    injectCss = true;
-    replaceColors = true;
-    overwriteAssets = true;
-    sidebarConfig = true;
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
     enabledExtensions = with spicePkgs.extensions; [
@@ -21,7 +17,6 @@ in {
       adblock
       playlistIcons
       lastfm
-      genre
       historyShortcut
       bookmark
       fullAlbumDate
