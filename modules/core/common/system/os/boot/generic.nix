@@ -6,13 +6,14 @@
 with lib; let
   sys = config.modules.system;
   # Fuck hp why cant do you have to fuck backlight up
-  params =
-    (
-      if config.networking.hostName == "lapfix"
-      then ["acpi_backlight=none"]
-      else ["acpi_backlight=native"]
-    )
-    ++ ["pti=auto"];
+  params = ["pti=auto"];
+  # params =
+  #   (
+  #     if config.networking.hostName == "lapfix"
+  #     then ["acpi_backlight=none"]
+  #     else ["acpi_backlight=native"]
+  #   )
+  #   ++ ["pti=auto"];
 in {
   config = {
     boot = {

@@ -1,5 +1,5 @@
 _: let
-  browser = ["firefox.desktop"];
+  browser = ["firefox.desktop" "floorp.desktop"];
   image_viewer = ["viewnior.desktop"];
   archiver = ["org.kde.ark.desktop"];
   editor = ["nvim.desktop"];

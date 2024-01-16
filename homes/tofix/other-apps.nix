@@ -30,5 +30,6 @@
     obs-studio
     zig
     vinegar
+    qpwgraph
   ];
 }

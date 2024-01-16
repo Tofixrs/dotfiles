@@ -16,8 +16,6 @@ with lib; let
   env = config.modules.usrEnv;
 in {
   config = mkIf (device.gpu == "nvidia" || device.gpu == "hybrid-amd-nv") {
-    nixpkgs.config.allowUnfree = true;
-
     services.xserver = mkMerge [
       {
         videoDrivers = ["nvidia"];

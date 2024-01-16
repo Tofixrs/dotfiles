@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-devedition;
+    package = pkgs.floorp;
   };
   home.file.".mozzila/user.js".source = ./user.js;
 }

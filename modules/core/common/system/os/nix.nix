@@ -11,4 +11,5 @@ _: {
       options = "-d";
     };
   };
+  nixpkgs.config.allowUnfree = true;
 }
