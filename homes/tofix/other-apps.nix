@@ -30,8 +30,6 @@
     alejandra
     obs-studio
     zig
-    self'.packages.vinegar
     qpwgraph
-    openrgb
   ];
 }
