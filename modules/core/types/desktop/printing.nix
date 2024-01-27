@@ -12,4 +12,7 @@
       openFirewall = true;
     };
   };
+  environment.systemPackages = with pkgs; [
+    system-config-printer
+  ];
 }

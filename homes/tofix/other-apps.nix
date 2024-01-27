@@ -31,5 +31,9 @@
     obs-studio
     zig
     qpwgraph
+    btop
+    libreoffice
+    qbittorrent
+    gimp
   ];
 }
