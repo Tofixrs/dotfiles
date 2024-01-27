@@ -1,3 +1,3 @@
 _: {
-  imports = [./kitty.nix];
+  imports = [./alacritty.nix];
 }
