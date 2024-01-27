@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   autostart = pkgs.writeScript "autostart.sh" ''
-    #!/usr/bin/env bash
+    #!/run/current-system/sw/bin/bash
     sleep 10
 
     cd ~/.config/autostart || {

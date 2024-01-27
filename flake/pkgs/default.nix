@@ -6,6 +6,7 @@ _: {
   perSystem = {pkgs, ...}: {
     packages = {
       astronvim = pkgs.callPackage ./astronvim {};
+      vinegar = pkgs.callPackage ./vinegar.nix {};
     };
   };
 }

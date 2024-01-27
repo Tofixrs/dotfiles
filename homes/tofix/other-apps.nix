@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs',
+  self',
   ...
 }: {
   fonts.fontconfig.enable = true;
@@ -29,7 +30,8 @@
     alejandra
     obs-studio
     zig
-    vinegar
+    self'.packages.vinegar
     qpwgraph
+    openrgb
   ];
 }
