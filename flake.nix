@@ -14,14 +14,7 @@
         ./flake/pkgs
       ];
       systems = ["x86_64-linux"];
-      perSystem = {
-        config,
-        self',
-        inputs',
-        pkgs,
-        system,
-        ...
-      }: {
+      perSystem = _: {
       };
       flake = let
         lib = import ./lib {inherit nixpkgs inputs;};
@@ -86,6 +79,13 @@
     ags-config = {
       url = "github:Tofixrs/ags-config/rework";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    neovim-flake = {
+      url = "github:notashelf/neovim-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 
