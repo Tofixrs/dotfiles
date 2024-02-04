@@ -12,7 +12,7 @@
   };
 
   home.packages = [
-    pkgs.nodePackages.sass
     inputs'.ags-config.packages.default
+    pkgs.bun
   ];
 }

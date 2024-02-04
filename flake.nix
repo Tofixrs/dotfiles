@@ -77,7 +77,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags-config = {
-      url = "github:Tofixrs/ags-config/rework";
+      url = "github:Tofixrs/ags-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-flake = {
