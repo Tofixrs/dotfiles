@@ -35,5 +35,6 @@
     libreoffice
     qbittorrent
     gimp
+    fastfetch
   ];
 }
