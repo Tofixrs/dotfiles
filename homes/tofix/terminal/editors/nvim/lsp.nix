@@ -23,6 +23,13 @@ in {
       lspkind.enable = true;
       lightbulb.enable = true;
       trouble.enable = true;
+      lspconfig.sources.csharp_ls = ''
+        lspconfig.csharp_ls.setup {
+          capabilities = capabilities;
+          on_attach = default_on_attach;
+          cmd = {"${getExe pkgs.csharp-ls}"};
+        }
+      '';
       lspconfig.sources.lua-lsp = ''
         lspconfig.lua_ls.setup {
           capabilities = capabilities;
@@ -42,4 +49,9 @@ in {
       '';
     };
   };
+
+  home.packages = with pkgs; [
+    csharp-ls
+    dotnet-sdk_8
+  ];
 }
