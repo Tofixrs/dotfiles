@@ -15,6 +15,10 @@ in {
       ts.enable = true;
       nix.enable = true;
       html.enable = true;
+      clang = {
+        enable = true;
+        cHeader = true;
+      };
       css.enable = true;
     };
     lsp = {
