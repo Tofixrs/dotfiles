@@ -18,4 +18,5 @@
   "opacity 0.85, class:^(kitty)$"
   "opacity 0.9, class:^(WebCord)$"
   "float, class:^(org.keepassxc.KeePassXC)$ title: (Unlock)"
+  "tile,class:^dev.warp.Warp.*$"
 ]

@@ -23,7 +23,7 @@ in {
   bind =
     [
       # Possibly some module to set a terminal
-      "$mainMod, RETURN, exec, alacritty"
+      "$mainMod, RETURN, exec, $TERM"
       "$mainMod, M, exit"
       "$mainMod, C, killactive"
       "$mainMod, R, exec, anyrun"
@@ -41,7 +41,7 @@ in {
       "$mainMod, mouse_up, workspace, e-1"
       "$mainMod, Print, exec, ${grimblast "area"}"
       ", Print, exec, ${grimblast "screen"}"
-      "$mainMod, TAB, exec, swaync-client -t"
+      "$mainMod, TAB, exec, ags --run-js \"App.toggleWindow(\"dashboard\")\""
       "$mainMod, V, exec, cliphist list | anyrun --plugins ${anyrun-stdin} -c ~/.config/clipboard | cliphist decode | wl-copy"
       "$mainMod, X, exec, ags --toggle-window powermenu"
       ", xf86audioplay, exec, playerctl play-pause"
@@ -55,7 +55,7 @@ in {
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
       "$mainMod, l, exec, ${swaylock-cmd}"
-      "$mainMod CTRL, C, exec, hyprpicker"
+      "$mainMod CTRL, C, exec, hyprpicker -a -r -h hex"
     ]
     ++ workspace
     ++ moveToWorkspace
