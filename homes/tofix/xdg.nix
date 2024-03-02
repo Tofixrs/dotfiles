@@ -79,6 +79,5 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "warp-terminal";
-    TERM = "warp-terminal";
   };
 }
