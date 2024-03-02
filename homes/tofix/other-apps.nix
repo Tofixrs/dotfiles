@@ -39,5 +39,6 @@
     clang
     cmake
     gnumake
+    ventoy
   ];
 }
