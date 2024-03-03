@@ -23,7 +23,7 @@ in {
   bind =
     [
       # Possibly some module to set a terminal
-      "$mainMod, RETURN, exec, $TERM"
+      "$mainMod, RETURN, exec, $TERMINAL"
       "$mainMod, M, exit"
       "$mainMod, C, killactive"
       "$mainMod, R, exec, anyrun"
