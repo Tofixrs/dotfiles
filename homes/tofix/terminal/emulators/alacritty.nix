@@ -9,6 +9,9 @@ in {
     enable = true;
   };
   xdg.configFile."alacritty.toml".source = (pkgs.formats.toml {}).generate "alacritty" {
+    window = {
+      opacity = 0.5;
+    };
     font = {
       size = 9.5;
     };
