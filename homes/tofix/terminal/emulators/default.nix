@@ -1,3 +1,3 @@
 _: {
-  imports = [./alacritty.nix ./warp];
+  imports = [./alacritty.nix];
 }
