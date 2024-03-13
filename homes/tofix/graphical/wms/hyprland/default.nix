@@ -20,9 +20,7 @@ in {
       package = inputs'.hyprland.packages.hyprland;
       settings = {
         "$mainMod" = "SUPER";
-        bind = binds.bind;
-        bindm = binds.bindm;
-        binde = binds.binde;
+        inherit binds;
         windowrulev2 = import ./windowrules.nix;
         exec-once = import ./autostart.nix {inherit pkgs;};
         monitor = sys_monitor;
