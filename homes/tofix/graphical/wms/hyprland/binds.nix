@@ -55,7 +55,7 @@ in {
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
       "$mainMod, l, exec, ${swaylock-cmd}"
-      "$mainMod CTRL, C, exec, hyprpicker -a -r -h hex"
+      "$mainMod CTRL, C, exec, hyprpicker -a -r -f hex"
     ]
     ++ workspace
     ++ moveToWorkspace
