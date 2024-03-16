@@ -29,7 +29,7 @@ in {
           LIBVA_DRIVER_NAME = "nvidia";
         }
 
-        (mkIf (env.isWayland)
+        (mkIf (env.isWayland && device.gpu != "hybrid-amd-nv")
           {
             WLR_NO_HARDWARE_CURSORS = "1";
           })
@@ -67,7 +67,7 @@ in {
           finegrained = true;
         };
 
-        open = mkDefault true;
+        open = mkDefault false;
         nvidiaSettings = false;
         nvidiaPersistenced = mkForce false;
         forceFullCompositionPipeline = true;

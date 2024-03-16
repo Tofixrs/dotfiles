@@ -33,8 +33,8 @@ in {
 
     nvEnablePowerManagement = mkOption {
       type = types.bool;
-      default = false;
-      description = "Whether to enable nvidia power managment. Defaults to false cuz broken on my ass pc";
+      default = true;
+      description = "Whether to enable nvidia power managment";
     };
     amdBusId = mkOption {
       type = types.nullOr types.nonEmptyStr;
@@ -44,6 +44,13 @@ in {
         else null;
     };
     nvBusId = mkOption {
+      type = types.nullOr types.nonEmptyStr;
+      default =
+        if config.modules.device.gpu == "hybrid-amd-nv"
+        then ""
+        else null;
+    };
+    wlrDRMDevice = mkOption {
       type = types.nullOr types.nonEmptyStr;
       default =
         if config.modules.device.gpu == "hybrid-amd-nv"

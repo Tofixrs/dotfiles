@@ -11,6 +11,7 @@
         # TODO: setup tpm on the system
         hasTPM = false;
         nvEnablePowerManagement = true;
+        wlrDRMDevice = "/dev/dri/card0";
       };
       system = {
         boot = {
