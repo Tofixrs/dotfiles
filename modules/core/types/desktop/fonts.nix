@@ -13,5 +13,6 @@
     proggyfonts
     twitter-color-emoji
     comfortaa
+    corefonts
   ];
 }
