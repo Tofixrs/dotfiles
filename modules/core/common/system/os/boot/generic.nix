@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -41,6 +42,11 @@ in {
           ];
         })
       ];
+      plymouth = {
+        enable = true;
+        theme = "catppuccin-macchiato";
+        themePackages = [pkgs.catppuccin-plymouth];
+      };
     };
   };
 }
