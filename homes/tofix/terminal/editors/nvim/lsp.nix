@@ -12,7 +12,10 @@ in {
       enableTreesitter = true;
       enableExtraDiagnostics = true;
       rust.enable = true;
-      ts.enable = true;
+      ts = {
+        enable = true;
+        extraDiagnostics.types = [];
+      };
       nix.enable = true;
       html.enable = true;
       clang = {
