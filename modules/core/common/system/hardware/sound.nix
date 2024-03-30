@@ -10,6 +10,7 @@
 in {
   imports = [inputs.nix-gaming.nixosModules.pipewireLowLatency];
   config = mkIf dev.hasSound {
+    programs.noisetorch.enable = true;
     sound = {
       enable = true;
       mediaKeys.enable = true;
