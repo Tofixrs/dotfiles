@@ -80,6 +80,9 @@ in {
           disable_hyprland_logo = true;
           vrr = 1;
         };
+        debug = {
+          disable_logs = false;
+        };
       };
     };
     home.packages = with pkgs; [
