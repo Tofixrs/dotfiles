@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  imports = [./shell ./editors ./emulators];
+  imports = [./shell ./editors ./emulators ./tools];
 }

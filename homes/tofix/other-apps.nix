@@ -35,7 +35,6 @@
     libreoffice
     qbittorrent
     gimp
-    fastfetch
     clang
     cmake
     gnumake
