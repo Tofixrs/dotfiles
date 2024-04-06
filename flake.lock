@@ -29,11 +29,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1710336803,
-        "narHash": "sha256-JKtCgJoSVdmdlPzZl33+B/K9gsOtLCLwNcFL0vj8w8A=",
+        "lastModified": 1712390237,
+        "narHash": "sha256-sqrozarKZ0n1r9EDtw68tYxxl/aL7KrxfI6zh8RD/DQ=",
         "owner": "Tofixrs",
         "repo": "ags-config",
-        "rev": "673cc7434155c054033db09fabd7e66d17991687",
+        "rev": "24852249c3d5c5c5b4ee60e58c6ef1204a9651d2",
         "type": "github"
       },
       "original": {
