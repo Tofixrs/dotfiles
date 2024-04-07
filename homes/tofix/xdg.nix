@@ -4,7 +4,7 @@ _: let
   archiver = ["org.kde.ark.desktop"];
   editor = ["nvim.desktop"];
   file_manager = ["pcmanfm-qt.desktop"];
-  media_player = ["vlc.desktop"];
+  media_player = ["mpv.desktop"];
 
   associations = {
     "x-scheme-handler/http" = browser;

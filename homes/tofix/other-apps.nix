@@ -24,7 +24,6 @@
     lutris
     wine
     nil
-    vlc
     nvtop
     brightnessctl
     alejandra
@@ -39,5 +38,6 @@
     cmake
     gnumake
     ventoy
+    mpv
   ];
 }
