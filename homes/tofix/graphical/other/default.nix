@@ -1,3 +1,3 @@
 _: {
-  imports = [./clipboard-history ./anyrun.nix];
+  imports = [./anyrun.nix];
 }
