@@ -24,7 +24,6 @@
     lutris
     wine
     nil
-    nvtop
     brightnessctl
     alejandra
     obs-studio
@@ -39,5 +38,9 @@
     gnumake
     ventoy
     mpv
+    (nvtopPackages.full.override {
+      nvidia = true;
+      amd = true;
+    })
   ];
 }
