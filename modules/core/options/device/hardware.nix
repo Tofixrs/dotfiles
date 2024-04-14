@@ -57,5 +57,10 @@ in {
         then ""
         else null;
     };
+    veryAnnoyingPatchForMyHpVictus15 = mkOption {
+      description = "The very stupid 'patch' that enables a specialisation with backlight controls due to the stupid HP thing where the backlight is 1.inverted, 2.very low max brightness if brightness controll enabled";
+      type = types.bool;
+      default = false;
+    };
   };
 }

@@ -12,6 +12,7 @@
         hasTPM = false;
         nvEnablePowerManagement = true;
         wlrDRMDevice = "/dev/dri/card1";
+        veryAnnoyingPatchForMyHpVictus15 = true;
       };
       system = {
         boot = {
