@@ -42,5 +42,6 @@
       nvidia = true;
       amd = true;
     })
+    android-studio
   ];
 }
