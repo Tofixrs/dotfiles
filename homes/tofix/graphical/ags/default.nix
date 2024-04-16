@@ -14,5 +14,6 @@
   home.packages = [
     inputs'.ags-config.packages.default
     pkgs.bun
+    pkgs.imagemagick
   ];
 }
