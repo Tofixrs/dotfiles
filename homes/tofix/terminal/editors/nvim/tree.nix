@@ -5,8 +5,8 @@ _: {
       view.float.enable = true;
       modified.enable = true;
       git.enable = true;
-      filesystemWatchers.enable = true;
-      disableNetrw = true;
+      filesystem_watchers.enable = true;
+      disable_netrw = true;
       diagnostics.enable = true;
       actions = {
         open_file.quit_on_open = true;

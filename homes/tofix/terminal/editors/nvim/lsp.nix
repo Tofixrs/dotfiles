@@ -6,6 +6,17 @@
   inherit (lib) getExe;
 in {
   programs.neovim-flake.settings.vim = {
+    visuals.fidget-nvim = {
+      enable = true;
+      setupOpts = {
+        integration.nvim-tree.enable = true;
+        notification.window = {
+          align = "top";
+          border = "rounded";
+          winblend = 0;
+        };
+      };
+    };
     languages = {
       enableLSP = true;
       enableFormat = true;
