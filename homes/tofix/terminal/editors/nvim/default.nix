@@ -1,6 +1,6 @@
 # Swicth to using nvim flake from NotAShelf
 {inputs, ...}: {
-  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./notifs.nix ./neocord.nix ./statusline.nix ./tabline.nix];
+  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./notifs.nix ./statusline.nix ./tabline.nix];
   programs.neovim-flake = {
     enable = true;
 

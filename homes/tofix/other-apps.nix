@@ -16,7 +16,7 @@
     playerctl
     hyprpicker
     swappy
-    prismlauncher-qt5
+    prismlauncher
     nodePackages.pnpm
     nodejs_20
     ripgrep
