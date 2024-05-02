@@ -2,6 +2,7 @@
   pkgs,
   inputs',
   self',
+  inputs,
   ...
 }: {
   fonts.fontconfig.enable = true;
@@ -11,7 +12,6 @@
     inputs'.hyprland-contrib.packages.grimblast
     viewnior
     libsForQt5.ark
-    lxqt.pcmanfm-qt
     gh
     playerctl
     hyprpicker
@@ -43,5 +43,7 @@
       amd = true;
     })
     android-studio
+    cinnamon.nemo-with-extensions
+    glib
   ];
 }

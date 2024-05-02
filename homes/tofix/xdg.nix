@@ -1,9 +1,13 @@
-_: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   browser = ["firefox.desktop" "floorp.desktop"];
   image_viewer = ["viewnior.desktop"];
   archiver = ["org.kde.ark.desktop"];
   editor = ["nvim.desktop"];
-  file_manager = ["pcmanfm-qt.desktop"];
+  file_manager = ["nemo.desktop"];
   media_player = ["mpv.desktop"];
 
   associations = {
@@ -55,6 +59,7 @@ _: let
     "video/x-matroska" = media_player;
     "video/x-flv" = media_player;
     "video/dv" = media_player;
+    "x-scheme-handler/steam" = ["steam.desktop"];
   };
 in {
   xdg = {
@@ -73,6 +78,12 @@ in {
       enable = true;
       associations.added = associations;
       defaultApplications = associations;
+    };
+  };
+
+  dconf.settings = {
+    "org/cinnamon/desktop/applications/terminal" = {
+      exec = lib.getExe pkgs.alacritty;
     };
   };
 
