@@ -45,6 +45,7 @@ in {
             "*-*-* 6:0:0"
             "*-*-* 22:0:0"
           ];
+          Persistent = true;
         };
         Install.WantedBy = ["timers.target"];
       };
