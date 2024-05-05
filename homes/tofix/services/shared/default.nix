@@ -1,3 +1,3 @@
 _: {
-  imports = [./polkit.nix ./autostart.nix ./syncthing.nix];
+  imports = [./polkit.nix ./syncthing.nix];
 }
