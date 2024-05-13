@@ -2,3 +2,6 @@
 	path = homes/tofix/graphical/ags/config
 	url = https://github.com/Tofixrs/ags-config
 	branch = rewrite-pain
+[submodule "homes/tofix/graphical/apps/firefox/ArcWTF"]
+	path = homes/tofix/graphical/apps/firefox/ArcWTF
+	url = https://github.com/KiKaraage/ArcWTF
