@@ -72,6 +72,19 @@ in {
             }
           }
         '';
+        html = ''
+          lspconfig.html.setup {
+            capabilities = capabilities;
+            on_attach = default_on_attach;
+          }
+        '';
+        emmet = ''
+          lspconfig.emmet_language_server.setup {
+            capabilities = capabilities;
+            on_attach = default_on_attach;
+            cmd = {"${getExe pkgs.emmet-ls}", "--stdio"}
+          }
+        '';
       };
     };
   };
@@ -80,5 +93,6 @@ in {
     csharp-ls
     dotnet-sdk_8
     vscode-langservers-extracted
+    emmet-ls
   ];
 }
