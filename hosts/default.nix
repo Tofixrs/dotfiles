@@ -16,6 +16,7 @@
   # i suck at naming but this means my desktop vonfig like hyprland etc
   desktop = typeModules + /desktop;
   gaming = typeModules + /gaming;
+  dev = typeModules + /dev;
 
   common = coreModules + /common;
   options = coreModules + /options;
@@ -53,6 +54,7 @@ in {
         laptop
         desktop
         gaming
+        dev
       ]
       ++ lib.concatLists [shared homes];
     specialargs = sharedArgs;

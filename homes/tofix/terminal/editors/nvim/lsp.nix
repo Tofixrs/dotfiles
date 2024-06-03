@@ -34,6 +34,7 @@ in {
         cHeader = true;
       };
       css.enable = true;
+      php.enable = true;
     };
     lsp = {
       enable = true;
@@ -76,13 +77,15 @@ in {
           lspconfig.html.setup {
             capabilities = capabilities;
             on_attach = default_on_attach;
+            filetypes = {"html", "templ", "php"};
           }
         '';
         emmet = ''
           lspconfig.emmet_language_server.setup {
             capabilities = capabilities;
             on_attach = default_on_attach;
-            cmd = {"${getExe pkgs.emmet-ls}", "--stdio"}
+            cmd = {"${getExe pkgs.emmet-ls}", "--stdio"};
+            filetypes = { "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "typescriptreact", "php" };
           }
         '';
       };
