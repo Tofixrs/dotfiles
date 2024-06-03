@@ -50,12 +50,5 @@ in {
         Install.WantedBy = ["timers.target"];
       };
     };
-
-    xdg.configFile."hypr/hyprshade.toml".text = ''
-      [[shades]]
-      name = "blue-light-filter"
-      end_time = 19:00:00
-      start_time = 06:00:00   # optional if you have more than one shade with start_time
-    '';
   };
 }
