@@ -34,7 +34,10 @@ in {
         cHeader = true;
       };
       css.enable = true;
-      php.enable = true;
+      php = {
+        enable = true;
+        lsp.server = "phan";
+      };
     };
     lsp = {
       enable = true;
@@ -74,14 +77,14 @@ in {
           }
         '';
         html = ''
-          lspconfig.html.setup {
+          lspconfig.html.setup{
             capabilities = capabilities;
             on_attach = default_on_attach;
             filetypes = {"html", "templ", "php"};
           }
         '';
         emmet = ''
-          lspconfig.emmet_language_server.setup {
+          lspconfig.emmet_language_server.setup{
             capabilities = capabilities;
             on_attach = default_on_attach;
             cmd = {"${getExe pkgs.emmet-ls}", "--stdio"};
