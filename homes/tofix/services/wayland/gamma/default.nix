@@ -14,7 +14,7 @@ in {
       hyprshade = {
         Service = {
           ExecStart = "${pkgs.writeShellScript "gamma.sh" ''
-            hour=`date +%H`
+            hour=`date +%-H`
 
             if ((hour >= 22)); then
               hyprctl keyword decoration:screen_shader ${shader}
