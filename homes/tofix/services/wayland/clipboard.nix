@@ -6,6 +6,8 @@
 }: let
   inherit (lib) mkIf;
   env = osConfig.modules.usrEnv;
+  wl-pasteCmd = "${pkgs.wl-clipboard}/bin/wl-paste";
+  cliphistCmd = "${lib.getExe pkgs.cliphist}";
 in {
   config = mkIf env.isWayland {
     home.packages = with pkgs; [
@@ -16,7 +18,10 @@ in {
     systemd.user.services = {
       cliphist = {
         Service = {
-          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${lib.getExe pkgs.cliphist} store";
+          ExecStart = "${pkgs.writeShellScript "cliphist.sh" ''
+            ${wl-pasteCmd} --type text --watch ${cliphistCmd} store &
+            ${wl-pasteCmd} --type image --watch ${cliphistCmd} store
+          ''}";
           Restart = "always";
         };
         Unit = {
