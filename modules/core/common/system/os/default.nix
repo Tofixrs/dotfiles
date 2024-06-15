@@ -3,7 +3,7 @@ _: {
     ./boot
     ./fs.nix
     ./services.nix
-    ./secutiy
+    ./security
     ./env
     ./users.nix
     ./programs.nix

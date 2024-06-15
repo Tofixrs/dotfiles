@@ -27,6 +27,5 @@
         mainUser = "tofix";
       };
     };
-    hardware.nvidia.open = false;
   };
 }
