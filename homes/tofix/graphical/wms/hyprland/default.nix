@@ -10,7 +10,7 @@
     then ["eDP-1,1920x1080@144,0x0,1,vrr,1"]
     else [];
   binds = import ./binds.nix {
-    inherit inputs' pkgs lib;
+    inherit inputs' lib osConfig pkgs;
   };
   env = osConfig.modules.usrEnv;
 in {

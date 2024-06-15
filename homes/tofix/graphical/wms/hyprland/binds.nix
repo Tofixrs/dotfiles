@@ -1,9 +1,9 @@
 {
   inputs',
-  pkgs,
   lib,
+  osConfig,
+  pkgs,
 }: let
-  anyrun-stdin = "${inputs'.anyrun.packages.stdin}/lib/libstdin.so";
   grimblast = mode: "${lib.getExe inputs'.hyprland-contrib.packages.grimblast} --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
   workspace = map (i:
     if i != 10
@@ -17,8 +17,10 @@
     if i != 10
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
-  #TODO: move into module
-  swaylock-cmd = "${lib.getExe pkgs.swaylock-effects} -f --show-failed-attempts --indicator --indicator-radius=200 --clock --effect-blur=10x0.2";
+  lockCommand =
+    if osConfig.modules.usrEnv.screenLocker == "hyprlock"
+    then "${lib.getExe pkgs.hyprlock}"
+    else "${lib.getExe pkgs.swaylock} -f";
 in {
   bind =
     [
@@ -54,7 +56,7 @@ in {
       ", code:179, exec, spotify"
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
-      "$mainMod, l, exec, ${swaylock-cmd}"
+      "$mainMod, l, exec, ${lockCommand}"
       "$mainMod CTRL, C, exec, hyprpicker -a -r -f hex"
     ]
     ++ workspace
