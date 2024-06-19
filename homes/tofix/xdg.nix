@@ -83,12 +83,12 @@ in {
 
   dconf.settings = {
     "org/cinnamon/desktop/applications/terminal" = {
-      exec = lib.getExe pkgs.alacritty;
+      exec = lib.getExe pkgs.kitty;
     };
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "alacritty";
+    TERMINAL = "kitty";
   };
 }
