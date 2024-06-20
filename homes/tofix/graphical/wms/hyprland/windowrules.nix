@@ -15,7 +15,6 @@
   "suppressevent, fullscreen, class:^(firefox)$, title:^(Firefox — Sharing Indicator)$"
   "noinitialfocus, class:^(steam)$, title:^(notificationtoasts)"
   "float, class:^(com-atlauncher-App)$ title:^(ATLauncher Console)$"
-  "opacity 0.85, class:^(kitty)$"
   "opacity 0.9, class:^(WebCord)$"
   "float, class:^(org.keepassxc.KeePassXC)$ title: (Unlock)"
   "tile,class:^dev.warp.Warp.*$"
