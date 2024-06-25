@@ -9,7 +9,7 @@
       package = pkgs.bibata-cursors;
     };
     theme = {
-      name = "Catppuccin-Mocha-Compact-Pink-Dark";
+      name = "catppuccin-mocha-pink-compact+default";
       package = pkgs.catppuccin-gtk.override {
         variant = "mocha";
         accents = ["pink"];

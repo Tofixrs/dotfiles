@@ -14,7 +14,7 @@
     enable = true;
     font = {
       package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-      name = "JetBrainsMono Nerd Font 12";
+      name = "JetBrainsMono Nerd Font";
     };
 
     gtk3.extraConfig = {
