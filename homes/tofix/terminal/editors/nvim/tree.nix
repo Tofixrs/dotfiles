@@ -2,7 +2,6 @@ _: {
   programs.neovim-flake.settings.vim.filetree.nvimTree = {
     enable = true;
     setupOpts = {
-      view.float.enable = true;
       modified.enable = true;
       git.enable = true;
       filesystem_watchers.enable = true;

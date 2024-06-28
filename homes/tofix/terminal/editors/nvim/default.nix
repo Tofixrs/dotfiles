@@ -1,6 +1,6 @@
 # Swicth to using nvim flake from NotAShelf
 {inputs, ...}: {
-  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./tabline.nix];
+  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./tabline.nix ./notes.nix ./visuals.nix ./utils.nix];
   programs.neovim-flake = {
     enable = true;
 
@@ -29,7 +29,11 @@
       vimAlias = true;
       telescope.enable = true;
       snippets.vsnip.enable = true;
-      visuals.nvimWebDevicons.enable = true;
+      notify.nvim-notify.enable = true;
+      projects.project-nvim.enable = true;
+      ui.noice.enable = true;
+      ui.colorizer.enable = true;
+      session.nvim-session-manager.enable = true;
     };
   };
 }

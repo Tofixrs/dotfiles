@@ -6,23 +6,15 @@
   inherit (lib) getExe;
 in {
   programs.neovim-flake.settings.vim = {
-    visuals.fidget-nvim = {
-      enable = true;
-      setupOpts = {
-        integration.nvim-tree.enable = true;
-        notification.window = {
-          align = "top";
-          border = "rounded";
-          winblend = 0;
-        };
-      };
-    };
     languages = {
       enableLSP = true;
       enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
-      rust.enable = true;
+      rust = {
+        enable = true;
+        crates.enable = true;
+      };
       ts = {
         enable = true;
         extraDiagnostics.types = [];
@@ -45,6 +37,10 @@ in {
       lspkind.enable = true;
       lightbulb.enable = true;
       trouble.enable = true;
+      nvimCodeActionMenu.enable = true;
+      lspSignature.enable = true;
+      lsplines.enable = true;
+      nvim-docs-view.enable = true;
       lspconfig.sources = {
         jsonls = ''
           lspconfig.jsonls.setup {
