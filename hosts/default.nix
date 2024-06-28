@@ -1,10 +1,10 @@
 {
   self,
-  lib,
   withSystem,
   ...
 }: let
   inherit (self) inputs;
+  inherit (self) lib;
 
   hm = inputs.home-manager.nixosModules.home-manager;
 
@@ -31,32 +31,34 @@
 
   sharedArgs = {inherit inputs self lib;};
 in {
-  tofipc = lib.mkNixSystem {
-    inherit withSystem;
-    system = "x86_64-linux";
-    modules =
-      [
-        {networking.hostName = "tofipc";}
-        ./tofipc
-        desktop
-        gaming
-      ]
-      ++ lib.concatLists [shared homes];
-    specialargs = sharedArgs;
-  };
-  lapfix = lib.mkNixSystem {
-    inherit withSystem;
-    system = "x86_64-linux";
-    modules =
-      [
-        {networking.hostName = "lapfix";}
-        ./lapfix
-        laptop
-        desktop
-        gaming
-        dev
-      ]
-      ++ lib.concatLists [shared homes];
-    specialargs = sharedArgs;
+  flake.nixosConfigurations = {
+    tofipc = lib.builders.mkNixSystem {
+      inherit withSystem;
+      system = "x86_64-linux";
+      modules =
+        [
+          {networking.hostName = "tofipc";}
+          ./tofipc
+          desktop
+          gaming
+        ]
+        ++ lib.concatLists [shared homes];
+      specialargs = sharedArgs;
+    };
+    lapfix = lib.builders.mkNixSystem {
+      inherit withSystem;
+      system = "x86_64-linux";
+      modules =
+        [
+          {networking.hostName = "lapfix";}
+          ./lapfix
+          laptop
+          desktop
+          gaming
+          dev
+        ]
+        ++ lib.concatLists [shared homes];
+      specialargs = sharedArgs;
+    };
   };
 }

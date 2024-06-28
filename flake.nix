@@ -4,23 +4,16 @@
   outputs = inputs @ {
     self,
     flake-parts,
-    nixpkgs,
     ...
   }:
-    flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
+    flake-parts.lib.mkFlake {inherit inputs;} (_: {
       imports = [
         {config._module.args._inputs = inputs // {inherit (inputs) self;};}
         inputs.flake-parts.flakeModules.easyOverlay
-        ./flake/pkgs
+        ./parts
+        ./hosts
       ];
       systems = ["x86_64-linux"];
-      perSystem = _: {
-      };
-      flake = let
-        lib = import ./lib {inherit nixpkgs inputs;};
-      in {
-        nixosConfigurations = import ./hosts {inherit nixpkgs self lib withSystem;};
-      };
     });
 
   inputs = {
