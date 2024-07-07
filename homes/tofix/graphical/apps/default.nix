@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  imports = [./spotify.nix ./firefox];
+_: {
+  imports = [./spotify.nix ./firefox ./discord.nix];
 }
