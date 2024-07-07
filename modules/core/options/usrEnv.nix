@@ -31,10 +31,5 @@ with lib; {
       type = types.nullOr types.nonEmptyStr;
       default = null;
     };
-    screenLocker = mkOption {
-      type = types.enum ["swaylock" "hyprlock"];
-      description = ''What screen locker to use'';
-      default = "hyprlock";
-    };
   };
 }

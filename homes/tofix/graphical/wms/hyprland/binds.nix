@@ -1,7 +1,6 @@
 {
   inputs',
   lib,
-  osConfig,
   pkgs,
 }: let
   grimblast = mode: "${lib.getExe inputs'.hyprland-contrib.packages.grimblast} --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
@@ -17,10 +16,7 @@
     if i != 10
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
-  lockCommand =
-    if osConfig.modules.usrEnv.screenLocker == "hyprlock"
-    then "${lib.getExe pkgs.hyprlock}"
-    else "${lib.getExe pkgs.swaylock} -f";
+  lockCommand = lib.getExe pkgs.hyprlock;
 in {
   bind =
     [
