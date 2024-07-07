@@ -10,11 +10,12 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+  };
 
   fileSystems = {
     "/windows" = {
@@ -37,6 +38,11 @@
       device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
       fsType = "btrfs";
       options = ["subvol=nix" "noatime" "compress=zstd"];
+    };
+    "/SteamLibrary" = {
+      device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
+      fsType = "btrfs";
+      options = ["subvol=SteamLibrary" "compress=zstd"];
     };
 
     "/boot" = {
