@@ -75,8 +75,6 @@ in {
           new_status = "master";
         };
         misc = {
-          enable_swallow = true;
-          swallow_regex = "^(kitty)$";
           disable_hyprland_logo = true;
           vrr = 1;
         };
