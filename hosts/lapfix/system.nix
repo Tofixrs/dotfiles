@@ -1,4 +1,4 @@
-{lib, ...}: {
+_: {
   config = {
     modules = {
       device = {
@@ -11,7 +11,7 @@
         # TODO: setup tpm on the system
         hasTPM = false;
         nvEnablePowerManagement = true;
-        wlrDRMDevice = "/dev/dri/card1";
+        wlrDRMDevice = "/dev/dri/card1:/dev/dri/card0";
         veryAnnoyingPatchForMyHpVictus15 = true;
       };
       system = {
