@@ -9,17 +9,17 @@ _: {
       };
       listener = [
         {
-          timeout = 60;
+          timeout = 180;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 30;
+          timeout = 120;
           on-timeout = "loginctl lock-session";
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 180;
+          timeout = 300;
           on-timeout = "systemctl suspend";
         }
       ];
