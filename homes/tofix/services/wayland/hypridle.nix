@@ -14,11 +14,12 @@ _: {
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 120;
+          timeout = 30;
           on-timeout = "loginctl lock-session";
+          on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 300;
+          timeout = 180;
           on-timeout = "systemctl suspend";
         }
       ];
