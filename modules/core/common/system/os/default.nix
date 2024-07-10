@@ -9,8 +9,6 @@ _: {
     ./programs.nix
     ./display
     ./nix.nix
+    ./networking
   ];
-
-  networking.networkmanager.enable = true;
-  networking.nameservers = ["1.1.1.1"];
 }

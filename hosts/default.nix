@@ -7,6 +7,7 @@
   inherit (self) lib;
 
   hm = inputs.home-manager.nixosModules.home-manager;
+  age = inputs.agenix.nixosModules.default;
 
   modules = ../modules;
   coreModules = modules + /core;
@@ -19,6 +20,7 @@
   dev = typeModules + /dev;
 
   common = coreModules + /common;
+  secrets = common + /secrets;
   options = coreModules + /options;
 
   homesDir = ../homes;
@@ -27,6 +29,8 @@
   shared = [
     common
     options
+    age
+    secrets
   ];
 
   sharedArgs = {inherit inputs self lib;};
