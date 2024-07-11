@@ -8,7 +8,7 @@
     settings = {
       background = {
         monitor = "";
-        path = "/home/${config.home.username}/wallpaper.jpg";
+        path = "/home/${config.home.username}/wallpaper.png";
         blur_passes = 3;
         blur_size = 4;
         noise = 0.0117;

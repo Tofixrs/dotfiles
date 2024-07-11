@@ -4,7 +4,7 @@
     username = "tofix";
     homeDirectory = "/home/tofix";
     stateVersion = lib.mkDefault "23.11";
-    file."wallpaper.jpg".source = ./wallpaper.jpg;
+    file."wallpaper.png".source = ./wallpaper.png;
   };
   programs.home-manager.enable = true;
 }
