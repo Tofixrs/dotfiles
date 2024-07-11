@@ -42,6 +42,7 @@ in {
       "$mainMod, TAB, exec, ags --toggle-window dashboard"
       "$mainMod, V, exec, ags --toggle-window clipboard"
       "$mainMod, X, exec, ags --toggle-window powermenu"
+      "$mainMod, D, exec, ags --toggle-window desktop-top"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"

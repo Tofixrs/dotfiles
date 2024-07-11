@@ -29,6 +29,9 @@ in {
           numlock_by_default = true; #why the FUCK isnt this on by default
           touchpad.natural_scroll = true;
         };
+        layerrule = [
+          "blur,desktop-top"
+        ];
         gestures = {
           workspace_swipe = true;
           workspace_swipe_create_new = true;
