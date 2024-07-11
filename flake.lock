@@ -54,11 +54,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1720707287,
-        "narHash": "sha256-tnGhImsSYF0zNxJlG4QDCw6Tv0DNxJDSrMze/ngaYxk=",
+        "lastModified": 1720708334,
+        "narHash": "sha256-cX1/L+387JSJRWEVVql1xQ+ULJOHsF/I5tfI2Y2XFTs=",
         "owner": "Tofixrs",
         "repo": "ags-config",
-        "rev": "1379dce5470250299266f58c3996bfffd4bf5a84",
+        "rev": "d4962d164e366d50580fe0dedda1390abe8d3da8",
         "type": "github"
       },
       "original": {
