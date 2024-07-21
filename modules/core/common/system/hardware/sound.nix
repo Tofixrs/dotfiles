@@ -10,11 +10,6 @@ in {
   imports = [inputs.nix-gaming.nixosModules.pipewireLowLatency];
   config = mkIf dev.hasSound {
     programs.noisetorch.enable = true;
-    sound = {
-      enable = true;
-      mediaKeys.enable = true;
-      mediaKeys.volumeStep = "5%";
-    };
 
     services.pipewire = {
       enable = true;
@@ -25,21 +20,14 @@ in {
             "bluez.enable-sbc-xq" = true;
             "bluez.enable-msbc" = true;
             "bluez.enable-hw-volume" = true;
-            "bluez.headset-roles" = "[ hsp_hs hsp_ag hfp_fp hfp_ag]";
+            "bluez.headset-roles" = ["hsp_hs" "hsp_ag" "hfp_fp" "hfp_ag"];
           };
         };
       };
       pulse.enable = true;
       jack.enable = true;
-
-      alsa = {
-        enable = true;
-      };
+      alsa.enable = true;
       lowLatency.enable = true;
-    };
-    systemd.user.services = {
-      pipewire.wantedBy = ["default.target"];
-      pipewire-pulse.wantedBy = ["default.target"];
     };
   };
 }

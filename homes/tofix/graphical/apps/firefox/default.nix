@@ -7,6 +7,7 @@ in {
       extraConfig = (import ./betterfoxjs.nix {}) + (import ./userjs.nix {});
     };
     package = pkgs.firefox-devedition;
+    nativeMessagingHosts = [pkgs.kdePackages.plasma-browser-integration];
   };
   home.file.".mozilla/firefox/${profile-name}/chrome".source = ./ArcWTF;
 }

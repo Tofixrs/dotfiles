@@ -45,5 +45,6 @@
     android-studio
     cinnamon.nemo-with-extensions
     glib
+    inputs'.SMGui.packages.default
   ];
 }

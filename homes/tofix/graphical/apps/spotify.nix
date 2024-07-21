@@ -1,9 +1,10 @@
 {
-  inputs,
+  inputs',
   pkgs,
+  inputs,
   ...
 }: let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = inputs'.spicetify-nix.legacyPackages;
   beautiful-lyrics-src = pkgs.fetchFromGitHub {
     owner = "surfbryce";
     repo = "beautiful-lyrics";
@@ -12,10 +13,10 @@
   };
   beautiful-lyrics = {
     src = "${beautiful-lyrics-src}/Builds/Release";
-    filename = "beautiful-lyrics.mjs";
+    name = "beautiful-lyrics.mjs";
   };
 in {
-  imports = [inputs.spicetify-nix.homeManagerModule];
+  imports = [inputs.spicetify-nix.homeManagerModules.default];
 
   programs.spicetify = {
     enable = true;

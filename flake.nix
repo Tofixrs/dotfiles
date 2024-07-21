@@ -35,7 +35,7 @@
     };
 
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/heads/aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.xdph.follows = "xdg-portal-hyprland";
     };
@@ -55,7 +55,10 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
@@ -88,16 +91,25 @@
         home-manager.follows = "home-manager";
       };
     };
+    SMGui = {
+      url = "github:/Tofixrs/SMLayoutEditor";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   nixConfig = {
     extra-substituters = [
       "https://nix-gaming.cachix.org"
       "https://hyprland.cachix.org"
+      "https://sm-gui-editor.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "sm-gui-editor.cachix.org-1:sOHlz7KeslsRSBiGfE5G4Hbm7URIdtaI1zZSeL92m3s="
     ];
   };
 }
