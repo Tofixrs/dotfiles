@@ -12,6 +12,7 @@ with lib; {
     == "hybrid-amd-nv") {
     environment.sessionVariables = {
       WLR_DRM_DEVICES = config.modules.device.wlrDRMDevice;
+      AQ_DRM_DEVICES = config.modules.device.wlrDRMDevice;
     };
   };
 }

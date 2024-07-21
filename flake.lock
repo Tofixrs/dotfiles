@@ -134,11 +134,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721501778,
-        "narHash": "sha256-AGGIjEz3i+291k6Z+goGtNkRE7/iW0jyZbMsBGiWcEg=",
+        "lastModified": 1721487522,
+        "narHash": "sha256-aF3uwUwUK2CgbItoMe3IJF0yidIEWcDx47AiH5y8VKk=",
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "7a84686b4a6dbf7df0bfb4856e6299f995c50d15",
+        "rev": "acfea3bd1d9e756c7152e639240d52c6628844b0",
         "type": "github"
       },
       "original": {
@@ -411,17 +411,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1721505070,
-        "narHash": "sha256-hI8l/jJm5ABml2ggVUpQ39C5UM5TOMSf+vt/2BQ7bkU=",
-        "ref": "refs/heads/aquamarine",
-        "rev": "cedac20c1ee33056701651a455ba4764b54c2817",
-        "revCount": 5046,
+        "lastModified": 1721563149,
+        "narHash": "sha256-dz0Mdrr32jHVVBNdL85yQnKT/yyAq6swD1PvJnt1IXA=",
+        "ref": "refs/heads/main",
+        "rev": "cf373d315e9fb060576ed407bd5ee2dfb8a6d2e2",
+        "revCount": 4936,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
       },
       "original": {
-        "ref": "refs/heads/aquamarine",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
