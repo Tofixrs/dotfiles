@@ -10,7 +10,7 @@ in {
   imports = [inputs.nix-gaming.nixosModules.pipewireLowLatency];
   config = mkIf dev.hasSound {
     programs.noisetorch.enable = true;
-
+    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       wireplumber = {
@@ -28,6 +28,9 @@ in {
       jack.enable = true;
       alsa.enable = true;
       lowLatency.enable = true;
+    };
+    systemd.user.services = {
+      "pipewire.socket".wantedBy = ["default.target"];
     };
   };
 }
