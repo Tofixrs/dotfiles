@@ -10,5 +10,6 @@ _: {
     ./display
     ./nix.nix
     ./networking
+    ./swap.nix
   ];
 }
