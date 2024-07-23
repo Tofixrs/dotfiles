@@ -35,7 +35,7 @@
     };
 
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/heads/aquamarine";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.xdph.follows = "xdg-portal-hyprland";
     };
