@@ -8,63 +8,6 @@
   domain = "${app}.example.com";
   dataDir = "/srv/http/${domain}";
 in {
-  # Php server for school
-  services.phpfpm.pools.${app} = {
-    user = app;
-    settings = {
-      "listen.owner" = config.services.nginx.user;
-      "pm" = "dynamic";
-      "pm.max_children" = 32;
-      "pm.max_requests" = 500;
-      "pm.start_servers" = 2;
-      "pm.min_spare_servers" = 2;
-      "pm.max_spare_servers" = 5;
-      "php_admin_value[error_log]" = "stderr";
-      "php_admin_flag[log_errors]" = true;
-      "catch_workers_output" = true;
-      "security.limit_extensions" = false;
-    };
-    phpEnv."PATH" = lib.makeBinPath [pkgs.php];
-  };
-  services.nginx = {
-    enable = true;
-    virtualHosts.${domain} = {
-      root = dataDir;
-      extraConfig = ''
-        index index.php;
-      '';
-      locations = {
-        "/" = {
-          extraConfig = ''
-            try_files $uri $uri/ =404;
-            autoindex on;
-          '';
-        };
-        "~ \\.php" = {
-          extraConfig = ''
-            include ${config.services.nginx.package}/conf/fastcgi_params;
-
-            # regex to split $uri to $fastcgi_script_name and $fastcgi_path
-            fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-
-            # Check that the PHP script exists before passing it
-            try_files $fastcgi_script_name =404;
-
-            # Bypass the fact that try_files resets $fastcgi_path_info
-            # see: http://trac.nginx.org/nginx/ticket/321
-            set $path_info $fastcgi_path_info;
-            fastcgi_param PATH_INFO $path_info;
-
-            fastcgi_index index.php;
-            fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
-            include ${pkgs.nginx}/conf/fastcgi.conf;
-
-            fastcgi_pass unix:${config.services.phpfpm.pools.${app}.socket};
-          '';
-        };
-      };
-    };
-  };
   users.users.${app} = {
     isSystemUser = true;
     createHome = true;
@@ -75,5 +18,66 @@ in {
   users.groups.${app} = {};
   environment.systemPackages = with pkgs; [
     php83Packages.composer
+    flatpak-builder
   ];
+  services = {
+    # Php server for school
+    phpfpm.pools.${app} = {
+      user = app;
+      settings = {
+        "listen.owner" = config.services.nginx.user;
+        "pm" = "dynamic";
+        "pm.max_children" = 32;
+        "pm.max_requests" = 500;
+        "pm.start_servers" = 2;
+        "pm.min_spare_servers" = 2;
+        "pm.max_spare_servers" = 5;
+        "php_admin_value[error_log]" = "stderr";
+        "php_admin_flag[log_errors]" = true;
+        "catch_workers_output" = true;
+        "security.limit_extensions" = false;
+      };
+      phpEnv."PATH" = lib.makeBinPath [pkgs.php];
+    };
+    nginx = {
+      enable = true;
+      virtualHosts.${domain} = {
+        root = dataDir;
+        extraConfig = ''
+          index index.php;
+        '';
+        locations = {
+          "/" = {
+            extraConfig = ''
+              try_files $uri $uri/ =404;
+              autoindex on;
+            '';
+          };
+          "~ \\.php" = {
+            extraConfig = ''
+              include ${config.services.nginx.package}/conf/fastcgi_params;
+
+              # regex to split $uri to $fastcgi_script_name and $fastcgi_path
+              fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+              # Check that the PHP script exists before passing it
+              try_files $fastcgi_script_name =404;
+
+              # Bypass the fact that try_files resets $fastcgi_path_info
+              # see: http://trac.nginx.org/nginx/ticket/321
+              set $path_info $fastcgi_path_info;
+              fastcgi_param PATH_INFO $path_info;
+
+              fastcgi_index index.php;
+              fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+              include ${pkgs.nginx}/conf/fastcgi.conf;
+
+              fastcgi_pass unix:${config.services.phpfpm.pools.${app}.socket};
+            '';
+          };
+        };
+      };
+    };
+    flatpak.enable = true;
+  };
 }
