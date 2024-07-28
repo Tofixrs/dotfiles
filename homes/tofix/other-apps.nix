@@ -1,8 +1,6 @@
 {
   pkgs,
   inputs',
-  self',
-  inputs,
   ...
 }: {
   fonts.fontconfig.enable = true;
@@ -43,7 +41,7 @@
       amd = true;
     })
     android-studio
-    cinnamon.nemo-with-extensions
+    nemo-with-extensions
     glib
     inputs'.SMGui.packages.default
   ];
