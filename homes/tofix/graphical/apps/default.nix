@@ -1,3 +1,3 @@
 _: {
-  imports = [./spotify.nix ./firefox ./discord.nix];
+  imports = [./spotify.nix ./firefox];
 }

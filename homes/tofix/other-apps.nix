@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs',
+  self',
   ...
 }: {
   fonts.fontconfig.enable = true;
@@ -44,5 +45,6 @@
     nemo-with-extensions
     glib
     inputs'.SMGui.packages.default
+    self'.packages.custom-webcord
   ];
 }
