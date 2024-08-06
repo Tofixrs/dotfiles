@@ -26,10 +26,10 @@ in {
         cHeader = true;
       };
       css.enable = true;
-      php = {
-        enable = true;
-        lsp.server = "phan";
-      };
+      # php = {
+      #   enable = true;
+      #   lsp.server = "phan";
+      # };
     };
     lsp = {
       enable = true;
@@ -87,6 +87,23 @@ in {
             filetypes = { "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "typescriptreact", "php" };
           }
         '';
+        yaml = ''
+          require('lspconfig').yamlls.setup {
+            settings = {
+              yaml = {
+                schemas = {
+                  ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                  ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+                },
+              },
+              redhat = {
+                telemetry = {
+                  enabled = false,
+                },
+              },
+            }
+          }
+        '';
       };
     };
   };
@@ -96,5 +113,6 @@ in {
     dotnet-sdk_8
     vscode-langservers-extracted
     emmet-ls
+    yaml-language-server
   ];
 }
