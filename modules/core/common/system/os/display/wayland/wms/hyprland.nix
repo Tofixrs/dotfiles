@@ -10,7 +10,9 @@ in {
   disabledModules = ["programs/hyprland.nix"];
   config = mkIf (env.desktop == "Hyprland" && env.isWayland) {
     xdg.portal.extraPortals = [
-      inputs'.xdg-portal-hyprland.packages.xdg-desktop-portal-hyprland
+      #Stops building two hyprland versions also probably fixes issues
+      (inputs'.xdg-portal-hyprland.packages.xdg-desktop-portal-hyprland.override
+        {inherit (inputs'.hyprland.packages) hyprland;})
     ];
   };
 }
