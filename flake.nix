@@ -35,7 +35,7 @@
     };
 
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=0e86808e5912823f1c6bea1b6d5fcae297fc9f57";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.xdph.follows = "xdg-portal-hyprland";
     };

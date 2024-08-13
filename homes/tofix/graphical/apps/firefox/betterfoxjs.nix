@@ -161,11 +161,6 @@ _: ''
   user_pref("app.normandy.enabled", false);
   user_pref("app.normandy.api_url", "");
 
-  /** CRASH REPORTS ***/
-  user_pref("breakpad.reportURL", "");
-  user_pref("browser.tabs.crashReporting.sendReport", false);
-  user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
-
   /** DETECTION ***/
   user_pref("captivedetect.canonicalURL", "");
   user_pref("network.captive-portal-service.enabled", false);
