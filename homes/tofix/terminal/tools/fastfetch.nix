@@ -17,7 +17,7 @@
       };
     };
     display = {
-      keyWidth = 25;
+      key = {width = 25;};
     };
     modules = [
       {
