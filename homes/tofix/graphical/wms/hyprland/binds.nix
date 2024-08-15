@@ -17,6 +17,19 @@
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
   lockCommand = lib.getExe pkgs.hyprlock;
+  zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
+    if [[ $1 == "0" ]]; then
+      hyprctl keyword cursor:zoom_factor 0
+      exit 1
+    fi;
+    currentZoom=$(hyprctl getoption cursor:zoom_factor | grep float | sed 's/^.*: //')
+    nextZoom=$(awk "BEGIN{printf \"%.2f\", "$currentZoom$1$2"}")
+    if [[ $nextZoom == "0.50" ]]; then
+      hyprctl keyword cursor:zoom_factor 1
+      exit 1
+    fi
+    hyprctl keyword cursor:zoom_factor $nextZoom
+  '';
 in {
   bind =
     [
@@ -35,8 +48,6 @@ in {
       "$mainMod SHIFT, right, movewindow, r"
       "$mainMod SHIFT, up, movewindow, u"
       "$mainMod SHIFT, down, movewindow, d"
-      "$mainMod, mouse_down, workspace, e+1"
-      "$mainMod, mouse_up, workspace, e-1"
       "$mainMod, Print, exec, ${grimblast "area"}"
       ", Print, exec, ${grimblast "output"}"
       "SHIFT, Print,  exec, ${grimblast "screen"}"
@@ -56,6 +67,7 @@ in {
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
       "$mainMod, l, exec, ${lockCommand}"
       "$mainMod CTRL, C, exec, hyprpicker -a -r -f hex"
+      "$mainMod, mouse:274, exec, ${zoomScript} 0"
     ]
     ++ workspace
     ++ moveToWorkspace
@@ -71,5 +83,7 @@ in {
     "$mainMod CONTROL, right, resizeactive, 20 0"
     ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
     ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
+    "$mainMod, equal, exec, ${zoomScript} + 0.5"
+    "$mainMod, minus, exec, ${zoomScript} - 0.5"
   ];
 }
