@@ -19,7 +19,7 @@
   lockCommand = lib.getExe pkgs.hyprlock;
   zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
     if [[ $1 == "0" ]]; then
-      hyprctl keyword cursor:zoom_factor 0
+      hyprctl keyword cursor:zoom_factor 1
       exit 1
     fi;
     currentZoom=$(hyprctl getoption cursor:zoom_factor | grep float | sed 's/^.*: //')
@@ -83,7 +83,7 @@ in {
     "$mainMod CONTROL, right, resizeactive, 20 0"
     ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
     ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
-    "$mainMod, equal, exec, ${zoomScript} + 0.5"
-    "$mainMod, minus, exec, ${zoomScript} - 0.5"
+    "$mainMod, equal, exec, ${zoomScript} + 0.25"
+    "$mainMod, minus, exec, ${zoomScript} - 0.25"
   ];
 }
