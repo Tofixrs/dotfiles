@@ -86,6 +86,9 @@ in {
         debug = {
           disable_logs = false;
         };
+        render = {
+          explicit_sync = 0;
+        };
       };
     };
     home.packages = with pkgs; [
