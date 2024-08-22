@@ -19,6 +19,7 @@ in {
   environment.systemPackages = with pkgs; [
     php83Packages.composer
     flatpak-builder
+    distrobox
   ];
   services = {
     # Php server for school
@@ -80,4 +81,5 @@ in {
     };
     flatpak.enable = true;
   };
+  virtualisation.docker.enable = true;
 }
