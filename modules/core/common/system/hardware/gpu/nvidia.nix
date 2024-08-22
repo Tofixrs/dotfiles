@@ -5,14 +5,7 @@
   ...
 }:
 with lib; let
-  nvStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-  nvBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
-  nvidiaPackages =
-    if (versionOlder nvBeta nvStable)
-    then config.boot.kernelPackages.nvidiaPackages.stable
-    else config.boot.kernelPackages.nvidiaPackages.beta;
-
-  device = config.modules.device;
+  inherit (config.modules) device;
   env = config.modules.usrEnv;
 in {
   config = mkIf (device.gpu == "nvidia" || device.gpu == "hybrid-amd-nv") {
@@ -46,7 +39,20 @@ in {
 
     hardware = {
       nvidia = {
-        package = mkDefault nvidiaPackages;
+        # Hack to make nvidia use latest egl-wayland
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "560.31.02";
+          sha256_64bit = "sha256-0cwgejoFsefl2M6jdWZC+CKc58CqOXDjSi4saVPNKY0=";
+          sha256_aarch64 = "sha256-m7da+/Uc2+BOYj6mGON75h03hKlIWItHORc5+UvXBQc=";
+          openSha256 = "sha256-X5UzbIkILvo0QZlsTl9PisosgPj/XRmuuMH+cDohdZQ=";
+          settingsSha256 = "sha256-A3SzGAW4vR2uxT1Cv+Pn+Sbm9lLF5a/DGzlnPhxVvmE=";
+          persistencedSha256 = "sha256-BDtdpH5f9/PutG3Pv9G4ekqHafPm3xgDYdTcQumyMtg=";
+          preInstall = ''
+            rm -f ./libnvidia-egl-wayland.so*
+            cp ${pkgs.egl-wayland}/lib/libnvidia-egl-wayland.so.1.* .
+            chmod 777 ./libnvidia-egl-wayland.so.1.*
+          '';
+        };
         modesetting.enable = true;
         prime = mkIf (device.gpu
           == "hybrid-amd-nv") {
