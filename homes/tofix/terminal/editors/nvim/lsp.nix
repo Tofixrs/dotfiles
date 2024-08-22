@@ -6,6 +6,10 @@
   inherit (lib) getExe;
 in {
   programs.neovim-flake.settings.vim = {
+    treesitter = {
+      enable = true;
+      grammars = [pkgs.vimPlugins.nvim-treesitter-parsers.vue];
+    };
     languages = {
       enableLSP = true;
       enableFormat = true;
@@ -104,6 +108,18 @@ in {
             }
           }
         '';
+        vls = ''
+          require('lspconfig').volar.setup {
+            capabilities = capabilities;
+            on_attach = on_attach;
+            filetypes = {"typescript", "javascript", "javascriptreact", "typescriptreact", "vue"};
+            init_options = {
+              vue = {
+                hybridMode = false
+              }
+            };
+          }
+        '';
       };
     };
   };
@@ -114,5 +130,6 @@ in {
     vscode-langservers-extracted
     emmet-ls
     yaml-language-server
+    vue-language-server
   ];
 }
