@@ -5,7 +5,7 @@ _: {
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     loginExtra = ''
-      [ -z "$(pgrep "Hyprland")"] && Hyprland
+      if  [[ $(tty) == "/dev/tty1" ]]; then Hyprland; fi
     '';
   };
   programs.carapace.enable = true;
