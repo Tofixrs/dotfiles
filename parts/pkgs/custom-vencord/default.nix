@@ -15,8 +15,8 @@ in
     src = fetchFromGitHub {
       owner = "Tofixrs";
       repo = "CustomVencord";
-      rev = "539beb73ad11f3eaaa090570949e1bd7d790dc83";
-      hash = "sha256-3xl9UOwVl3U6ycTSerAXWs3RGGV3s31hgKKnXJH/5+A=";
+      rev = "5a586f7bc8660b4298f92528515672484d940c3d";
+      hash = "sha256-ND0TQ+lDQ1lVInovd/6WJPVDKcwkLjE32A437AQuf8E=";
       fetchSubmodules = true;
     };
 
