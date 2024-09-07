@@ -6,7 +6,7 @@
   buildWebExtension ? true,
 }: let
   version = "1.9.7";
-  gitHash = "539beb7";
+  gitHash = "d072498";
 in
   buildNpmPackage rec {
     pname = "vencord";
@@ -15,8 +15,8 @@ in
     src = fetchFromGitHub {
       owner = "Tofixrs";
       repo = "CustomVencord";
-      rev = "5a586f7bc8660b4298f92528515672484d940c3d";
-      hash = "sha256-ND0TQ+lDQ1lVInovd/6WJPVDKcwkLjE32A437AQuf8E=";
+      rev = "d072498e62441ff1c89c869b70579886868d2832";
+      hash = "sha256-lATMBSy1zrKOWs3i+e3Uu1N8zMLwIWpICwmbQEssY3Y=";
       fetchSubmodules = true;
     };
 
@@ -35,7 +35,7 @@ in
     npmRebuildFlags = ["|| true"];
 
     makeCacheWritable = true;
-    npmDepsHash = "sha256-mWDgmQH6oJVd92ZnvTZRlniacVdrvuBHFZ8Nkuud78A=";
+    npmDepsHash = "sha256-DOd7BL8QAO5pLR1xt5TfA8wE5PvzWu3HHyMC22SJxro=";
     npmFlags = ["--legacy-peer-deps"];
     npmBuildScript =
       if buildWebExtension
