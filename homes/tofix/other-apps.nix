@@ -22,6 +22,8 @@
     lazygit
     lutris
     wine
+    wine64
+    winetricks
     nil
     brightnessctl
     alejandra

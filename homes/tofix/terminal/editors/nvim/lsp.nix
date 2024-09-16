@@ -30,10 +30,10 @@ in {
         cHeader = true;
       };
       css.enable = true;
-      # php = {
-      #   enable = true;
-      #   lsp.server = "phan";
-      # };
+      php = {
+        enable = true;
+        lsp.server = "phan";
+      };
     };
     lsp = {
       enable = true;
