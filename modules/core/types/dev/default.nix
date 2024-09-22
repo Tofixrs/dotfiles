@@ -37,6 +37,7 @@ in {
         "php_admin_flag[log_errors]" = true;
         "catch_workers_output" = true;
         "security.limit_extensions" = false;
+        "php_flag[display_errors]" = true;
       };
       phpEnv."PATH" = lib.makeBinPath [pkgs.php];
     };
@@ -74,6 +75,8 @@ in {
               include ${pkgs.nginx}/conf/fastcgi.conf;
 
               fastcgi_pass unix:${config.services.phpfpm.pools.${app}.socket};
+              fastcgi_intercept_errors on;
+              fastcgi_param SCRIPT_FILENAME $request_filename;
             '';
           };
         };

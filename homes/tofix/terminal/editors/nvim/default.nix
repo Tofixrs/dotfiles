@@ -31,8 +31,11 @@
       snippets.vsnip.enable = true;
       notify.nvim-notify.enable = true;
       projects.project-nvim.enable = true;
-      ui.noice.enable = true;
-      ui.colorizer.enable = true;
+      ui = {
+        noice.enable = true;
+        colorizer.enable = true;
+        fastaction.enable = true;
+      };
       session.nvim-session-manager.enable = true;
     };
   };

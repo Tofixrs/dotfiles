@@ -32,7 +32,6 @@ in {
       css.enable = true;
       php = {
         enable = true;
-        lsp.server = "phan";
       };
     };
     lsp = {
@@ -41,7 +40,6 @@ in {
       lspkind.enable = true;
       lightbulb.enable = true;
       trouble.enable = true;
-      nvimCodeActionMenu.enable = true;
       lspSignature.enable = true;
       lsplines.enable = true;
       nvim-docs-view.enable = true;
@@ -121,6 +119,12 @@ in {
           }
         '';
       };
+    };
+  };
+
+  xdg.configFile."phpactor/phpactor.yml".source = (pkgs.formats.yaml {}).generate "phpactor" {
+    phpactor.config = {
+      completion_worse.completor.contant.enabled = true;
     };
   };
 

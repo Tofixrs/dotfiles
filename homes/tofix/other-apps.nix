@@ -21,9 +21,7 @@
     ripgrep
     lazygit
     lutris
-    wine
-    wine64
-    winetricks
+    wineWowPackages.stable
     nil
     brightnessctl
     alejandra
