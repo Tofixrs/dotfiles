@@ -6,7 +6,7 @@
       name = "JetBrainsMono Nerd Font";
       size = 9.5;
     };
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     settings = {
       background_opacity = "0.5";
     };
