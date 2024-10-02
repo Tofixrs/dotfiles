@@ -45,6 +45,6 @@
     nemo-with-extensions
     glib
     inputs'.SMGui.packages.default
-    self'.packages.custom-webcord
+    inputs'.vencord.packages.default
   ];
 }

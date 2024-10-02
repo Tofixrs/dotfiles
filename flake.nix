@@ -98,6 +98,13 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    vencord = {
+      url = "git+https://github.com/Tofixrs/CustomVencord?submodules=1";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   nixConfig = {
