@@ -7,6 +7,10 @@
 with lib; let
   inherit (config.modules) device;
   env = config.modules.usrEnv;
+  fbdev_linux_611_patch = lib.fetchpatch {
+    url = "https://patch-diff.githubusercontent.com/raw/NVIDIA/open-gpu-kernel-modules/pull/692.patch";
+    hash = "sha256-OYw8TsHDpBE5DBzdZCBT45+AiznzO9SfECz5/uXN5Uc=";
+  };
 in {
   config = mkIf (device.gpu == "nvidia" || device.gpu == "hybrid-amd-nv") {
     services.xserver = mkMerge [
@@ -41,12 +45,13 @@ in {
       nvidia = {
         # Hack to make nvidia use latest egl-wayland
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "560.31.02";
-          sha256_64bit = "sha256-0cwgejoFsefl2M6jdWZC+CKc58CqOXDjSi4saVPNKY0=";
-          sha256_aarch64 = "sha256-m7da+/Uc2+BOYj6mGON75h03hKlIWItHORc5+UvXBQc=";
-          openSha256 = "sha256-X5UzbIkILvo0QZlsTl9PisosgPj/XRmuuMH+cDohdZQ=";
-          settingsSha256 = "sha256-A3SzGAW4vR2uxT1Cv+Pn+Sbm9lLF5a/DGzlnPhxVvmE=";
-          persistencedSha256 = "sha256-BDtdpH5f9/PutG3Pv9G4ekqHafPm3xgDYdTcQumyMtg=";
+          version = "560.35.03";
+          sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
+          sha256_aarch64 = "sha256-s8ZAVKvRNXpjxRYqM3E5oss5FdqW+tv1qQC2pDjfG+s=";
+          openSha256 = "sha256-/32Zf0dKrofTmPZ3Ratw4vDM7B+OgpC4p7s+RHUjCrg=";
+          settingsSha256 = "sha256-kQsvDgnxis9ANFmwIwB7HX5MkIAcpEEAHc8IBOLdXvk=";
+          persistencedSha256 = "sha256-E2J2wYYyRu7Kc3MMZz/8ZIemcZg68rkzvqEwFAL3fFs=";
+          patchesOpen = [fbdev_linux_611_patch];
           preInstall = ''
             rm -f ./libnvidia-egl-wayland.so*
             cp ${pkgs.egl-wayland}/lib/libnvidia-egl-wayland.so.1.* .
