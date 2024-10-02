@@ -7,7 +7,7 @@
 with lib; let
   inherit (config.modules) device;
   env = config.modules.usrEnv;
-  fbdev_linux_611_patch = lib.fetchpatch {
+  fbdev_linux_611_patch = pkgs.fetchpatch {
     url = "https://patch-diff.githubusercontent.com/raw/NVIDIA/open-gpu-kernel-modules/pull/692.patch";
     hash = "sha256-OYw8TsHDpBE5DBzdZCBT45+AiznzO9SfECz5/uXN5Uc=";
   };
