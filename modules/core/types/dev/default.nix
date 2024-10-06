@@ -20,6 +20,7 @@ in {
     php83Packages.composer
     flatpak-builder
     distrobox
+    godot_4
   ];
   services = {
     # Php server for school
