@@ -121,6 +121,9 @@ in {
         gdscript = ''
           require("lspconfig").gdscript.setup {}
         '';
+        svelte = ''
+          require("lspconfig").svelte.setup {}
+        '';
       };
     };
   };
