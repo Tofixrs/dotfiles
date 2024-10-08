@@ -8,7 +8,7 @@ in {
   programs.neovim-flake.settings.vim = {
     treesitter = {
       enable = true;
-      grammars = with pkgs; [vimPlugins.nvim-treesitter-parsers.vue vimPlugins.nvim-treesitter-parsers.gdscript];
+      grammars = with pkgs; [vimPlugins.nvim-treesitter-parsers.vue vimPlugins.nvim-treesitter-parsers.gdscript vimPlugins.nvim-treesitter-parsers.svelte];
     };
     languages = {
       enableLSP = true;
