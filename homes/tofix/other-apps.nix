@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs',
-  self',
   ...
 }: {
   fonts.fontconfig.enable = true;
@@ -46,5 +45,6 @@
     glib
     inputs'.SMGui.packages.default
     inputs'.vencord.packages.default
+    ryujinx
   ];
 }

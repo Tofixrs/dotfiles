@@ -44,6 +44,7 @@ in {
     };
     nginx = {
       enable = true;
+      user = app;
       virtualHosts.${domain} = {
         root = dataDir;
         extraConfig = ''
@@ -83,7 +84,14 @@ in {
         };
       };
     };
+    mysql = {
+      user = app;
+      enable = true;
+      package = pkgs.mariadb;
+    };
     flatpak.enable = true;
   };
+  systemd.services.nginx.wantedBy = lib.mkForce []; #Disable nginx by default
+  systemd.services.mysql.wantedBy = lib.mkForce []; #Disable nginx by default
   virtualisation.docker.enable = true;
 }

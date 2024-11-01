@@ -8,7 +8,7 @@ in {
   programs.neovim-flake.settings.vim = {
     treesitter = {
       enable = true;
-      grammars = with pkgs; [vimPlugins.nvim-treesitter-parsers.vue vimPlugins.nvim-treesitter-parsers.gdscript vimPlugins.nvim-treesitter-parsers.svelte];
+      grammars = with pkgs; [vimPlugins.nvim-treesitter-parsers.vue vimPlugins.nvim-treesitter-parsers.gdscript];
     };
     languages = {
       enableLSP = true;
@@ -31,6 +31,10 @@ in {
       };
       css.enable = true;
       php = {
+        enable = true;
+      };
+      svelte = {
+        extraDiagnostics.types = [];
         enable = true;
       };
     };
@@ -110,7 +114,7 @@ in {
           require('lspconfig').volar.setup {
             capabilities = capabilities;
             on_attach = on_attach;
-            filetypes = {"typescript", "javascript", "javascriptreact", "typescriptreact", "vue"};
+            filetypes = {"vue"};
             init_options = {
               vue = {
                 hybridMode = false
@@ -120,9 +124,6 @@ in {
         '';
         gdscript = ''
           require("lspconfig").gdscript.setup {}
-        '';
-        svelte = ''
-          require("lspconfig").svelte.setup {}
         '';
       };
     };
@@ -141,5 +142,6 @@ in {
     emmet-ls
     yaml-language-server
     vue-language-server
+    nodePackages.svelte-language-server
   ];
 }
