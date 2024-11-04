@@ -7,21 +7,9 @@
 with lib; let
   sys = config.modules.system;
   # Fuck hp why do you have to fuck backlight up
-  params =
-    (
-      if config.modules.device.veryAnnoyingPatchForMyHpVictus15
-      then ["acpi_backlight=none"]
-      else ["acpi_backlight=native"]
-    )
-    ++ ["pti=auto"];
+  params = ["acpi_backlight=native" "pti=auto"];
 in {
   config = {
-    specialisation.lightControl = mkIf config.modules.device.veryAnnoyingPatchForMyHpVictus15 {
-      inheritParentConfig = true;
-      configuration = {
-        boot.kernelParams = optionals sys.boot.enableKernelTweaks ["pti=auto" "acpi_backlight=native"];
-      };
-    };
     boot = {
       kernelPackages = sys.boot.kernel;
       loader.efi.canTouchEfiVariables = true;
