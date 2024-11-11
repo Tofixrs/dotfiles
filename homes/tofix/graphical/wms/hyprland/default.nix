@@ -46,7 +46,9 @@ in {
         };
         decoration = {
           rounding = 5;
-          "col.shadow" = "rgb(11111b)";
+          shadow = {
+            color = "rgb(11111b))";
+          };
           inactive_opacity = 0.9;
         };
         animations = {
