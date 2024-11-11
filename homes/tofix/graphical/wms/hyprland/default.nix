@@ -47,7 +47,7 @@ in {
         decoration = {
           rounding = 5;
           shadow = {
-            color = "rgb(11111b))";
+            color = "rgb(11111b)";
           };
           inactive_opacity = 0.9;
         };
