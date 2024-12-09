@@ -13,9 +13,9 @@
       };
       enableEditorconfig = true;
       enableLuaLoader = true;
-      autoIndent = true;
-      autocomplete.enable = true;
-      autopairs.enable = true;
+      options.autoindent = true;
+      autocomplete.nvim-cmp.enable = true;
+      autopairs.nvim-autopairs.enable = true;
       bell = "visual";
       binds = {
         cheatsheet.enable = true;
@@ -27,8 +27,11 @@
       dashboard.alpha.enable = true;
       viAlias = true;
       vimAlias = true;
-      telescope.enable = true;
-      snippets.vsnip.enable = true;
+      telescope = {
+        setupOpts.file_ignore_patterns = ["file.lock" "@girs"];
+        enable = true;
+      };
+      snippets.luasnip.enable = true;
       notify.nvim-notify.enable = true;
       projects.project-nvim.enable = true;
       ui = {

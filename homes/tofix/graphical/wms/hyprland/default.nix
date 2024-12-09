@@ -22,7 +22,7 @@ in {
         "$mainMod" = "SUPER";
         inherit binds;
         windowrulev2 = import ./windowrules.nix;
-        exec-once = import ./autostart.nix {inherit pkgs;};
+        exec-once = import ./autostart.nix {inherit inputs' lib;};
         monitor = sys_monitor;
         input = {
           kb_layout = "pl";

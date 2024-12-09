@@ -35,7 +35,7 @@
     };
 
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.xdph.follows = "xdg-portal-hyprland";
     };
@@ -74,8 +74,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags-config = {
-      url = "github:Tofixrs/ags-config";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Tofixrs/ags-config/grand-grand-rewrite";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        ags.follows = "ags";
+      };
     };
     neovim-flake = {
       url = "github:notashelf/neovim-flake";

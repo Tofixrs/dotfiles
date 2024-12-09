@@ -90,5 +90,6 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "kitty";
+    FILE_MANAGER = "nemo";
   };
 }

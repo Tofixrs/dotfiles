@@ -3,7 +3,6 @@
   lib,
   pkgs,
 }: let
-  grimblast = mode: "${lib.getExe inputs'.hyprland-contrib.packages.grimblast} --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
   workspace = map (i:
     if i != 10
     then "$mainMod, ${toString i}, workspace, ${toString i}"
@@ -48,13 +47,13 @@ in {
       "$mainMod SHIFT, right, movewindow, r"
       "$mainMod SHIFT, up, movewindow, u"
       "$mainMod SHIFT, down, movewindow, d"
-      "$mainMod, Print, exec, ${grimblast "area"}"
-      ", Print, exec, ${grimblast "output"}"
-      "SHIFT, Print,  exec, ${grimblast "screen"}"
-      "$mainMod, TAB, exec, ags --toggle-window dashboard"
-      "$mainMod, V, exec, ags --toggle-window clipboard"
-      "$mainMod, X, exec, ags --toggle-window powermenu"
-      "$mainMod, D, exec, ags --toggle-window desktop-top"
+      "$mainMod, Print, exec, screenshot area"
+      ", Print, exec, screenshot output"
+      "SHIFT, Print,  exec, screenshot screen"
+      "$mainMod, TAB, exec, ags toggle dashboard"
+      "$mainMod, V, exec, ags toggle clipboard"
+      "$mainMod, X, exec, ags toggle powerMenu"
+      "$mainMod, D, exec, ags toggle desktop-top"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"

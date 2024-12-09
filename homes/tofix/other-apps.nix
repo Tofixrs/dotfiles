@@ -6,7 +6,7 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     keepassxc
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    nerd-fonts.jetbrains-mono
     inputs'.hyprland-contrib.packages.grimblast
     viewnior
     libsForQt5.ark
@@ -46,5 +46,6 @@
     inputs'.SMGui.packages.default
     inputs'.vencord.packages.default
     ryujinx
+    libnotify
   ];
 }

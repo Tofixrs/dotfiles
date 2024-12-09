@@ -1,7 +1,7 @@
 _: {
   programs.neovim-flake.settings.vim.visuals = {
-    nvimWebDevicons.enable = true;
-    smoothScroll.enable = true;
+    nvim-web-devicons.enable = true;
+    cinnamon-nvim.enable = true;
     highlight-undo.enable = true;
     fidget-nvim = {
       enable = true;
