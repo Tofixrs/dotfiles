@@ -1,3 +1,3 @@
 _: {
-  imports = [./fastfetch.nix];
+  imports = [./fastfetch.nix ./git.nix];
 }
