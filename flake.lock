@@ -75,7 +75,6 @@
         "ags": [
           "ags"
         ],
-        "astal": "astal_2",
         "flake-parts": [
           "flake-parts"
         ],
@@ -84,11 +83,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732746130,
-        "narHash": "sha256-J+zUw2OFpPKzKyqTF++AtX/OPyB+2d+7iLtTw1inUuQ=",
+        "lastModified": 1734183220,
+        "narHash": "sha256-WgVZ/ITWpti1t0PhOIKrMzInzvkgB5QqB0cgoRspqY4=",
         "owner": "Tofixrs",
         "repo": "ags-config",
-        "rev": "f5a7f9abc4e638a26552045a7dc01b9ba5318171",
+        "rev": "7a129c6eba27fff9c300cdcba876328f6c241b5e",
         "type": "github"
       },
       "original": {
@@ -166,27 +165,6 @@
         "owner": "aylur",
         "repo": "astal",
         "rev": "4c19d8d06fa25cc6389f37abe8839b4d8be5c0d6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aylur",
-        "repo": "astal",
-        "type": "github"
-      }
-    },
-    "astal_2": {
-      "inputs": {
-        "nixpkgs": [
-          "ags-config",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732108588,
-        "narHash": "sha256-14WgIZbSquzyAXWtBwYPl9SFHcaBYZCPstI0Qv1N8cE=",
-        "owner": "aylur",
-        "repo": "astal",
-        "rev": "4fcf3c9e49dfd9cc54f2669297ea6dd9c5771476",
         "type": "github"
       },
       "original": {
