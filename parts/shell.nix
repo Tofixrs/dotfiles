@@ -9,7 +9,7 @@
       packages = [
         (pkgs.writeShellApplication {
           name = "switch";
-          text = ''sudo nixos-rebuild switch --flake "git+file://$(pwd)?submodules=1#lapfix" --show-trace'';
+          text = ''sudo nixos-rebuild switch --flake "git+file://$(pwd)?submodules=1#$(hostname)" --show-trace'';
         })
         (pkgs.writeShellApplication {
           name = "clean";
