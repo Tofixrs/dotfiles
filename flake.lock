@@ -83,11 +83,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734265648,
-        "narHash": "sha256-wpmcikN2wqilQ3LIKai+y7GnsKUJ+vrln8/t6Wiiobs=",
+        "lastModified": 1734433881,
+        "narHash": "sha256-xXkFOIZxXMMBuOGUtnrERzhqfjQrbdf/h0D6mtwVDDw=",
         "owner": "Tofixrs",
         "repo": "ags-config",
-        "rev": "aa54a402404e3bd9c2ceb3b873b99d24ff831c03",
+        "rev": "afbfd2f97ad79c6efc62597ddaa1268f042138ac",
         "type": "github"
       },
       "original": {
