@@ -54,7 +54,7 @@ in {
       "$mainMod, V, exec, ags toggle clipboard"
       "$mainMod, X, exec, ags toggle powerMenu"
       "$mainMod, D, exec, ags toggle desktop-top"
-      "$mainMod, Z, exec, ags request toggleredact"
+      "$mainMod, Z, exec, ags request toggleRedact"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"
