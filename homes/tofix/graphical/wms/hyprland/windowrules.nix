@@ -1,9 +1,7 @@
 [
   "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
-  "float, class:^(steam)$ title:^(Friends List)$"
   "size 500 500, class:^(steam)$ title:^(Friends List)$"
   "float, class:^(steam)$ title:^(Friends List)$"
-  "size 500 500, class:^(steam)$ title:^(Friends List)$"
   "size 930 495, class:.*firefox.* title:^(Picture-in-Picture)$"
   "float, class:.*firefox.* title:^(Picture-in-Picture)$"
   "suppressevent, fullscreen, class:.*firefox.* title:^(Picture-in-Picture)$"
