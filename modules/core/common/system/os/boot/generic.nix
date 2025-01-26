@@ -7,7 +7,7 @@
 with lib; let
   sys = config.modules.system;
   # Fuck hp why do you have to fuck backlight up
-  params = ["acpi_backlight=native" "pti=auto"];
+  params = ["pti=auto" "amdgpu.amblevel=0"];
 in {
   config = {
     boot = {

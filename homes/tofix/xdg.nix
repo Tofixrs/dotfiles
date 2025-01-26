@@ -1,9 +1,10 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: let
-  browser = ["firefox.desktop" "floorp.desktop"];
+  browser = ["Zen.desktop"];
   image_viewer = ["viewnior.desktop"];
   archiver = ["org.kde.ark.desktop"];
   editor = ["nvim.desktop"];
@@ -92,4 +93,12 @@ in {
     TERMINAL = "kitty";
     FILE_MANAGER = "nemo";
   };
+  xdg.configFile."uwsm/env".text =
+    ''
+      ${config.lib.shell.exportAll config.home.sessionVariables}
+    ''
+    + lib.optionalString (config.home.sessionPath != []) ''
+      export PATH="$PATH''${PATH:+:}${builtins.concatStringsSep ":" config.home.sessionPath}"
+    ''
+    + config.home.sessionVariablesExtra;
 }

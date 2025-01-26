@@ -1,3 +1,3 @@
-_: {
-  imports = [./spotify.nix ./firefox];
+{inputs', ...}: {
+  imports = [./spotify.nix ./firefox ./zen.nix];
 }

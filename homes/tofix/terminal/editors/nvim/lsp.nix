@@ -8,7 +8,14 @@ in {
   programs.neovim-flake.settings.vim = {
     treesitter = {
       enable = true;
-      grammars = with pkgs; [vimPlugins.nvim-treesitter-parsers.vue vimPlugins.nvim-treesitter-parsers.gdscript];
+      grammars = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.typescript];
+    };
+    debugger.nvim-dap = {
+      enable = true;
+      ui = {
+        enable = true;
+        autoStart = true;
+      };
     };
     languages = {
       enableLSP = true;
@@ -22,21 +29,28 @@ in {
       ts = {
         enable = true;
         extraDiagnostics.types = [];
+        format.type = "prettierd";
       };
       nix.enable = true;
       html.enable = true;
       clang = {
         enable = true;
         cHeader = true;
+        dap.enable = true;
       };
-      css.enable = true;
+      css = {
+        enable = true;
+        format.enable = false;
+      };
       php = {
         enable = true;
       };
       svelte = {
         extraDiagnostics.types = [];
         enable = true;
+        format.enable = false;
       };
+      tailwind.enable = true;
     };
     lsp = {
       enable = true;

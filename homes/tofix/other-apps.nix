@@ -44,7 +44,7 @@
     nemo-with-extensions
     glib
     inputs'.SMGui.packages.default
-    inputs'.vencord.packages.default
+    # inputs'.vencord.packages.default
     ryujinx
     libnotify
   ];

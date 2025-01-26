@@ -17,6 +17,7 @@ in {
   config = lib.mkIf (env.desktop == "Hyprland") {
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
       package = inputs'.hyprland.packages.hyprland;
       settings = {
         "$mainMod" = "SUPER";

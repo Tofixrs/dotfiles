@@ -1,7 +1,7 @@
 {
-  inputs',
   lib,
   pkgs,
+  ...
 }: let
   workspace = map (i:
     if i != 10
@@ -33,10 +33,10 @@ in {
   bind =
     [
       # Possibly some module to set a terminal
-      "$mainMod, RETURN, exec, $TERMINAL"
-      "$mainMod, M, exit"
+      "$mainMod, RETURN, exec, uwsm app -- $TERMINAL"
+      "$mainMod, M,exec, uwsm stop"
       "$mainMod, C, killactive"
-      "$mainMod, R, exec, anyrun"
+      "$mainMod, R, exec, uwsm app -- anyrun"
       "$mainMod, F, togglefloating"
       "$mainMod CONTROL, F, fullscreen, 0"
       "$mainMod, left, movefocus, l"
@@ -62,11 +62,11 @@ in {
       ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
       ", xf86monbrightnessup, exec, brightnessctl set 50+"
       ", xf86monbrightnessdown, exec, brightnessctl set 50-"
-      ", code:179, exec, spotify"
+      ", code:179, exec, uwsm app -- spotify.desktop"
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
-      "$mainMod, l, exec, ${lockCommand}"
-      "$mainMod CTRL, C, exec, hyprpicker -a -r -f hex"
+      "$mainMod, l, exec, uwsm app -- ${lockCommand}"
+      "$mainMod CTRL, C, exec, uwsm app -- hyprpicker -a -r -f hex"
       "$mainMod, mouse:274, exec, ${zoomScript} 0"
     ]
     ++ workspace
@@ -85,5 +85,8 @@ in {
     ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
     "$mainMod, equal, exec, ${zoomScript} + 0.25"
     "$mainMod, minus, exec, ${zoomScript} - 0.25"
+  ];
+  bindl = [
+    ", switch:off:[Lid Switch], exec, playerctl pause -a"
   ];
 }

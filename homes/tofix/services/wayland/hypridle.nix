@@ -3,7 +3,7 @@ _: {
     enable = true;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "(pidof hyprlock || hyprlock) & playerctl pause -a";
         before_sleep_cmd = "loginctl lock-session";
         # Sleep 3 seconds cuz gotta wait for system to properly do what it needs to
         after_sleep_cmd = "sleep 3 && hyprctl dispatch dpms on";
