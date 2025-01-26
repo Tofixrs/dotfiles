@@ -11,7 +11,7 @@
         style = "mocha";
         transparent = true;
       };
-      enableEditorconfig = true;
+      globals.editorconfig = true;
       enableLuaLoader = true;
       options = {
         autoindent = true;

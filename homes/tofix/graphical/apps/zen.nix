@@ -4,6 +4,8 @@
   ...
 }: let
   configPath = ".zen";
+  # Too lazy to make a proper module for this so its hardcoded lol
+  profileName = "4o9u1vf1.default";
   nativeMessagingHostsPath = "${configPath}/native-messaging-hosts";
   nativeMessagingHostsJoined = pkgs.symlinkJoin {
     name = "ff_native-messaging-hosts";
@@ -18,11 +20,16 @@
       ++ [pkgs.kdePackages.plasma-browser-integration];
   };
 in {
-  home.file."${nativeMessagingHostsPath}" = {
-    source = "${nativeMessagingHostsJoined}/lib/mozilla/native-messaging-hosts";
-    recursive = true;
+  home = {
+    file = {
+      "${nativeMessagingHostsPath}" = {
+        source = "${nativeMessagingHostsJoined}/lib/mozilla/native-messaging-hosts";
+        recursive = true;
+      };
+      "${configPath}/${profileName}/extensions/vencord.xpi".source = "${inputs'.vencord.packages.default}/extension-firefox.zip";
+    };
+    packages = [
+      inputs'.zen-browser.packages.default
+    ];
   };
-  home.packages = [
-    inputs'.zen-browser.packages.default
-  ];
 }

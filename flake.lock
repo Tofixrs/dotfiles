@@ -4020,11 +4020,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1730470683,
-        "narHash": "sha256-njmdY5px4nX1vvINwDnostj+ZZgaqRMBxpIAUJGZYZo=",
+        "lastModified": 1737930271,
+        "narHash": "sha256-mtqErtuiSos/3iu0DpQliRQhvw0YSannF/w1xAgGUYI=",
         "ref": "refs/heads/main",
-        "rev": "af05b5a761b0e63af701568cc3b430b85386f4a1",
-        "revCount": 2151,
+        "rev": "a7b0d6c2458e46d6f4d4f1b0d070891e0d26eedd",
+        "revCount": 2290,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Tofixrs/CustomVencord"
