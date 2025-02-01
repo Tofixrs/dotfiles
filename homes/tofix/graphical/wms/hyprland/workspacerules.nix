@@ -1,7 +1,5 @@
 [
-  "1, persistent:true"
-  "2, persistent:true"
-  "3, monitor:HDMI-A-1, default:true, persistent:true"
-  "4, persistent:true"
-  "5, persistent:true"
+  "1, persistent:true monitor:eDP-1 default:true"
+  "2, persistent:true monitor:HDMI-A-1 default: true"
+  "3, monitor:eDP-1, persistent:true"
 ]

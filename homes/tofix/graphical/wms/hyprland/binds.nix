@@ -15,6 +15,7 @@
     if i != 10
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
+  moveWorkspaceToMonitor = map (i: "$mainMod ALT, ${toString i}, movecurrentworkspacetomonitor, ${toString (i - 1)}") (lib.range 1 10);
   lockCommand = lib.getExe pkgs.hyprlock;
   zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
     if [[ $1 == "0" ]]; then
@@ -71,7 +72,8 @@ in {
     ]
     ++ workspace
     ++ moveToWorkspace
-    ++ moveToWorkspaceSilent;
+    ++ moveToWorkspaceSilent
+    ++ moveWorkspaceToMonitor;
   bindm = [
     "$mainMod, mouse:272, movewindow"
     "$mainMod, mouse:273, resizewindow"
