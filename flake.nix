@@ -42,6 +42,7 @@
       url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprsunset.url = "github:/hyprwm/hyprsunset";
 
     nix-colors = {
       url = "github:Misterio77/nix-colors";

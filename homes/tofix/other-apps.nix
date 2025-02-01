@@ -20,7 +20,7 @@
     ripgrep
     lazygit
     lutris
-    wineWowPackages.stable
+    wineWowPackages.unstableFull
     nil
     brightnessctl
     alejandra

@@ -24,6 +24,7 @@ in {
         inherit binds;
         windowrulev2 = import ./windowrules.nix;
         exec-once = import ./autostart.nix {inherit inputs' lib;};
+        workspace = import ./workspacerules.nix;
         monitor = sys_monitor;
         input = {
           kb_layout = "pl";
@@ -91,6 +92,9 @@ in {
         };
         render = {
           explicit_sync = 0;
+        };
+        cursor = {
+          no_hardware_cursors = true;
         };
       };
     };
