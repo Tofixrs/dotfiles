@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  osConfig,
   ...
 }: let
   workspace = map (i:
@@ -16,7 +17,6 @@
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
   moveWorkspaceToMonitor = map (i: "$mainMod ALT, ${toString i}, movecurrentworkspacetomonitor, ${toString (i - 1)}") (lib.range 1 10);
-  lockCommand = lib.getExe pkgs.hyprlock;
   zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
     if [[ $1 == "0" ]]; then
       hyprctl keyword cursor:zoom_factor 1
@@ -30,6 +30,11 @@
     fi
     hyprctl keyword cursor:zoom_factor $nextZoom
   '';
+
+  lockCommand =
+    if osConfig.modules.usrEnv.screenLocker == "hyprlock"
+    then "${lib.getExe pkgs.hyprlock}"
+    else "${lib.getExe pkgs.swaylock-effects} -f";
 in {
   bind =
     [

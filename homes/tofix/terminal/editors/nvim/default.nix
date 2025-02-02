@@ -16,6 +16,7 @@
       options = {
         autoindent = true;
         tabstop = 2;
+        shiftwidth = 2;
       };
       autocomplete.nvim-cmp.enable = true;
       autopairs.nvim-autopairs.enable = true;

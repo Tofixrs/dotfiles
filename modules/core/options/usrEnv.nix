@@ -26,6 +26,11 @@ with lib; {
         Whether to use home manager. Needs mainUser to  be set;
       '';
     };
+    screenLocker = mkOption {
+      type = types.enum ["swaylock" "hyprlock"];
+      description = ''What screen locker to use'';
+      default = "swaylock";
+    };
 
     mainUser = mkOption {
       type = types.nullOr types.nonEmptyStr;
