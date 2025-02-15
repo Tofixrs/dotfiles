@@ -9,6 +9,8 @@
         "networkmanager"
         "docker"
         "learning"
+        "adbusers"
+        "plugdev"
       ];
     };
   };
