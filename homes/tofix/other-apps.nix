@@ -47,5 +47,6 @@
     # inputs'.vencord.packages.default
     ryujinx
     libnotify
+    inputs'.quickshell.packages.default
   ];
 }

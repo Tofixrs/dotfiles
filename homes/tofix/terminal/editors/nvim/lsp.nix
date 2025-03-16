@@ -8,7 +8,10 @@ in {
   programs.neovim-flake.settings.vim = {
     treesitter = {
       enable = true;
-      grammars = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.typescript];
+      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        typescript
+        qmljs
+      ];
     };
     debugger.nvim-dap = {
       enable = true;
@@ -136,6 +139,11 @@ in {
             };
           }
         '';
+        qmlls = ''
+          require('lspconfig').qmlls.setup {
+            cmd = {"qmlls", "-E"}
+          }
+        '';
         gdscript = ''
           require("lspconfig").gdscript.setup {}
         '';
@@ -157,5 +165,6 @@ in {
     yaml-language-server
     vue-language-server
     nodePackages.svelte-language-server
+    kdePackages.qtdeclarative
   ];
 }

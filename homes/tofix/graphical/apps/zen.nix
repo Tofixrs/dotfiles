@@ -26,7 +26,6 @@ in {
         source = "${nativeMessagingHostsJoined}/lib/mozilla/native-messaging-hosts";
         recursive = true;
       };
-      "${configPath}/${profileName}/extensions/vencord.xpi".source = "${inputs'.vencord.packages.default}/extension-firefox.zip";
     };
     packages = [
       inputs'.zen-browser.packages.default
