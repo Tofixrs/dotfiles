@@ -20,4 +20,7 @@
   home.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
   };
+  home.packages = with pkgs; [
+    catppuccin-papirus-folders
+  ];
 }
