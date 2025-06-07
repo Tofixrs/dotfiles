@@ -16,7 +16,7 @@ in {
           ExecStart = "${pkgs.writeShellScript "gamma.sh" ''
             hour=`date +%-H`
 
-            if ((hour >= 22)); then
+            if ((hour >= 22 || hour <= 6)); then
               hyprctl keyword decoration:screen_shader ${shader}
             fi
 

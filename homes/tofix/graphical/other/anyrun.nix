@@ -1,12 +1,5 @@
 # TODO: ags
-{
-  inputs',
-  inputs,
-  ...
-}: {
-  imports = [
-    inputs.anyrun.homeManagerModules.default
-  ];
+{inputs', ...}: {
   programs.anyrun = {
     enable = true;
     config = {

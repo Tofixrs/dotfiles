@@ -22,6 +22,7 @@ in {
       }
     ];
     boot.blacklistedKernelModules = ["nouveau"];
+    boot.kernelModules = ["nvidia_uvm"];
 
     environment = {
       sessionVariables = mkMerge [

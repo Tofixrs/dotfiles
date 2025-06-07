@@ -11,6 +11,8 @@
         "learning"
         "adbusers"
         "plugdev"
+        "scanner"
+        "lp"
       ];
     };
   };

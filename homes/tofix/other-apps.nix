@@ -20,11 +20,14 @@
     ripgrep
     lazygit
     lutris
-    wineWowPackages.unstableFull
+    wineWowPackages.waylandFull
     nil
     brightnessctl
     alejandra
-    obs-studio
+    (pkgs.obs-studio.override
+      {
+        cudaSupport = true;
+      })
     zig
     qpwgraph
     btop

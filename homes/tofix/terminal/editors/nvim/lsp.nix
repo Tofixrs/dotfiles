@@ -21,7 +21,6 @@ in {
       };
     };
     languages = {
-      enableLSP = true;
       enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
@@ -47,6 +46,7 @@ in {
       };
       php = {
         enable = true;
+        lsp.server = "intelephense";
       };
       svelte = {
         extraDiagnostics.types = [];
@@ -62,7 +62,6 @@ in {
       lightbulb.enable = true;
       trouble.enable = true;
       lspSignature.enable = true;
-      lsplines.enable = true;
       nvim-docs-view.enable = true;
       lspconfig.sources = {
         jsonls = ''
@@ -150,13 +149,6 @@ in {
       };
     };
   };
-
-  xdg.configFile."phpactor/phpactor.yml".source = (pkgs.formats.yaml {}).generate "phpactor" {
-    phpactor.config = {
-      completion_worse.completor.contant.enabled = true;
-    };
-  };
-
   home.packages = with pkgs; [
     csharp-ls
     dotnet-sdk_8

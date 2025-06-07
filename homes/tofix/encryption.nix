@@ -23,6 +23,6 @@
     defaultCacheTtlSsh = 360; # 6 hours
     maxCacheTtl = 876000; # 100 years
     maxCacheTtlSsh = 876000; # 100 years
-    pinentryPackage = pkgs.pinentry-qt;
+    pinentry.package = pkgs.pinentry-qt;
   };
 }
