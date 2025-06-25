@@ -51,5 +51,6 @@
     ryujinx
     libnotify
     inputs'.quickshell.packages.default
+    inotify-tools
   ];
 }

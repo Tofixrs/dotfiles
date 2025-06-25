@@ -19,8 +19,9 @@
 
   fileSystems = {
     "/windows" = {
-      device = "/dev/disk/by-uuid/BC34BD5734BD14FC";
+      device = "/dev/disk/by-uuid/3628079428075273";
       fsType = "ntfs";
+      options = ["nofail"];
     };
     "/" = {
       device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";

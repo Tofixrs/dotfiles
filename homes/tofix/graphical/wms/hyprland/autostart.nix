@@ -4,5 +4,5 @@
   ...
 }: [
   (lib.getExe inputs'.ags-config.packages.default)
-  "sleep 1 && swww init && swww img /home/tofix/wallpaper.png"
+  "sleep 1 && swww-daemon & sleep 1 && swww img /home/tofix/wallpaper.png"
 ]
