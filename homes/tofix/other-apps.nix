@@ -52,5 +52,6 @@
     libnotify
     inputs'.quickshell.packages.default
     inotify-tools
+    jq # sanity
   ];
 }
