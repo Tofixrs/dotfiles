@@ -157,7 +157,7 @@
       };
       keymaps = [
         {
-          key = "<ESC>";
+          key = "<C-ESC>";
           mode = "t";
           silent = true;
           desc = "Leave terminal mode";
