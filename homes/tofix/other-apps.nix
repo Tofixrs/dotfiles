@@ -33,7 +33,7 @@
     btop
     libreoffice
     qbittorrent
-    gimp
+    gimp3-with-plugins
     clang
     cmake
     gnumake
