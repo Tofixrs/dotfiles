@@ -13,6 +13,7 @@
         "plugdev"
         "scanner"
         "lp"
+        "libvirtd"
       ];
     };
   };

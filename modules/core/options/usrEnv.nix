@@ -36,5 +36,13 @@ with lib; {
       type = types.nullOr types.nonEmptyStr;
       default = null;
     };
+
+    enableVirtualization = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Whether to add virt-manager
+      '';
+    };
   };
 }
