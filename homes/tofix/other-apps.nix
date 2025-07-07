@@ -53,5 +53,6 @@
     inputs'.quickshell.packages.default
     inotify-tools
     jq # sanity
+    pkgs.imagemagick
   ];
 }

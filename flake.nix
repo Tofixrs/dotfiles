@@ -60,18 +60,6 @@
     };
 
     anyrun.url = "github:Kirottu/anyrun";
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags-config = {
-      url = "github:Tofixrs/ags-config/grand-grand-rewrite";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        ags.follows = "ags";
-      };
-    };
     neovim-flake = {
       url = "github:notashelf/neovim-flake";
       inputs = {
