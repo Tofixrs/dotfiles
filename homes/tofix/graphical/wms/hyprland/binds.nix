@@ -58,7 +58,7 @@ in {
       "SHIFT, Print,  exec, screenshot screen"
       "$mainMod, TAB, exec, ags toggle dashboard"
       "$mainMod, V, exec, ags toggle clipboard"
-      "$mainMod, X, exec, ags toggle powerMenu"
+      "$mainMod, X, exec, bash -c \"qs ipc call panels toggle $(hyprctl monitors -j | jq '.[] | select(.focused == true) | .name' -r) powermenu\""
       "$mainMod, D, exec, ags toggle desktop-top"
       "$mainMod, Z, exec, ags request toggleRedact"
       ", xf86audioplay, exec, playerctl play-pause"
