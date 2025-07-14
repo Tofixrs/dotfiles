@@ -8,10 +8,19 @@ in {
   programs.neovim-flake.settings.vim = {
     treesitter = {
       enable = true;
-      grammars = with pkgs; [vimPlugins.nvim-treesitter-parsers.vue vimPlugins.nvim-treesitter-parsers.gdscript];
+      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        typescript
+        qmljs
+      ];
+    };
+    debugger.nvim-dap = {
+      enable = true;
+      ui = {
+        enable = true;
+        autoStart = true;
+      };
     };
     languages = {
-      enableLSP = true;
       enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
@@ -22,21 +31,29 @@ in {
       ts = {
         enable = true;
         extraDiagnostics.types = [];
+        format.type = "prettierd";
       };
       nix.enable = true;
       html.enable = true;
       clang = {
         enable = true;
         cHeader = true;
+        dap.enable = true;
       };
-      css.enable = true;
+      css = {
+        enable = true;
+        format.enable = false;
+      };
       php = {
         enable = true;
+        lsp.server = "intelephense";
       };
       svelte = {
         extraDiagnostics.types = [];
         enable = true;
+        format.enable = false;
       };
+      tailwind.enable = true;
     };
     lsp = {
       enable = true;
@@ -45,7 +62,6 @@ in {
       lightbulb.enable = true;
       trouble.enable = true;
       lspSignature.enable = true;
-      lsplines.enable = true;
       nvim-docs-view.enable = true;
       lspconfig.sources = {
         jsonls = ''
@@ -122,19 +138,17 @@ in {
             };
           }
         '';
+        qmlls = ''
+          require('lspconfig').qmlls.setup {
+            cmd = {"qmlls", "-E"}
+          }
+        '';
         gdscript = ''
           require("lspconfig").gdscript.setup {}
         '';
       };
     };
   };
-
-  xdg.configFile."phpactor/phpactor.yml".source = (pkgs.formats.yaml {}).generate "phpactor" {
-    phpactor.config = {
-      completion_worse.completor.contant.enabled = true;
-    };
-  };
-
   home.packages = with pkgs; [
     csharp-ls
     dotnet-sdk_8
@@ -143,5 +157,6 @@ in {
     yaml-language-server
     vue-language-server
     nodePackages.svelte-language-server
+    kdePackages.qtdeclarative
   ];
 }

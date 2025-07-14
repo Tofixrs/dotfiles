@@ -11,5 +11,6 @@ _: {
     ./nix.nix
     ./networking
     ./swap.nix
+    ./virtualization.nix
   ];
 }

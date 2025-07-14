@@ -1,9 +1,9 @@
 {
-  inputs',
   lib,
   pkgs,
+  osConfig,
+  ...
 }: let
-  grimblast = mode: "${lib.getExe inputs'.hyprland-contrib.packages.grimblast} --freeze save ${mode} - | swappy -f - -o ~/Pictures/screenshots/$(date +'%s_grim.png')";
   workspace = map (i:
     if i != 10
     then "$mainMod, ${toString i}, workspace, ${toString i}"
@@ -16,7 +16,7 @@
     if i != 10
     then "$mainMod CONTROL, ${toString i}, movetoworkspacesilent, ${toString i}"
     else "$mainMod CONTROL, 0, movetoworkspacesilent, 10") (lib.range 1 10);
-  lockCommand = lib.getExe pkgs.hyprlock;
+  moveWorkspaceToMonitor = map (i: "$mainMod ALT, ${toString i}, movecurrentworkspacetomonitor, ${toString (i - 1)}") (lib.range 1 10);
   zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
     if [[ $1 == "0" ]]; then
       hyprctl keyword cursor:zoom_factor 1
@@ -30,14 +30,19 @@
     fi
     hyprctl keyword cursor:zoom_factor $nextZoom
   '';
+
+  lockCommand =
+    if osConfig.modules.usrEnv.screenLocker == "hyprlock"
+    then "${lib.getExe pkgs.hyprlock}"
+    else "${lib.getExe pkgs.swaylock-effects} -f";
 in {
   bind =
     [
       # Possibly some module to set a terminal
-      "$mainMod, RETURN, exec, $TERMINAL"
-      "$mainMod, M, exit"
+      "$mainMod, RETURN, exec, uwsm app -- $TERMINAL"
+      "$mainMod, M,exec, uwsm stop"
       "$mainMod, C, killactive"
-      "$mainMod, R, exec, anyrun"
+      "$mainMod, R, exec, uwsm app -- anyrun"
       "$mainMod, F, togglefloating"
       "$mainMod CONTROL, F, fullscreen, 0"
       "$mainMod, left, movefocus, l"
@@ -48,13 +53,14 @@ in {
       "$mainMod SHIFT, right, movewindow, r"
       "$mainMod SHIFT, up, movewindow, u"
       "$mainMod SHIFT, down, movewindow, d"
-      "$mainMod, Print, exec, ${grimblast "area"}"
-      ", Print, exec, ${grimblast "output"}"
-      "SHIFT, Print,  exec, ${grimblast "screen"}"
-      "$mainMod, TAB, exec, ags --toggle-window dashboard"
-      "$mainMod, V, exec, ags --toggle-window clipboard"
-      "$mainMod, X, exec, ags --toggle-window powermenu"
-      "$mainMod, D, exec, ags --toggle-window desktop-top"
+      "$mainMod, Print, exec, screenshot area"
+      ", Print, exec, screenshot output"
+      "SHIFT, Print,  exec, screenshot screen"
+      "$mainMod, TAB, exec, ags toggle dashboard"
+      "$mainMod, V, exec, ags toggle clipboard"
+      "$mainMod, X, exec, bash -c \"qs ipc call panels toggle $(hyprctl monitors -j | jq '.[] | select(.focused == true) | .name' -r) powermenu\""
+      "$mainMod, D, exec, ags toggle desktop-top"
+      "$mainMod, Z, exec, ags request toggleRedact"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"
@@ -62,16 +68,17 @@ in {
       ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
       ", xf86monbrightnessup, exec, brightnessctl set 50+"
       ", xf86monbrightnessdown, exec, brightnessctl set 50-"
-      ", code:179, exec, spotify"
+      ", code:179, exec, uwsm app -- spotify.desktop"
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
-      "$mainMod, l, exec, ${lockCommand}"
-      "$mainMod CTRL, C, exec, hyprpicker -a -r -f hex"
+      "$mainMod, l, exec, uwsm app -- ${lockCommand}"
+      "$mainMod CTRL, C, exec, uwsm app -- hyprpicker -a -r -f hex"
       "$mainMod, mouse:274, exec, ${zoomScript} 0"
     ]
     ++ workspace
     ++ moveToWorkspace
-    ++ moveToWorkspaceSilent;
+    ++ moveToWorkspaceSilent
+    ++ moveWorkspaceToMonitor;
   bindm = [
     "$mainMod, mouse:272, movewindow"
     "$mainMod, mouse:273, resizewindow"
@@ -85,5 +92,8 @@ in {
     ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
     "$mainMod, equal, exec, ${zoomScript} + 0.25"
     "$mainMod, minus, exec, ${zoomScript} - 0.25"
+  ];
+  bindl = [
+    ", switch:off:[Lid Switch], exec, playerctl pause -a"
   ];
 }

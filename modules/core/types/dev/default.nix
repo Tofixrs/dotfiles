@@ -87,11 +87,18 @@ in {
     mysql = {
       user = app;
       enable = true;
-      package = pkgs.mariadb;
+      package = pkgs.mariadb_114;
     };
+    postgresql.enable = true;
     flatpak.enable = true;
   };
-  systemd.services.nginx.wantedBy = lib.mkForce []; #Disable nginx by default
-  systemd.services.mysql.wantedBy = lib.mkForce []; #Disable nginx by default
+  systemd.services = {
+    postgresql.wantedBy = lib.mkForce [];
+    nginx.wantedBy = lib.mkForce []; #Disable nginx by default
+    mysql.wantedBy = lib.mkForce []; #Disable mysql by default
+    docker.wantedBy = lib.mkForce []; #Disable docker by default
+    phpfpm-learning.wantedBy = lib.mkForce []; #Disable docker by default
+  };
   virtualisation.docker.enable = true;
+  programs.adb.enable = true;
 }

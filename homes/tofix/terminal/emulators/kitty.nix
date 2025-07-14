@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   programs.kitty = {
     enable = true;
+    themeFile = "Catppuccin-Mocha";
     font = {
-      package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
       name = "JetBrainsMono Nerd Font";
       size = 9.5;
+      package = pkgs.nerd-fonts.jetbrains-mono;
     };
-    themeFile = "Catppuccin-Mocha";
     settings = {
       background_opacity = "0.5";
     };

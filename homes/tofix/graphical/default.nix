@@ -1,3 +1,3 @@
 _: {
-  imports = [./apps ./wms ./other ./ags];
+  imports = [./apps ./wms ./other];
 }

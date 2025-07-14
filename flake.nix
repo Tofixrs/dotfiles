@@ -35,20 +35,14 @@
     };
 
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.xdph.follows = "xdg-portal-hyprland";
-    };
-
-    xdg-portal-hyprland = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/Hyprland";
     };
 
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprsunset.url = "github:/hyprwm/hyprsunset";
 
     nix-colors = {
       url = "github:Misterio77/nix-colors";
@@ -65,18 +59,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags-config = {
-      url = "github:Tofixrs/ags-config";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    anyrun.url = "github:Kirottu/anyrun";
     neovim-flake = {
       url = "github:notashelf/neovim-flake";
       inputs = {
@@ -91,19 +74,21 @@
         home-manager.follows = "home-manager";
       };
     };
-    SMGui = {
-      url = "github:/Tofixrs/SMLayoutEditor";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    SMGui.url = "github:/Tofixrs/SMLayoutEditor";
     vencord = {
       url = "git+https://github.com/Tofixrs/CustomVencord?submodules=1";
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

@@ -25,6 +25,7 @@ _: {
         desktop = "Hyprland";
         useHomeManager = true;
         mainUser = "tofix";
+        enableVirtualization = true;
       };
     };
   };

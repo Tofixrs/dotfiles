@@ -1,10 +1,11 @@
 {
   config,
   pkgs,
+  osConfig,
   ...
 }: {
   programs.hyprlock = {
-    enable = true;
+    enable = osConfig.modules.usrEnv.screenLocker == "hyprlock";
     settings = {
       background = {
         monitor = "";

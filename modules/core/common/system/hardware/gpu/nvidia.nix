@@ -12,7 +12,7 @@ with lib; let
     then config.boot.kernelPackages.nvidiaPackages.stable
     else config.boot.kernelPackages.nvidiaPackages.beta;
 
-  device = config.modules.device;
+  inherit (config.modules) device;
   env = config.modules.usrEnv;
 in {
   config = mkIf (device.gpu == "nvidia" || device.gpu == "hybrid-amd-nv") {
@@ -22,6 +22,7 @@ in {
       }
     ];
     boot.blacklistedKernelModules = ["nouveau"];
+    boot.kernelModules = ["nvidia_uvm"];
 
     environment = {
       sessionVariables = mkMerge [

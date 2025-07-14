@@ -5,7 +5,9 @@ _: {
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     loginExtra = ''
-      if  [[ $(tty) == "/dev/tty1" ]]; then Hyprland; fi
+      if uwsm check may-start && uwsm select; then
+      	exec systemd-cat -t uwsm_start uwsm start default
+      fi
     '';
   };
   programs.carapace.enable = true;

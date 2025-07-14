@@ -10,19 +10,21 @@
     then ["eDP-1,1920x1080@144,0x0,1,vrr,1"]
     else [];
   binds = import ./binds.nix {
-    inherit inputs' lib pkgs;
+    inherit inputs' lib pkgs osConfig;
   };
   env = osConfig.modules.usrEnv;
 in {
   config = lib.mkIf (env.desktop == "Hyprland") {
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
       package = inputs'.hyprland.packages.hyprland;
       settings = {
         "$mainMod" = "SUPER";
         inherit binds;
         windowrulev2 = import ./windowrules.nix;
-        exec-once = import ./autostart.nix {inherit pkgs;};
+        exec-once = import ./autostart.nix {inherit inputs' lib;};
+        workspace = import ./workspacerules.nix;
         monitor = sys_monitor;
         input = {
           kb_layout = "pl";
@@ -88,13 +90,10 @@ in {
         debug = {
           disable_logs = false;
         };
-        render = {
-          explicit_sync = 0;
+        cursor = {
+          no_hardware_cursors = true;
         };
       };
     };
-    home.packages = with pkgs; [
-      swww
-    ];
   };
 }

@@ -9,6 +9,11 @@
         "networkmanager"
         "docker"
         "learning"
+        "adbusers"
+        "plugdev"
+        "scanner"
+        "lp"
+        "libvirtd"
       ];
     };
   };
