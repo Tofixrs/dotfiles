@@ -232,6 +232,27 @@
         "type": "github"
       }
     },
+    "flake-parts_5": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "ua-pl-phonetic",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1738453229,
+        "narHash": "sha256-7H9XgNiGLKN1G1CgRh0vUL4AheZSYzPm+zmZ7vxbJdo=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "32ea77a06711b758da0ad9bd6a844c5740a87abd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": [
@@ -1020,6 +1041,7 @@
         "nixpkgs": "nixpkgs_5",
         "quickshell": "quickshell",
         "spicetify-nix": "spicetify-nix",
+        "ua-pl-phonetic": "ua-pl-phonetic",
         "vencord": "vencord",
         "zen-browser": "zen-browser"
       }
@@ -1147,6 +1169,27 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "ua-pl-phonetic": {
+      "inputs": {
+        "flake-parts": "flake-parts_5",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752495894,
+        "narHash": "sha256-KXBLxRpLJoqIMMdpikqVHVgTolUvCzW8hmF5O6TVPhM=",
+        "owner": "Tofixrs",
+        "repo": "ua-pl-phonetic",
+        "rev": "26b50884b7052b05cd6ce1735bcbee71d7c30866",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Tofixrs",
+        "repo": "ua-pl-phonetic",
         "type": "github"
       }
     },
