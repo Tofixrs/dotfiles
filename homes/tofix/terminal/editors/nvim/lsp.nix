@@ -140,7 +140,7 @@ in {
         '';
         qmlls = ''
           require('lspconfig').qmlls.setup {
-            cmd = {"qmlls", "-E"}
+            cmd = {"qmlls"}
           }
         '';
         gdscript = ''

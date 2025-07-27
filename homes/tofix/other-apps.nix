@@ -54,6 +54,9 @@
     inputs'.quickshell.packages.default
     inotify-tools
     jq # sanity
-    pkgs.imagemagick
+    imagemagick
+    libqalculate
+    kdePackages.qtimageformats
+    kdePackages.qtmultimedia
   ];
 }

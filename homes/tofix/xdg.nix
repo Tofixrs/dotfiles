@@ -62,6 +62,7 @@
     "video/dv" = media_player;
     "x-scheme-handler/steam" = ["steam.desktop"];
   };
+  terminal = lib.getExe pkgs.kitty;
 in {
   xdg = {
     enable = true;
@@ -84,14 +85,28 @@ in {
 
   dconf.settings = {
     "org/cinnamon/desktop/applications/terminal" = {
-      exec = lib.getExe pkgs.kitty;
+      exec = terminal;
     };
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "kitty";
+    TERMINAL = terminal;
     FILE_MANAGER = "nemo";
+  };
+
+  xdg.desktopEntries = {
+    nvim = {
+      name = "Neovim";
+      genericName = "Text Editor";
+      comment = "Edit text files";
+      exec = "${terminal} -e nvim %F";
+      type = "Application";
+      icon = "nvim";
+      categories = ["Utility" "TextEditor"];
+      startupNotify = false;
+      mimeType = ["text/english" "text/plain" "text/x-makefile" "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" "text/x-tex application/x-shellscript" "text/x-c" "text/x-c++"];
+    };
   };
   xdg.configFile."uwsm/env".text =
     ''

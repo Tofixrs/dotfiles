@@ -35,6 +35,7 @@
     if osConfig.modules.usrEnv.screenLocker == "hyprlock"
     then "${lib.getExe pkgs.hyprlock}"
     else "${lib.getExe pkgs.swaylock-effects} -f";
+  openPanel = panel: "bash -c \"qs ipc call panels toggle $(hyprctl monitors -j | jq '.[] | select(.focused == true) | .name' -r) ${panel}\"";
 in {
   bind =
     [
@@ -42,7 +43,7 @@ in {
       "$mainMod, RETURN, exec, uwsm app -- $TERMINAL"
       "$mainMod, M,exec, uwsm stop"
       "$mainMod, C, killactive"
-      "$mainMod, R, exec, uwsm app -- anyrun"
+      "$mainMod, R, exec, ${openPanel "appLauncher"}"
       "$mainMod, F, togglefloating"
       "$mainMod CONTROL, F, fullscreen, 0"
       "$mainMod, left, movefocus, l"
@@ -56,11 +57,9 @@ in {
       "$mainMod, Print, exec, screenshot area"
       ", Print, exec, screenshot output"
       "SHIFT, Print,  exec, screenshot screen"
-      "$mainMod, TAB, exec, ags toggle dashboard"
-      "$mainMod, V, exec, ags toggle clipboard"
-      "$mainMod, X, exec, bash -c \"qs ipc call panels toggle $(hyprctl monitors -j | jq '.[] | select(.focused == true) | .name' -r) powermenu\""
-      "$mainMod, D, exec, ags toggle desktop-top"
-      "$mainMod, Z, exec, ags request toggleRedact"
+      "$mainMod, TAB, exec, ${openPanel "dashboard"}"
+      "$mainMod, V, exec, ${openPanel "clipboard"}"
+      "$mainMod, X, exec, ${openPanel "powermenu"}"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"
