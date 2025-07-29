@@ -1,8 +1,13 @@
-{lib,inputs', pkgs}: let 
+{
+  lib,
+  inputs',
+  pkgs,
+}: let
   notify-send = "${pkgs.libnotify}/bin/notify-send";
   grimblast = lib.getExe inputs'.hyprland-contrib.packages.grimblast;
   swappy = "${pkgs.swappy}/bin/swappy";
-in pkgs.writeShellScriptBin "screenshot" ''
+in
+  pkgs.writeShellScriptBin "screenshot" ''
     SCREENSHOTS="$HOME/Pictures/Screenshots"
     NOW=$(date +%Y-%m-%d_%H-%M-%S)
     TARGET="$SCREENSHOTS/$NOW.png"
@@ -17,13 +22,12 @@ in pkgs.writeShellScriptBin "screenshot" ''
         -A "file=Show in Files" \
         -A "view=View" \
         -A "edit=Edit" \
-        "Screenshot Taken" \
-        $TARGET)
+        "Screenshot Taken")
 
     case "$RES" in
-        "file") $FILE_MANAGER "$SCREENSHOTS" ;;
+        "file") uwsm app -- $FILE_MANAGER "$SCREENSHOTS" ;;
         "view") xdg-open $TARGET ;;
-        "edit") ${swappy} -f $TARGET ;;
+        "edit") uwsm app -- ${swappy} -f $TARGET ;;
         *) ;;
     esac
 
