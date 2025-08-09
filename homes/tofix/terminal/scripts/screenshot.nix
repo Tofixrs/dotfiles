@@ -25,8 +25,8 @@ in
         "Screenshot Taken")
 
     case "$RES" in
-        "file") uwsm app -- $FILE_MANAGER "$SCREENSHOTS" ;;
-        "view") xdg-open $TARGET ;;
+        "file") uwsm app -- xdg-open "$SCREENSHOTS" ;;
+        "view") uwsm app -- xdg-open $TARGET ;;
         "edit") uwsm app -- ${swappy} -f $TARGET ;;
         *) ;;
     esac
