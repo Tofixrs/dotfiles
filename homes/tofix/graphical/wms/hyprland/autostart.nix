@@ -1,3 +1,3 @@
 _: [
-  "quickshell"
+  "uwsm app -- quickshell"
 ]

@@ -49,7 +49,7 @@
     glib
     inputs'.SMGui.packages.default
     # inputs'.vencord.packages.default
-    ryujinx
+    ryubing
     libnotify
     inputs'.quickshell.packages.default
     inotify-tools
