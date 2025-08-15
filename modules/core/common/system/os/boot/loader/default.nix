@@ -1,3 +1,3 @@
 _: {
-  imports = [./systemd-boot.nix];
+  imports = [./systemd-boot.nix ./lanzaboote.nix];
 }

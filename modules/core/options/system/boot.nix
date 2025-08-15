@@ -14,9 +14,9 @@ with lib; {
       description = "Kernel to use";
     };
     loader = mkOption {
-      type = types.enum ["none" "grub" "systemd-boot"];
+      type = types.enum ["none" "grub" "systemd-boot" "secure-boot"];
       default = "systemd-boot";
-      description = "The boot loader to use";
+      description = "The boot loader to use. In case of 'secure-boot' use lanzaboote (aka systemd-boot)";
     };
     extraModulePackages = mkOption {
       type = types.listOf types.package;
