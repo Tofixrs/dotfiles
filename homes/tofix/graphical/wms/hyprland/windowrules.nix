@@ -13,8 +13,8 @@
   "suppressevent, fullscreen, class:.*firefox.*, title:^(Firefox — Sharing Indicator)$"
   "noinitialfocus, class:^(steam)$, title:^(notificationtoasts)"
   "float, class:^(com-atlauncher-App)$ title:^(ATLauncher Console)$"
-  "float, class:^(org.keepassxc.KeePassXC)$ title: (Unlock)"
+  "float, class:^(org.keepassxc.KeePassXC)$ title: ^(Unlock Database - KeePassXC)$"
   "tile,class:^dev.warp.Warp.*$"
-  "float, class:^(org.keepassxc.KeePassXC)$ title: (Passkey credentials)"
+  "float, class:^(org.keepassxc.KeePassXC)$ title: ^(KeePassXC - Passkey credentials)$"
   "workspace 3 silent, class:^(spotify)$"
 ]
