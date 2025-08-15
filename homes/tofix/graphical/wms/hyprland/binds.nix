@@ -73,6 +73,8 @@ in {
       "$mainMod, l, exec, uwsm app -- ${lockCommand}"
       "$mainMod CTRL, C, exec, uwsm app -- hyprpicker -a -r -f hex"
       "$mainMod, mouse:274, exec, ${zoomScript} 0"
+      "$mainMod, mouse_up, exec, ${zoomScript} - 0.25"
+      "$mainMod, mouse_down, exec, ${zoomScript} + 0.25"
     ]
     ++ workspace
     ++ moveToWorkspace
