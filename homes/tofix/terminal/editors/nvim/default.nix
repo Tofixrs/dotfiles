@@ -21,6 +21,7 @@
         autoindent = true;
         tabstop = 2;
         shiftwidth = 2;
+        expandtab = false;
       };
       autocomplete.nvim-cmp.enable = true;
       autopairs.nvim-autopairs.enable = true;
