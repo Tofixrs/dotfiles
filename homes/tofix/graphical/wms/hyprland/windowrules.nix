@@ -16,5 +16,6 @@
   "float, class:^(org.keepassxc.KeePassXC)$ title: ^(Unlock Database - KeePassXC)$"
   "tile,class:^dev.warp.Warp.*$"
   "float, class:^(org.keepassxc.KeePassXC)$ title: ^(KeePassXC - Passkey credentials)$"
+  "float, class:^(org.keepassxc.KeePassXC)$ title: ^(KeePassXC -  Access Request)$"
   "workspace 3 silent, class:^(spotify)$"
 ]
