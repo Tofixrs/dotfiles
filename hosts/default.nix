@@ -20,7 +20,6 @@
   dev = typeModules + /dev;
 
   common = coreModules + /common;
-  secrets = common + /secrets;
   options = coreModules + /options;
 
   homesDir = ../homes;
@@ -30,7 +29,6 @@
     common
     options
     age
-    secrets
   ];
 
   sharedArgs = {inherit inputs self lib;};
