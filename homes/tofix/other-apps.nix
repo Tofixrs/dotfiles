@@ -18,6 +18,7 @@
     prismlauncher
     nodePackages.pnpm
     nodejs_20
+    bun
     ripgrep
     lazygit
     lutris
