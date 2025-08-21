@@ -19,35 +19,40 @@
 
   fileSystems = {
     "/windows" = {
-      device = "/dev/disk/by-uuid/3628079428075273";
+      device = "/dev/disk/by-uuid/84C21617C2160E54";
       fsType = "ntfs";
       options = ["nofail"];
     };
     "/" = {
-      device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
+      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
       fsType = "btrfs";
       options = ["subvol=root" "compress=zstd"];
     };
 
     "/home" = {
-      device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
+      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
       fsType = "btrfs";
       options = ["subvol=home" "compress=zstd"];
     };
 
     "/nix" = {
-      device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
+      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
       fsType = "btrfs";
       options = ["subvol=nix" "noatime" "compress=zstd"];
     };
-    "/SteamLibrary" = {
-      device = "/dev/disk/by-uuid/6000b901-622b-490d-8170-141054e3a14b";
+    "/games" = {
+      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
       fsType = "btrfs";
-      options = ["subvol=SteamLibrary" "compress=zstd"];
+      options = ["subvol=games" "compress=zstd"];
+    };
+    "/documents" = {
+      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+      fsType = "btrfs";
+      options = ["subvol=documents" "compress=zstd"];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/0F54-4904";
+      device = "/dev/disk/by-uuid/525E-E4E6";
       fsType = "vfat";
     };
   };

@@ -151,6 +151,21 @@
         "type": "github"
       }
     },
+    "filter": {
+      "locked": {
+        "lastModified": 1731533336,
+        "narHash": "sha256-oRam5PS1vcrr5UPgALW0eo1m/5/pls27Z/pabHNy2Ms=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "f7653272fd234696ae94229839a99b73c9ab7de0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -1158,6 +1173,30 @@
         "type": "github"
       }
     },
+    "qs-config": {
+      "inputs": {
+        "filter": "filter",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": [
+          "quickshell"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755804617,
+        "narHash": "sha256-+mlT5Hup6TqXiA6h/3xN1RGKB7RgkWflMEyo4FonaM8=",
+        "owner": "Tofixrs",
+        "repo": "qs-config",
+        "rev": "cb3f7a638e0f44b9b6da77b2a46e8d7f03bc30c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Tofixrs",
+        "repo": "qs-config",
+        "type": "github"
+      }
+    },
     "quickshell": {
       "inputs": {
         "nixpkgs": [
@@ -1194,6 +1233,7 @@
         "nix-colors": "nix-colors",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_4",
+        "qs-config": "qs-config",
         "quickshell": "quickshell",
         "spicetify-nix": "spicetify-nix",
         "ua-pl-phonetic": "ua-pl-phonetic",

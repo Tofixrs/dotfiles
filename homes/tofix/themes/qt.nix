@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme.name = "qtct";
   };
   home = {
     packages = with pkgs; [
@@ -10,4 +10,6 @@
       kdePackages.qtstyleplugin-kvantum
     ];
   };
+  xdg.configFile.qt6ct.source = ./qt6ct;
+  xdg.configFile.qt5ct.source = ./qt5ct;
 }
