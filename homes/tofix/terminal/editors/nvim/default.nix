@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./tabline.nix ./notes.nix ./visuals.nix ./utils.nix];
+  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./notes.nix ./visuals.nix ./utils.nix];
   programs.neovim-flake = {
     enable = true;
 
