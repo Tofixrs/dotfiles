@@ -1,3 +1,3 @@
 _: {
-  imports = [./starship.nix ./zsh.nix ./zoxide.nix];
+  imports = [./starship.nix ./nushell.nix];
 }

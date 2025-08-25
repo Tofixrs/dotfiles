@@ -10,5 +10,4 @@ _: {
       fi
     '';
   };
-  programs.carapace.enable = true;
 }

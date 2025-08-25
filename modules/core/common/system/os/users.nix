@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   users = {
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.nushell;
     users.tofix = {
       isNormalUser = true;
       initialPassword = "changeMe";

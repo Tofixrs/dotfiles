@@ -108,12 +108,4 @@ in {
       mimeType = ["text/english" "text/plain" "text/x-makefile" "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" "text/x-tex application/x-shellscript" "text/x-c" "text/x-c++"];
     };
   };
-  xdg.configFile."uwsm/env".text =
-    ''
-      ${config.lib.shell.exportAll config.home.sessionVariables}
-    ''
-    + lib.optionalString (config.home.sessionPath != []) ''
-      export PATH="$PATH''${PATH:+:}${builtins.concatStringsSep ":" config.home.sessionPath}"
-    ''
-    + config.home.sessionVariablesExtra;
 }
