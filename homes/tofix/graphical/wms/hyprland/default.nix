@@ -19,6 +19,8 @@ in {
       enable = true;
       systemd.enable = false;
       package = inputs'.hyprland.packages.hyprland;
+      portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
+      systemd.variables = ["--all"];
       settings =
         {
           "$mainMod" = "SUPER";

@@ -4,6 +4,6 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-    config.common.default = ["hyprland;gtk"];
+    config.common.default = "*";
   };
 }

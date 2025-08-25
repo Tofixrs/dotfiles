@@ -9,19 +9,17 @@ in {
   config = mkIf (env.desktop == "Hyprland") {
     services.hyprsunset = {
       enable = true;
-      transitions = {
-        sunrise = {
-          calendar = "*-*-* 06:00:00";
-          requests = [
-            ["temperature" "6500"]
-          ];
-        };
-        sunset = {
-          calendar = "*-*-* 22:00:00";
-          requests = [
-            ["temperature" "3500"]
-          ];
-        };
+      settings = {
+        profile = [
+          {
+            time = "6:00";
+            temperature = 6500;
+          }
+          {
+            time = "22:00";
+            temperature = 3500;
+          }
+        ];
       };
     };
   };
