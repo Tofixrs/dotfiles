@@ -16,7 +16,7 @@ _: {
       };
       system = {
         boot = {
-          loader = "systemd-boot";
+          loader = "secure-boot";
           enableKernelTweaks = true;
         };
       };
