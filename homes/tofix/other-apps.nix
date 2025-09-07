@@ -10,7 +10,7 @@
     material-symbols
     inputs'.hyprland-contrib.packages.grimblast
     viewnior
-    libsForQt5.ark
+    kdePackages.ark
     gh
     playerctl
     hyprpicker

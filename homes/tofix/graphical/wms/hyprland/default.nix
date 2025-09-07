@@ -40,7 +40,6 @@ in {
             "blur,desktop-top"
           ];
           gestures = {
-            workspace_swipe = true;
             workspace_swipe_create_new = true;
             workspace_swipe_forever = true;
           };
@@ -98,6 +97,9 @@ in {
           cursor = {
             no_hardware_cursors = true;
           };
+          gesture = [
+            "3, horizontal, workspace"
+          ];
         }
         // binds;
     };
