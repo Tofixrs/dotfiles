@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./notes.nix ./visuals.nix ./utils.nix];
+  imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./notes.nix ./visuals.nix ./utils.nix ./autocommands.nix];
   programs.neovim-flake = {
     enable = true;
 
@@ -21,6 +21,7 @@
         autoindent = true;
         tabstop = 2;
         shiftwidth = 2;
+        softtabstop = 2;
         expandtab = false;
       };
       autocomplete.nvim-cmp.enable = true;
