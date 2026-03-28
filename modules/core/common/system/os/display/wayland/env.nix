@@ -16,6 +16,7 @@ in {
       XDG_SESSION_TYPE = "wayland";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
+      ELECTRON_PLATFORM_HINT = "wayland";
     };
   };
 }

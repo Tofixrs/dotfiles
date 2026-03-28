@@ -1,16 +1,25 @@
 {
   lib,
   pkgs,
+  config,
+  self',
   ...
 }: let
   inherit (lib) getExe;
 in {
   programs.neovim-flake.settings.vim = {
+    formatter.conform-nvim = {
+      enable = true;
+      setupOpts.formatters_by_ft = {
+        blade = ["blade-formatter"];
+      };
+    };
     treesitter = {
       enable = true;
       grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         typescript
         qmljs
+        blade
       ];
     };
     debugger.nvim-dap = {
@@ -21,20 +30,24 @@ in {
       };
     };
     languages = {
+      lua.enable = true;
       enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
       rust = {
         enable = true;
-        crates.enable = true;
+        extensions.crates-nvim.enable = true;
       };
       ts = {
         enable = true;
         extraDiagnostics.types = [];
-        format.type = "prettierd";
+        format.type = ["prettierd"];
       };
       nix.enable = true;
-      html.enable = true;
+      html = {
+        enable = true;
+        lsp.servers = ["emmet-ls" "superhtml"];
+      };
       clang = {
         enable = true;
         cHeader = true;
@@ -46,7 +59,7 @@ in {
       };
       php = {
         enable = true;
-        lsp.server = "intelephense";
+        lsp.servers = ["intelephense"];
       };
       svelte = {
         extraDiagnostics.types = [];
@@ -54,6 +67,12 @@ in {
         format.enable = false;
       };
       tailwind.enable = true;
+      json.enable = true;
+      just.enable = true;
+      csharp = {
+        enable = true;
+        lsp.servers = ["omnisharp"];
+      };
     };
     lsp = {
       enable = true;
@@ -63,100 +82,63 @@ in {
       trouble.enable = true;
       lspSignature.enable = true;
       nvim-docs-view.enable = true;
-      lspconfig.sources = {
-        jsonls = ''
-          lspconfig.jsonls.setup {
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-          }
-        '';
-        csharp_ls = ''
-          lspconfig.csharp_ls.setup {
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            cmd = {"${getExe pkgs.csharp-ls}"};
-          }
-        '';
-        lua-lsp = ''
-          lspconfig.lua_ls.setup {
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            cmd = {"${getExe pkgs.lua-language-server}"};
-
-            settings  = {
-            	Lua = {
-            		workspace = {
-            			library = {
-            				vim.fn.expand("$HOME/sm.lua")
-            			}
-            		}
-            	}
-            }
-          }
-        '';
-        html = ''
-          lspconfig.html.setup{
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            filetypes = {"html", "templ", "php"};
-          }
-        '';
-        emmet = ''
-          lspconfig.emmet_language_server.setup{
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            cmd = {"${getExe pkgs.emmet-ls}", "--stdio"};
-            filetypes = { "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "typescriptreact", "php" };
-          }
-        '';
-        yaml = ''
-          require('lspconfig').yamlls.setup {
-            settings = {
-              yaml = {
-                schemas = {
-                  ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                  ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
-                },
-              },
-              redhat = {
-                telemetry = {
-                  enabled = false,
-                },
-              },
-            }
-          }
-        '';
-        vls = ''
-          require('lspconfig').volar.setup {
-            capabilities = capabilities;
-            on_attach = on_attach;
-            filetypes = {"vue"};
-            init_options = {
-              vue = {
-                hybridMode = false
-              }
-            };
-          }
-        '';
-        qmlls = ''
-          require('lspconfig').qmlls.setup {
-            cmd = {"qmlls"}
-          }
-        '';
-        gdscript = ''
-          require("lspconfig").gdscript.setup {}
-        '';
+      servers = {
+        lua-language-server.settings.Lua.workspace.library = [
+          "${config.home.homeDirectory}/sm.lua"
+        ];
+        emmet-ls.filetypes = [
+          "css"
+          "eruby"
+          "html"
+          "htmldjango"
+          "javascriptreact"
+          "less"
+          "pug"
+          "sass"
+          "scss"
+          "typescriptreact"
+          "php"
+          "blade"
+        ];
+        qmlls = {
+          cmd = ["qmlls"];
+          filetypes = ["qml" "qmljs"];
+          root_markers = [".git"];
+        };
+        gdscript = {
+          cmd = lib.generators.mkLuaInline ''
+            (function()
+              local port = os.getenv 'GDScript_Port' or '6005'
+              return vim.lsp.rpc.connect('127.0.0.1', tonumber(port))
+            end)()
+          '';
+          filetypes = ["gd" "gdscript" "gdscript3"];
+          root_markers = ["project.godot" ".git"];
+        };
+        laravel_ls = {
+          cmd = ["laravel-ls"];
+          filetypes = ["php" "blade"];
+          root_markers = ["artisan"];
+        };
+        intelephense = {
+          filetypes = ["php" "blade"];
+        };
       };
     };
   };
   home.packages = with pkgs; [
-    csharp-ls
-    dotnet-sdk_8
+    (with dotnetCorePackages;
+      combinePackages [
+        sdk_9_0
+        sdk_10_0
+      ])
     vscode-langservers-extracted
     emmet-ls
     yaml-language-server
     vue-language-server
     nodePackages.svelte-language-server
     kdePackages.qtdeclarative
+    go
+    blade-formatter
   ];
 }

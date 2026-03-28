@@ -18,11 +18,10 @@ in
      RES=$(${notify-send} \
         -a "Screenshot" \
         -i "image-x-generic-symbolic" \
-        -h string:image-path:$TARGET \
         -A "file=Show in Files" \
         -A "view=View" \
         -A "edit=Edit" \
-        "Screenshot Taken")
+        "Screenshot Taken" "<img src=\"$TARGET\">")
 
     case "$RES" in
         "file") uwsm app -- xdg-open "$SCREENSHOTS" ;;

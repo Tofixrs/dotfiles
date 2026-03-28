@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -13,14 +12,5 @@ in {
       initrd.kernelModules = ["amdgpu"]; # load amdgpu kernel module as early as initrd
       kernelModules = ["amdgpu"]; # if loading somehow fails during initrd but the boot continues, try again later
     };
-
-    hardware.graphics.extraPackages = with pkgs; [
-      amdvlk
-    ];
-    # For 32 bit applications
-    # Only available on unstable
-    hardware.graphics.extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
   };
 }

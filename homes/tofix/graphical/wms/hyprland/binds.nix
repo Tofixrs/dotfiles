@@ -35,7 +35,8 @@
     if osConfig.modules.usrEnv.screenLocker == "hyprlock"
     then "${lib.getExe pkgs.hyprlock}"
     else "${lib.getExe pkgs.swaylock-effects} -f";
-  openPanel = panel: "bash -c \"qs ipc call panels toggle $(hyprctl monitors -j | jq '.[] | select(.focused == true) | .name' -r) ${panel}\"";
+  changeBrightness = delta: "bash -c \"qs ipc call brightness change ${builtins.toString delta}\"";
+  openPanel = panel: "bash -c \"qs ipc call panels toggle ${panel}\"";
 in {
   bind =
     [
@@ -46,27 +47,28 @@ in {
       "$mainMod, R, exec, ${openPanel "appLauncher"}"
       "$mainMod, F, togglefloating"
       "$mainMod CONTROL, F, fullscreen, 0"
-      "$mainMod, left, movefocus, l"
-      "$mainMod, right, movefocus, r"
-      "$mainMod, up, movefocus, u"
-      "$mainMod, down, movefocus, d"
-      "$mainMod SHIFT, left, movewindow, l"
-      "$mainMod SHIFT, right, movewindow, r"
-      "$mainMod SHIFT, up, movewindow, u"
-      "$mainMod SHIFT, down, movewindow, d"
+      "$mainMod, A, movefocus, l"
+      "$mainMod, D, movefocus, r"
+      "$mainMod, W, movefocus, u"
+      "$mainMod, S, movefocus, d"
+      "$mainMod SHIFT, A, movewindow, l"
+      "$mainMod SHIFT, D, movewindow, r"
+      "$mainMod SHIFT, W, movewindow, u"
+      "$mainMod SHIFT, S, movewindow, d"
       "$mainMod, Print, exec, screenshot area"
       ", Print, exec, screenshot output"
       "SHIFT, Print,  exec, screenshot screen"
       "$mainMod, TAB, exec, ${openPanel "dashboard"}"
       "$mainMod, V, exec, ${openPanel "clipboard"}"
-      "$mainMod, X, exec, ${openPanel "powermenu"}"
+      "$mainMod, X, exec, bash -c \"qs ipc call launcher toggle 4\""
+      "$mainMod CONTROL SHIFT, R, exec, systemctl --user restart qs-config"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
       ", xf86audioprev, exec, playerctl previous"
       ", xf86audiostop, exec, playerctl stop"
       ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
-      ", xf86monbrightnessup, exec, brightnessctl set 50+"
-      ", xf86monbrightnessdown, exec, brightnessctl set 50-"
+      ", xf86monbrightnessup, exec, ${changeBrightness 0.05}"
+      ", xf86monbrightnessdown, exec, ${changeBrightness (-0.05)}"
       ", code:179, exec, uwsm app -- spotify.desktop"
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
@@ -75,6 +77,7 @@ in {
       "$mainMod, mouse:274, exec, ${zoomScript} 0"
       "$mainMod, mouse_up, exec, ${zoomScript} - 0.25"
       "$mainMod, mouse_down, exec, ${zoomScript} + 0.25"
+      ",F10,pass,class:^(vesktop)$"
     ]
     ++ workspace
     ++ moveToWorkspace
@@ -85,10 +88,10 @@ in {
     "$mainMod, mouse:273, resizewindow"
   ];
   binde = [
-    "$mainMod CONTROL, up, resizeactive, 0 -20"
-    "$mainMod CONTROL, down, resizeactive, 0 20"
-    "$mainMod CONTROL, left, resizeactive, -20 0"
-    "$mainMod CONTROL, right, resizeactive, 20 0"
+    "$mainMod CONTROL, W, resizeactive, 0 -20"
+    "$mainMod CONTROL, S, resizeactive, 0 20"
+    "$mainMod CONTROL, A, resizeactive, -20 0"
+    "$mainMod CONTROL, D, resizeactive, 20 0"
     ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
     ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
     "$mainMod, equal, exec, ${zoomScript} + 0.25"

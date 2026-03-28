@@ -21,6 +21,7 @@ in {
     flatpak-builder
     distrobox
     godot_4
+    android-tools
   ];
   services = {
     # Php server for school
@@ -100,5 +101,4 @@ in {
     phpfpm-learning.wantedBy = lib.mkForce []; #Disable docker by default
   };
   virtualisation.docker.enable = true;
-  programs.adb.enable = true;
 }

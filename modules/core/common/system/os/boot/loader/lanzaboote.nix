@@ -15,9 +15,14 @@ in {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
       configurationLimit = 10;
+      autoGenerateKeys.enable = true;
+      autoEnrollKeys = {
+        enable = true;
+        autoReboot = true;
+      };
       settings = {
         console-mode = mkDefault "max";
-        editor = false;
+        editor = true;
       };
     };
 

@@ -8,5 +8,6 @@ _: {
       autosuggestions.enable = true;
       setOptions = ["PROMPT_SUBST" "appendhistory"];
     };
+    nix-ld.enable = true;
   };
 }

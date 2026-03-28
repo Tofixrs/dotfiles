@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     dconf
   ];
@@ -23,6 +27,7 @@
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
+    gtk4.theme = config.gtk.theme;
   };
   home.sessionVariables = {
     GTK_USE_PORTAL = 1;

@@ -21,8 +21,6 @@ in {
         videoDrivers = ["nvidia"];
       }
     ];
-    boot.blacklistedKernelModules = ["nouveau"];
-    boot.kernelModules = ["nvidia_uvm"];
 
     environment = {
       sessionVariables = mkMerge [
@@ -44,6 +42,7 @@ in {
         libva-utils
       ];
     };
+    boot.blacklistedKernelModules = ["nouveau"];
 
     hardware = {
       nvidia = {

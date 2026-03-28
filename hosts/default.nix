@@ -30,7 +30,6 @@
     options
     age
   ];
-
   sharedArgs = {inherit inputs self lib;};
 in {
   flake.nixosConfigurations = {

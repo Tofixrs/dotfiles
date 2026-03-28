@@ -3,12 +3,9 @@
   pkgs,
   lib,
   osConfig,
+  config,
   ...
 }: let
-  sys_monitor =
-    if osConfig.networking.hostName == "lapfix"
-    then ["eDP-1,1920x1080@144,0x0,1,vrr,1"]
-    else [];
   binds = import ./binds.nix {
     inherit inputs' lib pkgs osConfig;
   };
@@ -24,10 +21,12 @@ in {
       settings =
         {
           "$mainMod" = "SUPER";
-          windowrulev2 = import ./windowrules.nix;
+          windowrule = import ./windowrules.nix;
           exec-once = import ./autostart.nix {inherit inputs' lib;};
           workspace = import ./workspacerules.nix;
-          monitor = sys_monitor;
+          source = [
+            "${config.xdg.configHome}/hypr/hyprland_monitor.conf"
+          ];
           binds = {
             scroll_event_delay = 0;
           };
@@ -37,7 +36,11 @@ in {
             touchpad.natural_scroll = true;
           };
           layerrule = [
-            "blur,desktop-top"
+            {
+              name = "desktop overlay";
+              "match:namespace" = "desktop-top";
+              blur = true;
+            }
           ];
           gestures = {
             workspace_swipe_create_new = true;
@@ -49,6 +52,7 @@ in {
             border_size = 2;
             gaps_in = 2.5;
             gaps_out = 7;
+            layout = "scrolling";
           };
           decoration = {
             rounding = 5;
@@ -74,16 +78,8 @@ in {
               "windows, 1, 3, md3_decel, popin 60%"
               "border, 1, 10, default"
               "fade, 1, 2, default"
-              "workspaces, 1, 3.5, md3_decel, slide"
-              "specialWorkspace, 1, 3, md3_decel, slidefadevert 15%"
+              "workspaces, 1, 3.5, md3_decel, slidevert"
             ];
-          };
-          dwindle = {
-            pseudotile = true;
-            preserve_split = true;
-          };
-          master = {
-            new_status = "master";
           };
           misc = {
             disable_hyprland_logo = true;

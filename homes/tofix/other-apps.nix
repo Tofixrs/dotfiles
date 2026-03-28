@@ -22,9 +22,8 @@
     ripgrep
     lazygit
     lutris
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     nil
-    brightnessctl
     alejandra
     (pkgs.obs-studio.override
       {
@@ -39,7 +38,6 @@
     clang
     cmake
     gnumake
-    ventoy
     mpv
     (nvtopPackages.full.override {
       nvidia = true;
@@ -59,5 +57,9 @@
     libqalculate
     kdePackages.qtimageformats
     kdePackages.qtmultimedia
+    nix-index
+    (poedit.override {boost = boost188;})
+    vesktop
+    postman
   ];
 }

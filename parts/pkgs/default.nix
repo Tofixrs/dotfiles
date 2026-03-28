@@ -1,2 +1,5 @@
 _: {
+  perSystem = {pkgs, ...}: {
+    packages = {};
+  };
 }

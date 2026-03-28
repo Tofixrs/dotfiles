@@ -1,21 +1,56 @@
 [
-  "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
-  "size 500 500, class:^(steam)$ title:^(Friends List)$"
-  "float, class:^(steam)$ title:^(Friends List)$"
-  "size 930 495, class:.*firefox.* title:^(Picture-in-Picture)$"
-  "float, class:.*firefox.* title:^(Picture-in-Picture)$"
-  "suppressevent, fullscreen, class:.*firefox.* title:^(Picture-in-Picture)$"
-  "suppressevent, fullscreen, class:^(libreoffice-startcenter)$"
-  "float, class:.*firefox.*, title:^(Firefox — Sharing Indicator)$"
-  "suppressevent, fullscreen, class:.*firefox.*, title:^(Firefox — Sharing Indicator)$"
-  "suppressevent, maximazie, class:.*firefox.*, title:^(Firefox — Sharing Indicator)$"
-  "move 0 0, class:.*firefox.*, title:^(Firefox — Sharing Indicator)$"
-  "suppressevent, fullscreen, class:.*firefox.*, title:^(Firefox — Sharing Indicator)$"
-  "noinitialfocus, class:^(steam)$, title:^(notificationtoasts)"
-  "float, class:^(com-atlauncher-App)$ title:^(ATLauncher Console)$"
-  "float, class:^(org.keepassxc.KeePassXC)$ title: ^(Unlock Database - KeePassXC)$"
-  "tile,class:^dev.warp.Warp.*$"
-  "float, class:^(org.keepassxc.KeePassXC)$ title: ^(KeePassXC - Passkey credentials)$"
-  "float, class:^(org.keepassxc.KeePassXC)$ title: ^(KeePassXC -  Access Request)$"
-  "workspace 3 silent, class:^(spotify)$"
+  {
+    name = "polkit agent";
+    float = true;
+    "match:class" = "^(org.kde.polkit-kde-authentication-agent-1)$";
+  }
+  {
+    name = "steam friend list";
+    size = "500 500";
+    float = true;
+    "match:class" = "^(steam)";
+    "match:title" = "^(Friends List)$";
+  }
+
+  {
+    name = "PiP zen-beta";
+    size = "930 495";
+    float = true;
+    suppress_event = "fullscreen";
+    "match:class" = ".*zen-beta.*";
+    "match:title" = "^(Picture-in-Picture)$";
+  }
+
+  {
+    name = "Libre office stupid default";
+    suppress_event = "fullscreen";
+    "match:class" = "^(libreoffice-startcenter)$";
+  }
+  {
+    name = "steam notifs focus";
+    no_initial_focus = true;
+    "match:class" = "^(steam)$";
+    "match:title" = "^(notificationtoasts)";
+  }
+
+  {
+    name = "Keepass unlock database";
+    float = true;
+    "match:class" = "^(org.keepassxc.KeePassXC)$";
+    "match:title" = "^(Unlock Database - KeePassXC)$";
+  }
+
+  {
+    name = "Keepass passkeys";
+    float = true;
+    "match:class" = "^(org.keepassxc.KeePassXC)$";
+    "match:title" = "^(KeePassXC - Passkey credentials)$";
+  }
+
+  {
+    name = "Keepass something";
+    float = true;
+    "match:class" = "^(org.keepassxc.KeePassXC)$";
+    "match:title" = "^(KeePassXC -  Access Request)$";
+  }
 ]

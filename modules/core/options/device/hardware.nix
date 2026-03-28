@@ -36,6 +36,7 @@ in {
       default = true;
       description = "Whether to enable nvidia power managment";
     };
+
     amdBusId = mkOption {
       type = types.nullOr types.nonEmptyStr;
       default =
