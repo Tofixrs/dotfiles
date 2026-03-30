@@ -9,11 +9,19 @@
       packages = [
         (pkgs.writeShellApplication {
           name = "switch";
-          text = ''sudo nixos-rebuild switch --flake "git+file://$(pwd)?submodules=1#$(hostname)" --show-trace'';
+          text = ''
+            if [ -z "''${1:-}" ]; then
+              echo "Error: Commit name required"
+              exit 1
+            fi
+            git add .
+            git commit -m "$1"
+            sudo nixos-rebuild switch --flake "git+file://$(pwd)?submodules=1#$(hostname)" --show-trace
+          '';
         })
         (pkgs.writeShellApplication {
           name = "clean";
-          text = ''sudo nix-collect-garbage -d && nix-collect-garbage -d'';
+          text = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
         })
         (pkgs.writeShellApplication {
           name = "print-roots";

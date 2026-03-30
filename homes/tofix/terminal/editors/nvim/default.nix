@@ -2,6 +2,7 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }: {
   imports = [inputs.neovim-flake.homeManagerModules.default ./tree.nix ./lsp.nix ./terminal.nix ./keybinds.nix ./statusline.nix ./notes.nix ./visuals.nix ./utils.nix ./autocommands.nix];
@@ -23,6 +24,8 @@
         shiftwidth = 2;
         softtabstop = 2;
         expandtab = false;
+        shell = lib.getExe pkgs.nushell;
+        shellcmdflag = "-c";
       };
       autocomplete.nvim-cmp.enable = true;
       autopairs.nvim-autopairs.enable = true;
@@ -34,6 +37,7 @@
       comments = {
         comment-nvim.enable = true;
       };
+      utility.direnv.enable = true;
       dashboard.alpha = let
         button = ''
           local function button(sc,txt,keybind,keybind_opts)
