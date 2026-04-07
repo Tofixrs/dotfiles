@@ -13,7 +13,6 @@ with lib; let
     else config.boot.kernelPackages.nvidiaPackages.beta;
 
   inherit (config.modules) device;
-  env = config.modules.usrEnv;
 in {
   config = mkIf (device.gpu == "nvidia" || device.gpu == "hybrid-amd-nv") {
     services.xserver = mkMerge [
@@ -24,14 +23,12 @@ in {
 
     environment = {
       sessionVariables = mkMerge [
-        {
+        (mkIf (device.gpu == "nvidia") {
           LIBVA_DRIVER_NAME = "nvidia";
-        }
+        })
 
-        (mkIf (env.isWayland
-          && device.gpu
-          == "hybrid-amd-nv") {
-          __NV_PRIME_RENDER_OFFLOAD = "1";
+        (mkIf (device.gpu == "hybrid-amd-nv") {
+          LIBVA_DRIVER_NAME = "radeonsi";
         })
       ];
       systemPackages = with pkgs; [

@@ -9,7 +9,7 @@ in {
   config = mkIf (dev.hasBluetooth) {
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = true;
+      powerOnBoot = false;
       settings = {
         General = {
           JustWorksRepairing = "always";

@@ -2,6 +2,7 @@ _: {
   imports = [./ssh.nix];
   networking = {
     networkmanager.enable = true;
+    networkmanager.wifi.powersave = true;
     nameservers = ["1.1.1.1"];
     firewall = rec {
       allowedTCPPorts = [5173 80 25565];
