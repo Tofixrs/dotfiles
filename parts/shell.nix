@@ -10,12 +10,12 @@
         (pkgs.writeShellApplication {
           name = "switch";
           text = ''
-            if [ -z "''${1:-}" ]; then
+            if [ "$#" -eq 0 ]; then
               echo "Error: Commit name required"
               exit 1
             fi
             git add .
-            git commit -m "$1"
+            git commit -m "$*"
             sudo nixos-rebuild switch --flake "git+file://$(pwd)?submodules=1#$(hostname)" --show-trace
           '';
         })
