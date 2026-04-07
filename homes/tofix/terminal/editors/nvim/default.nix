@@ -10,6 +10,12 @@
     enable = true;
 
     settings.vim = {
+      extraPlugins.aw-watcher = {
+        package = pkgs.vimPlugins.aw-watcher-nvim;
+        setup = ''
+          require("aw_watcher").setup({})
+        '';
+      };
       theme = {
         enable = true;
         name = "catppuccin";
