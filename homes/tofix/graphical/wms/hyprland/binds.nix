@@ -60,6 +60,7 @@ in {
       "SHIFT, Print,  exec, screenshot screen"
       "$mainMod, TAB, exec, ${openPanel "dashboard"}"
       "$mainMod, V, exec, ${openPanel "clipboard"}"
+      "$mainMod, D, exec, ${openPanel "desktopOverlay"}"
       "$mainMod, X, exec, bash -c \"qs ipc call launcher toggle 4\""
       "$mainMod CONTROL SHIFT, R, exec, systemctl --user restart qs-config"
       ", xf86audioplay, exec, playerctl play-pause"
