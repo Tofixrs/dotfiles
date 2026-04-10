@@ -37,7 +37,7 @@
     else "${lib.getExe pkgs.swaylock-effects} -f";
   changeBrightness = delta: "bash -c \"qs ipc call brightness change ${builtins.toString delta}\"";
   openPanel = panel: "bash -c \"qs ipc call panels toggle ${panel}\"";
-  openLauncherMode = mode: "bash -c \"qs ipc call launcher toggle ${mode}\"";
+  openLauncherMode = mode: "bash -c \"qs ipc call launcher toggle ${builtins.toString mode}\"";
 in {
   bind =
     [
