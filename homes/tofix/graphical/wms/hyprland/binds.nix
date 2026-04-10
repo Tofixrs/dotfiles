@@ -37,6 +37,7 @@
     else "${lib.getExe pkgs.swaylock-effects} -f";
   changeBrightness = delta: "bash -c \"qs ipc call brightness change ${builtins.toString delta}\"";
   openPanel = panel: "bash -c \"qs ipc call panels toggle ${panel}\"";
+  openLauncherMode = mode: "bash -c \"qs ipc call launcher toggle ${mode}\"";
 in {
   bind =
     [
@@ -59,9 +60,9 @@ in {
       ", Print, exec, screenshot output"
       "SHIFT, Print,  exec, screenshot screen"
       "$mainMod, TAB, exec, ${openPanel "dashboard"}"
-      "$mainMod, V, exec, ${openPanel "clipboard"}"
-      "$mainMod, D, exec, ${openPanel "desktopOverlay"}"
-      "$mainMod, X, exec, bash -c \"qs ipc call launcher toggle 4\""
+      "$mainMod, V, exec, ${openLauncherMode 6}"
+      "$mainMod, O, exec, ${openPanel "desktopOverlay"}"
+      "$mainMod, X, exec, ${openLauncherMode 4}"
       "$mainMod CONTROL SHIFT, R, exec, systemctl --user restart qs-config"
       ", xf86audioplay, exec, playerctl play-pause"
       ", xf86audionext, exec, playerctl next"
