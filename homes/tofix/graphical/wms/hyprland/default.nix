@@ -91,7 +91,7 @@ in {
             disable_logs = false;
           };
           cursor = {
-            no_hardware_cursors = true;
+            no_hardware_cursors = false;
           };
           gesture = [
             "3, horizontal, workspace"
