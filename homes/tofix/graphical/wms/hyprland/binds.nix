@@ -1,4 +1,6 @@
 {
+  config,
+  inputs',
   lib,
   pkgs,
   osConfig,
@@ -31,10 +33,7 @@
     hyprctl keyword cursor:zoom_factor $nextZoom
   '';
 
-  lockCommand =
-    if osConfig.modules.usrEnv.screenLocker == "hyprlock"
-    then "${lib.getExe pkgs.hyprlock}"
-    else "${lib.getExe pkgs.swaylock-effects} -f";
+  lockCommand = "loginctl lock-session";
   changeBrightness = delta: "bash -c \"qs ipc call brightness change ${builtins.toString delta}\"";
   openPanel = panel: "bash -c \"qs ipc call panels toggle ${panel}\"";
   openLauncherMode = mode: "bash -c \"qs ipc call launcher toggle ${builtins.toString mode}\"";
@@ -74,7 +73,7 @@ in {
       ", code:179, exec, uwsm app -- spotify.desktop"
       "CTRL, xf86audionext, exec, playerctl position 5"
       "CTRL, xf86audioprev, exec, playerctl position 5 -"
-      "$mainMod, l, exec, uwsm app -- ${lockCommand}"
+      "$mainMod, l, exec, ${lockCommand}"
       "$mainMod CTRL, C, exec, uwsm app -- hyprpicker -a -r -f hex"
       "$mainMod, mouse:274, exec, ${zoomScript} 0"
       "$mainMod, mouse_up, exec, ${zoomScript} - 0.25"

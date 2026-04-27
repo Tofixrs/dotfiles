@@ -7,7 +7,7 @@
   ...
 }: let
   binds = import ./binds.nix {
-    inherit inputs' lib pkgs osConfig;
+    inherit config inputs' lib pkgs osConfig;
   };
   env = osConfig.modules.usrEnv;
 in {

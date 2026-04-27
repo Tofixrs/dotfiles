@@ -27,9 +27,9 @@ with lib; {
       '';
     };
     screenLocker = mkOption {
-      type = types.enum ["swaylock" "hyprlock"];
+      type = types.enum ["swaylock" "hyprlock" "quickshell"];
       description = ''What screen locker to use'';
-      default = "swaylock";
+      default = "quickshell";
     };
 
     mainUser = mkOption {
