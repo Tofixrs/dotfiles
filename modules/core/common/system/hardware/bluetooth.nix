@@ -19,5 +19,9 @@ in {
     };
 
     services.blueman.enable = true;
+    services.bt-dualboot = mkIf (dev.bluetoothSync.enable) {
+      enable = true;
+      mountPoint = dev.bluetoothSync.windowsMountPath;
+    };
   };
 }

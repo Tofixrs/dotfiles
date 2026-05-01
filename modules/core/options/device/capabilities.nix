@@ -6,6 +6,13 @@ with lib; {
       default = false;
       description = "Does the device have bluetooth";
     };
+    bluetoothSync = {
+      enable = mkEnableOption "Bluetooth device sync";
+      windowsMountPath = mkOption {
+        type = types.str;
+        description = "Path to windows to sync the devices with";
+      };
+    };
     # For future use if needed
     hasSound = mkOption {
       type = types.bool;

@@ -1,5 +1,7 @@
 _: {
   perSystem = {pkgs, ...}: {
-    packages = {};
+    packages = {
+      bt-dualboot = pkgs.callPackage ./bt-dualboot.nix {};
+    };
   };
 }

@@ -8,6 +8,10 @@ _: {
         amdBusId = "PCI:6:0:0";
         monitors = ["eDP-1"];
         hasBluetooth = true;
+        bluetoothSync = {
+          enable = true;
+          windowsMountPath = "/windows";
+        };
         # TODO: setup tpm on the system
         hasTPM = false;
         nvEnablePowerManagement = true;
