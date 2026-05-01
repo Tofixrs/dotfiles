@@ -25,11 +25,6 @@
       globals.editorconfig = true;
       enableLuaLoader = true;
       options = {
-        autoindent = true;
-        tabstop = 2;
-        shiftwidth = 2;
-        softtabstop = 2;
-        expandtab = false;
         shell = lib.getExe pkgs.nushell;
         shellcmdflag = "-c";
       };
