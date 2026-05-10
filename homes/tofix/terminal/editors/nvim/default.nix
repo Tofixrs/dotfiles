@@ -1,4 +1,3 @@
-# Swicth to using nvim flake from NotAShelf
 {
   inputs,
   lib,
@@ -25,6 +24,10 @@
       globals.editorconfig = true;
       enableLuaLoader = true;
       options = {
+        autoindent = true;
+        tabstop = 2;
+        shiftwidth = 2;
+        softtabstop = 2;
         shell = lib.getExe pkgs.nushell;
         shellcmdflag = "-c";
       };
