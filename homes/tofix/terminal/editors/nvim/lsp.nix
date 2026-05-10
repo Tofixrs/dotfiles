@@ -136,7 +136,7 @@ in {
     emmet-ls
     yaml-language-server
     vue-language-server
-    nodePackages.svelte-language-server
+    svelte-language-server
     kdePackages.qtdeclarative
     go
     blade-formatter
