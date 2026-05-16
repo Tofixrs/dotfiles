@@ -1,8 +1,11 @@
-{ config, osConfig, ... }:
-let
+{
+  config,
+  osConfig,
+  ...
+}: let
   theme = osConfig.modules.theme;
   palette = config.colorScheme.palette;
-  
+
   # Map accents to base16 colors where possible, otherwise use base0E (Mauve) as fallback
   accentMap = {
     rosewater = palette.base06;
@@ -20,7 +23,7 @@ let
     blue = palette.base0D;
     lavender = palette.base07;
   };
-  
+
   accentHex = "#${accentMap.${theme.accent} or palette.base0E}";
 
   crusts = {
@@ -31,16 +34,19 @@ let
   };
   crust = crusts.${theme.flavor} or "#11111b";
 in {
-  xdg.configFile."qs-shell/colors.json".text = builtins.toJSON {
-    background = "#${palette.base00}";
-    foreground = "#${palette.base01}";
-    foreground2 = crust;
-    inactive = "#${palette.base04}";
-    accent = accentHex;
-    accept = "#${palette.base0B}";
-    deny = "#${palette.base08}";
-    active = "#${palette.base0D}";
-    hover = "#${palette.base02}";
-    text = "#${palette.base05}";
+  programs.qs-config = {
+    enable = true;
+    colors = {
+      background = "#${palette.base00}";
+      foreground = "#${palette.base01}";
+      foreground2 = crust;
+      inactive = "#${palette.base04}";
+      accent = accentHex;
+      accept = "#${palette.base0B}";
+      deny = "#${palette.base08}";
+      active = "#${palette.base0D}";
+      hover = "#${palette.base02}";
+      text = "#${palette.base05}";
+    };
   };
 }
