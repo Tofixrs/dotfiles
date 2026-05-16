@@ -30,6 +30,10 @@ _: {
         mainUser = "tofix";
         enableVirtualization = true;
       };
+      theme = {
+        flavor = "mocha";
+        accent = "pink";
+      };
     };
   };
 }
