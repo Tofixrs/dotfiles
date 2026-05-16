@@ -213,6 +213,11 @@ in {
         dsp = "hl.dsp.pass({window = \"class:^(legcord)$\"})";
       })
       (mkBind {
+        key = "F10";
+        dsp = "hl.dsp.pass({window = \"class:^(legcord)$\"})";
+        flags = {release = true;};
+      })
+      (mkBind {
         key = "${mainMod} + CONTROL + W";
         dsp = "hl.dsp.window.resize({x = 0, y = -20, relative = true})";
         flags = {repeating = true;};
