@@ -100,5 +100,6 @@ in {
     docker.wantedBy = lib.mkForce []; #Disable docker by default
     phpfpm-learning.wantedBy = lib.mkForce []; #Disable docker by default
   };
+  systemd.targets.postgresql.wantedBy = lib.mkForce [];
   virtualisation.docker.enable = true;
 }

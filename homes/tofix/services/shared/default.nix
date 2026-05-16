@@ -1,8 +1,8 @@
 _: {
-  imports = [./polkit.nix ./syncthing.nix ./activitywatch.nix];
+  imports = [./polkit.nix ./syncthing.nix];
   services.kdeconnect = {
     enable = true;
     indicator = true;
   };
-  services.arrpc.enable = true;
+  services.arrpc.enable = false;
 }
