@@ -3,63 +3,46 @@
   withSystem,
   ...
 }: let
-  inherit (self) inputs;
-  inherit (self) lib;
+  inherit (self) inputs lib;
 
-  hm = inputs.home-manager.nixosModules.home-manager;
-  age = inputs.agenix.nixosModules.default;
-
-  modules = ../modules;
-  coreModules = modules + /core;
-  typeModules = coreModules + /types;
-
-  laptop = typeModules + /laptop;
-  # i suck at naming but this means my desktop vonfig like hyprland etc
-  desktop = typeModules + /desktop;
-  gaming = typeModules + /gaming;
-  dev = typeModules + /dev;
-
-  common = coreModules + /common;
-  options = coreModules + /options;
-
-  homesDir = ../homes;
-  homes = [hm homesDir];
-
-  shared = [
-    common
-    options
-    age
-  ];
-  sharedArgs = {inherit inputs self lib;};
+  nixosModules = ../modules/nixos;
+  profiles = nixosModules + /profiles;
+  
+  # Helper to create a system with common modules
+  mkHost = {
+    name,
+    system ? "x86_64-linux",
+    extraModules ? [],
+  }: lib.builders.mkNixSystem {
+    inherit withSystem system;
+    modules = [
+      { networking.hostName = name; }
+      ./${name}
+      nixosModules
+      ../modules/options
+      inputs.agenix.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      ../homes
+    ] ++ extraModules;
+    specialArgs = { inherit inputs self lib; };
+  };
 in {
   flake.nixosConfigurations = {
-    tofipc = lib.builders.mkNixSystem {
-      inherit withSystem;
-      system = "x86_64-linux";
-      modules =
-        [
-          {networking.hostName = "tofipc";}
-          ./tofipc
-          desktop
-          gaming
-        ]
-        ++ lib.concatLists [shared homes];
-      specialargs = sharedArgs;
+    tofipc = mkHost {
+      name = "tofipc";
+      extraModules = [
+        profiles/desktop
+        profiles/gaming
+      ];
     };
-    lapfix = lib.builders.mkNixSystem {
-      inherit withSystem;
-      system = "x86_64-linux";
-      modules =
-        [
-          {networking.hostName = "lapfix";}
-          ./lapfix
-          laptop
-          desktop
-          gaming
-          dev
-        ]
-        ++ lib.concatLists [shared homes];
-      specialargs = sharedArgs;
+    lapfix = mkHost {
+      name = "lapfix";
+      extraModules = [
+        profiles/laptop
+        profiles/desktop
+        profiles/gaming
+        profiles/dev
+      ];
     };
   };
 }

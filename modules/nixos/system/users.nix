@@ -1,7 +1,9 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: let
+  user = config.modules.usrEnv.mainUser;
+in {
   users = {
     defaultUserShell = pkgs.nushell;
-    users.tofix = {
+    users."${user}" = {
       isNormalUser = true;
       initialPassword = "changeMe";
       extraGroups = [

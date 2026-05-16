@@ -33,8 +33,9 @@ with lib; {
     };
 
     mainUser = mkOption {
-      type = types.nullOr types.nonEmptyStr;
-      default = null;
+      type = types.nonEmptyStr;
+      default = "tofix";
+      description = "The primary user of the system";
     };
 
     enableVirtualization = mkOption {
