@@ -6,7 +6,12 @@
   inherit (self) inputs lib;
 
   nixosModules = ../modules/nixos;
-  profiles = nixosModules + /profiles;
+  profiles = {
+    laptop = ../modules/nixos/profiles/laptop;
+    desktop = ../modules/nixos/profiles/desktop;
+    gaming = ../modules/nixos/profiles/gaming;
+    dev = ../modules/nixos/profiles/dev;
+  };
   
   # Helper to create a system with common modules
   mkHost = {
@@ -31,17 +36,17 @@ in {
     tofipc = mkHost {
       name = "tofipc";
       extraModules = [
-        profiles/desktop
-        profiles/gaming
+        profiles.desktop
+        profiles.gaming
       ];
     };
     lapfix = mkHost {
       name = "lapfix";
       extraModules = [
-        profiles/laptop
-        profiles/desktop
-        profiles/gaming
-        profiles/dev
+        profiles.laptop
+        profiles.desktop
+        profiles.gaming
+        profiles.dev
       ];
     };
   };

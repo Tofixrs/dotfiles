@@ -6,7 +6,6 @@ _: {
     fidget-nvim = {
       enable = true;
       setupOpts = {
-        integration.nvim-tree.enable = true;
         notification.window = {
           align = "top";
           border = "rounded";

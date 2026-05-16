@@ -38,7 +38,7 @@ in {
         enable = true;
         extensions.crates-nvim.enable = true;
       };
-      ts = {
+      typescript = {
         enable = true;
         extraDiagnostics.types = [];
         format.type = ["prettierd"];
@@ -66,7 +66,6 @@ in {
         enable = true;
         format.enable = false;
       };
-      tailwind.enable = true;
       json.enable = true;
       just.enable = true;
       csharp = {
@@ -75,6 +74,7 @@ in {
       };
     };
     lsp = {
+      presets.tailwindcss-language-server.enable = true;
       enable = true;
       formatOnSave = true;
       lspkind.enable = true;

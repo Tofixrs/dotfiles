@@ -1,4 +1,4 @@
-{lib, ...}: {
+{osConfig, ...}: {
   imports = [
     ./themes
     ./services
@@ -11,7 +11,7 @@
   ];
 
   home = {
-    stateVersion = lib.mkDefault "23.11";
+    inherit (osConfig.system) stateVersion;
   };
 
   programs.home-manager.enable = true;
