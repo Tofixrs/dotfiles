@@ -10,13 +10,22 @@
         (pkgs.writeShellApplication {
           name = "switch";
           text = ''
-            if [ "$#" -eq 0 ]; then
-              echo "Error: Commit name required"
-              exit 1
+            # Check if there are any changes (tracked or untracked)
+            if [ -n "$(git status --porcelain)" ]; then
+              if [ "$#" -eq 0 ]; then
+                echo "Error: Uncommitted changes detected, but no commit message provided."
+                exit 1
+              fi
+              echo "Changes detected. Committing..."
+              git add .
+              git commit -m "$*"
+            else
+              echo "No changes to commit. Proceeding with rebuild..."
             fi
-            git add .
-            git commit -m "$*"
-            sudo nixos-rebuild switch --flake "git+file://$(pwd)?submodules=1#$(hostname)" --show-trace
+
+            sudo nixos-rebuild switch \
+              --flake "git+file://$(pwd)?submodules=1#$(hostname)" \
+              --show-trace
           '';
         })
         (pkgs.writeShellApplication {
