@@ -210,7 +210,7 @@ in {
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.pass({window = \"class:^(vesktop)$\"})";
+        dsp = "hl.dsp.pass({window = \"class:^(legcord)$\"})";
       })
       (mkBind {
         key = "${mainMod} + CONTROL + W";

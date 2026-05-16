@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs',
+  self',
   ...
 }: {
   fonts.fontconfig.enable = true;
@@ -77,7 +78,7 @@
     kdePackages.qtmultimedia
     nix-index
     (poedit.override {boost = boost188;})
-    vesktop
+    self'.packages.legcord
     postman
   ];
 }
