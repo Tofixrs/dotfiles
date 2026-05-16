@@ -90,7 +90,10 @@ in {
       enable = true;
       package = pkgs.mariadb_114;
     };
-    postgresql.enable = true;
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_18;
+    };
     flatpak.enable = true;
   };
   systemd.services = {
