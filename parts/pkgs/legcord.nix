@@ -45,6 +45,12 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.getLib stdenv.cc.cc)
   ];
 
+  postPatch = ''
+    substituteInPlace package.json \
+      --replace-fail '"name": "legcord",' '"name": "legcord",
+    "desktopName": "legcord",'
+  '';
+
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     pnpm = pnpm_10_29_2;

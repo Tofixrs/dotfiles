@@ -80,25 +80,13 @@
       };
     };
     SMGui.url = "github:/Tofixrs/SMLayoutEditor";
-    vencord = {
-      url = "git+https://github.com/Tofixrs/CustomVencord?submodules=1";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     qs-config = {
       url = "github:Tofixrs/qs-config";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";

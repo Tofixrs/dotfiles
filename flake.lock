@@ -1423,9 +1423,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "quickshell": [
-          "quickshell"
-        ]
+        "quickshell": "quickshell"
       },
       "locked": {
         "lastModified": 1778936061,
@@ -1444,6 +1442,7 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
+          "qs-config",
           "nixpkgs"
         ]
       },
@@ -1480,10 +1479,8 @@
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_4",
         "qs-config": "qs-config",
-        "quickshell": "quickshell",
         "spicetify-nix": "spicetify-nix",
         "ua-pl-phonetic": "ua-pl-phonetic",
-        "vencord": "vencord",
         "zen-browser": "zen-browser"
       }
     },
@@ -1698,31 +1695,6 @@
         "owner": "Tofixrs",
         "repo": "ua-pl-phonetic",
         "type": "github"
-      }
-    },
-    "vencord": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1743876112,
-        "narHash": "sha256-bmBFp55juieSeCKWUuDZd1mvgwh4iHXIpWdWx3Kxn0Q=",
-        "ref": "refs/heads/main",
-        "rev": "327a87245e733ca243ffe9ad36514e98d953c5a9",
-        "revCount": 2422,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/Tofixrs/CustomVencord"
-      },
-      "original": {
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/Tofixrs/CustomVencord"
       }
     },
     "xdph": {
