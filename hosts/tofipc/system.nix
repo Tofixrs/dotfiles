@@ -18,6 +18,10 @@ _: {
         desktop = "Hyprland";
         useHomeManager = true;
       };
+      theme = {
+        flavor = "mocha";
+        accent = "mauve";
+      };
     };
   };
 }

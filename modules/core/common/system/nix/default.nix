@@ -1,5 +1,0 @@
-_: {
-  imports = [
-    ./overlays.nix
-  ];
-}
