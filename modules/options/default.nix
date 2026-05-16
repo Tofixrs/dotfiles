@@ -3,5 +3,6 @@ _: {
     ./usrEnv.nix
     ./system
     ./device
+    ./theme.nix
   ];
 }

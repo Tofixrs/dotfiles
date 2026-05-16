@@ -1,14 +1,18 @@
-{pkgs, ...}: let
+{ pkgs, osConfig, ... }:
+let
+  theme = osConfig.modules.theme;
+  variant = theme.flavor;
+  accent = theme.accent;
   themePkg = pkgs.catppuccin-kvantum.override {
-    accent = "mauve";
-    variant = "mocha";
+    inherit variant accent;
   };
+  kvantumThemeName = "catppuccin-${variant}-${accent}";
 in {
   home.packages = [
     themePkg
   ];
   xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-    General.theme = "catppuccin-mocha-mauve";
+    General.theme = kvantumThemeName;
   };
-  xdg.configFile."Kvantum/catppuccin-mocha-mauve".source = "${themePkg}/share/Kvantum/catppuccin-mocha-mauve";
+  xdg.configFile."Kvantum/${kvantumThemeName}".source = "${themePkg}/share/Kvantum/${kvantumThemeName}";
 }

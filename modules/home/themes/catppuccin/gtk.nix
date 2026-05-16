@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, osConfig, ... }:
+let
+  theme = osConfig.modules.theme;
+in {
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -9,10 +12,10 @@
       package = pkgs.bibata-cursors;
     };
     theme = {
-      name = "catppuccin-mocha-pink-compact";
+      name = "catppuccin-${theme.flavor}-${theme.accent}-compact";
       package = pkgs.catppuccin-gtk.override {
-        variant = "mocha";
-        accents = ["pink"];
+        variant = theme.flavor;
+        accents = [ theme.accent ];
         size = "compact";
       };
     };
