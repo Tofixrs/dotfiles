@@ -1479,6 +1479,10 @@
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_4",
         "qs-config": "qs-config",
+        "quickshell": [
+          "qs-config",
+          "quickshell"
+        ],
         "spicetify-nix": "spicetify-nix",
         "ua-pl-phonetic": "ua-pl-phonetic",
         "zen-browser": "zen-browser"

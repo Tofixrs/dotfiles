@@ -84,6 +84,7 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell.follows = "qs-config/quickshell";
     qs-config = {
       url = "github:Tofixrs/qs-config";
       inputs.nixpkgs.follows = "nixpkgs";
