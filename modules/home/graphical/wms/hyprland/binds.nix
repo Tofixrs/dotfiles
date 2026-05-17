@@ -14,29 +14,48 @@
   };
 
   mainMod = "SUPER";
-
-  workspace = map (i:
+  workspace = map (i: let
+    workspaceId =
+      if i == 0
+      then 10
+      else i;
+  in
     mkBind {
       key = "${mainMod} + ${toString i}";
-      dsp = "hl.dsp.focus({workspace = ${toString (i + 1)}})";
+      dsp = "hl.dsp.focus({workspace = ${toString workspaceId}})";
     }) (lib.range 0 9);
 
-  moveToWorkspace = map (i:
+  moveToWorkspace = map (i: let
+    workspaceId =
+      if i == 0
+      then 10
+      else i;
+  in
     mkBind {
       key = "${mainMod} + SHIFT + ${toString i}";
-      dsp = "hl.dsp.window.move({workspace = ${toString (i + 1)}, follow = true})";
+      dsp = "hl.dsp.window.move({workspace = ${toString workspaceId}, follow = true})";
     }) (lib.range 0 9);
 
-  moveToWorkspaceSilent = map (i:
+  moveToWorkspaceSilent = map (i: let
+    workspaceId =
+      if i == 0
+      then 10
+      else i;
+  in
     mkBind {
       key = "${mainMod} + CONTROL + ${toString i}";
-      dsp = "hl.dsp.window.move({workspace = ${toString (i + 1)}})";
+      dsp = "hl.dsp.window.move({workspace = ${toString workspaceId}})";
     }) (lib.range 0 9);
 
-  moveWorkspaceToMonitor = map (i:
+  moveWorkspaceToMonitor = map (i: let
+    workspaceId =
+      if i == 0
+      then 10
+      else i;
+  in
     mkBind {
       key = "${mainMod} + ALT + ${toString i}";
-      dsp = "hl.dsp.workspace.move({monitor = ${toString i}})";
+      dsp = "hl.dsp.workspace.move({monitor = ${toString workspaceId}})";
     }) (lib.range 0 9);
 
   zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
