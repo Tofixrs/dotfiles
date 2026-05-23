@@ -35,86 +35,65 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprsunset.url = "github:/hyprwm/hyprsunset";
 
     nix-colors = {
       url = "github:Misterio77/nix-colors";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     anyrun.url = "github:Kirottu/anyrun";
     neovim-flake = {
       url = "github:notashelf/neovim-flake";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
     };
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
     };
     SMGui.url = "github:/Tofixrs/SMLayoutEditor";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     quickshell.follows = "qs-config/quickshell";
     qs-config = {
       url = "github:Tofixrs/qs-config";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     bash-env-nushell = {
       url = "github:tesujimath/bash-env-nushell";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     bash-env-json = {
       url = "github:tesujimath/bash-env-json";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-gaming.cachix.org"
-      "https://hyprland.cachix.org"
-      "https://sm-gui-editor.cachix.org"
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "sm-gui-editor.cachix.org-1:sOHlz7KeslsRSBiGfE5G4Hbm7URIdtaI1zZSeL92m3s="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+  nixConfig = let
+    caches = import ./modules/nixos/system/nix/caches.nix;
+  in {
+    extra-substituters = caches.substituters;
+    extra-trusted-public-keys = caches.trusted-public-keys;
   };
 }
