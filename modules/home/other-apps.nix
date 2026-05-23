@@ -80,5 +80,6 @@
     (poedit.override {boost = boost188;})
     self'.packages.legcord
     postman
+    openai-whisper
   ];
 }
