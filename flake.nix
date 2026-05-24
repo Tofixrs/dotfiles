@@ -18,10 +18,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    ua-pl-phonetic = {
-      url = "github:Tofixrs/ua-pl-phonetic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -37,56 +33,55 @@
       url = "github:fufexan/nix-gaming";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
 
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-    };
+    hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprsunset.url = "github:/hyprwm/hyprsunset";
-
-    nix-colors = {
-      url = "github:Misterio77/nix-colors";
-    };
+    nix-colors.url = "github:Misterio77/nix-colors";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    anyrun.url = "github:Kirottu/anyrun";
     neovim-flake = {
       url = "github:notashelf/neovim-flake";
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
     };
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
     };
     SMGui.url = "github:/Tofixrs/SMLayoutEditor";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     quickshell.follows = "qs-config/quickshell";
     qs-config = {
       url = "github:Tofixrs/qs-config";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
     };
     bash-env-nushell = {
       url = "github:tesujimath/bash-env-nushell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     bash-env-json = {
       url = "github:tesujimath/bash-env-json";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
