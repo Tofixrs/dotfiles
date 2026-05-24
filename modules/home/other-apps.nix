@@ -18,8 +18,7 @@
     swappy
     prismlauncher
     pnpm
-    nodejs_20
-    bun
+    nodejs
     ripgrep
     lazygit
     (pkgs.lutris-free.override {
