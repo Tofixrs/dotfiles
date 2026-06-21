@@ -5,6 +5,16 @@
   ...
 }: {
   fonts.fontconfig.enable = true;
+  programs.obs-studio = {
+    enable = true;
+    package = pkgs.obs-studio.override {
+      cudaSupport = true;
+    };
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-vaapi
+      droidcam-obs
+    ];
+  };
   home.packages = with pkgs; [
     keepassxc
     nerd-fonts.jetbrains-mono
@@ -43,10 +53,6 @@
     wineWow64Packages.waylandFull
     nil
     alejandra
-    (pkgs.obs-studio.override
-      {
-        cudaSupport = true;
-      })
     zig
     qpwgraph
     btop
