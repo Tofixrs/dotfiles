@@ -65,7 +65,6 @@
     nemo-with-extensions
     glib
     inputs'.SMGui.packages.default
-    # inputs'.vencord.packages.default
     ryubing
     libnotify
     inputs'.quickshell.packages.default
@@ -80,5 +79,6 @@
     self'.packages.legcord
     postman
     openai-whisper
+    bun
   ];
 }
