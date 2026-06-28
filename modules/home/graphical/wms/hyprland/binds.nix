@@ -81,7 +81,7 @@
     '';
   };
 
-  zoom = step: "function () local step = ${builtins.toString step}; dofile('${zoomScript}'); end";
+  zoom = step: "function () step = ${builtins.toString step}; dofile('${zoomScript}'); end";
 
   lockCommand = "loginctl lock-session";
   changeBrightness = delta: "qs ipc call brightness change ${builtins.toString delta}";
