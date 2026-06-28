@@ -232,11 +232,11 @@ in {
       })
       (mkBind {
         key = "${mainMod} + mouse_up";
-        dsp = zoom (-0.25);
+        dsp = zoom 0.25;
       })
       (mkBind {
         key = "${mainMod} + mouse_down";
-        dsp = zoom 0.25;
+        dsp = zoom (-0.25);
       })
       (mkBind {
         key = "F10";
