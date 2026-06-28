@@ -58,19 +58,31 @@
       dsp = "hl.dsp.workspace.move({monitor = ${toString workspaceId}})";
     }) (lib.range 0 9);
 
-  zoomScript = pkgs.writeShellScript "zoom-hyprland" ''
-    if [[ $1 == "0" ]]; then
-      hyprctl keyword cursor:zoom_factor 1
-      exit 1
-    fi;
-    currentZoom=$(hyprctl getoption cursor:zoom_factor | grep float | sed 's/^.*: //')
-    nextZoom=$(awk "BEGIN{printf \"%.2f\", "$currentZoom$1$2"}")
-    if [[ $nextZoom == "0.50" ]]; then
-      hyprctl keyword cursor:zoom_factor 1
-      exit 1
-    fi
-    hyprctl keyword cursor:zoom_factor $nextZoom
-  '';
+  zoomScript = pkgs.writeTextFile {
+    name = "zoom-hyprland";
+    executable = true;
+    text = ''
+      if step == 0 then
+        hl.config({ cursor = { zoom_factor = 1.0 } })
+        return
+      end
+
+      local current = hl.getoption("cursor:zoom_factor")
+      local current_zoom = current.value
+      if not current_zoom then return end
+
+      local next_zoom = current_zoom + step
+
+      if next_zoom < 0.50 then
+        hl.config({ cursor = { zoom_factor = 1.0 } })
+        return
+      end
+
+      hl.config({ cursor = { zoom_factor = next_zoom } })
+    '';
+  };
+
+  zoom = step: "local step = ${builtins.toString step}; dofile('${zoomScript}')";
 
   lockCommand = "loginctl lock-session";
   changeBrightness = delta: "qs ipc call brightness change ${builtins.toString delta}";
@@ -217,15 +229,15 @@ in {
       })
       (mkBind {
         key = "${mainMod} + mouse:274";
-        dsp = "hl.dsp.exec_cmd(\"${zoomScript} 0\")";
+        dsp = zoom 0;
       })
       (mkBind {
         key = "${mainMod} + mouse_up";
-        dsp = "hl.dsp.exec_cmd(\"${zoomScript} - 0.25\")";
+        dsp = zoom (-0.25);
       })
       (mkBind {
         key = "${mainMod} + mouse_down";
-        dsp = "hl.dsp.exec_cmd(\"${zoomScript} + 0.25\")";
+        dsp = zoom 0.25;
       })
       (mkBind {
         key = "F10";
@@ -268,12 +280,12 @@ in {
       })
       (mkBind {
         key = "${mainMod} + equal";
-        dsp = "hl.dsp.exec_cmd(\"${zoomScript} + 0.25\")";
+        dsp = zoom 0.25;
         flags = {repeating = true;};
       })
       (mkBind {
         key = "${mainMod} + minus";
-        dsp = "hl.dsp.exec_cmd(\"${zoomScript} - 0.25\")";
+        dsp = zoom (-0.25);
         flags = {repeating = true;};
       })
       (mkBind {
