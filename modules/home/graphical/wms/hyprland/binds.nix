@@ -67,8 +67,7 @@
         return
       end
 
-      local current = hl.getoption("cursor:zoom_factor")
-      local current_zoom = current.value
+      local current_zoom = hl.get_config("cursor:zoom_factor")
       if not current_zoom then return end
 
       local next_zoom = current_zoom + step
