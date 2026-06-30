@@ -40,6 +40,9 @@ in {
         profiles.gaming
       ];
     };
+    server = mkHost {
+      name = "server";
+    };
     lapfix = mkHost {
       name = "lapfix";
       extraModules = [

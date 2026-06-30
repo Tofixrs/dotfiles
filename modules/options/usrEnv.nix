@@ -3,7 +3,7 @@ with lib; {
   options.modules.usrEnv = {
     desktop = mkOption {
       # adding cuz might add more in future
-      type = types.enum ["Hyprland"];
+      type = types.enum ["Hyprland" "none"];
       default = "Hyprland";
       description = ''
         The dekstop to use
@@ -27,7 +27,7 @@ with lib; {
       '';
     };
     screenLocker = mkOption {
-      type = types.enum ["swaylock" "hyprlock" "quickshell"];
+      type = types.enum ["swaylock" "hyprlock" "quickshell" "none"];
       description = ''What screen locker to use'';
       default = "quickshell";
     };
