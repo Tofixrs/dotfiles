@@ -27,7 +27,7 @@
     hyprpicker
     swappy
     (prismlauncher.override {
-      additionalLivs = [vlc];
+      additionalLibs = [vlc];
     })
     pnpm
     nodejs
