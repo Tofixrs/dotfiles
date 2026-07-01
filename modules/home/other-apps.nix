@@ -87,5 +87,6 @@
     openai-whisper
     bun
     ollama
+    opencode
   ];
 }
