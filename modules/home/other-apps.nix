@@ -26,7 +26,9 @@
     playerctl
     hyprpicker
     swappy
-    prismlauncher
+    (prismlauncher.override {
+      additionalLivs = [vlc];
+    })
     pnpm
     nodejs
     ripgrep
