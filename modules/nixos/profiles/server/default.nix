@@ -1,3 +1,6 @@
 _: {
-  imports = [./ssh.nix];
+  imports = [
+    ./ssh.nix
+    ./ollama.nix
+  ];
 }

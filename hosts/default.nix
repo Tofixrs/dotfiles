@@ -11,6 +11,7 @@
     desktop = ../modules/nixos/profiles/desktop;
     gaming = ../modules/nixos/profiles/gaming;
     dev = ../modules/nixos/profiles/dev;
+    server = ../modules/nixos/profiles/server;
   };
   
   # Helper to create a system with common modules
@@ -42,6 +43,9 @@ in {
     };
     server = mkHost {
       name = "server";
+      extraModules = [
+        profiles.server
+      ];
     };
     lapfix = mkHost {
       name = "lapfix";
