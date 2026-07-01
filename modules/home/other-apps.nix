@@ -86,5 +86,6 @@
     postman
     openai-whisper
     bun
+    ollama
   ];
 }
