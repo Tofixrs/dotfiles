@@ -90,5 +90,6 @@
     bun
     ollama
     opencode
+    inputs'.droidpad-gamepad.packages.default
   ];
 }

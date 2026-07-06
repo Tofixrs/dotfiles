@@ -83,6 +83,7 @@
       url = "github:tesujimath/bash-env-json";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    droidpad-gamepad.url = "git+https://github.com/Tofixrs/droidpad-gamepad.git";
   };
 
   nixConfig = {
