@@ -220,11 +220,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1783376881,
-        "narHash": "sha256-w/Ts3nypAXWVQM67SLE8Cxf1cIhGPYiHmgUtu5HmRB8=",
+        "lastModified": 1783422667,
+        "narHash": "sha256-t2fch4CNMpfyg/x9uMG+B+rn1CwQEYHU+2WJmhmvfRM=",
         "ref": "refs/heads/master",
-        "rev": "2f124ec5c6366c19d740a3cf34f1d9d9abd8ee62",
-        "revCount": 40,
+        "rev": "5fecba6c200b42162f43b62f3bffe6e09526b953",
+        "revCount": 44,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Tofixrs/droidpad-gamepad.git"
