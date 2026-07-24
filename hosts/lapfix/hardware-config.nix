@@ -50,6 +50,11 @@
       fsType = "btrfs";
       options = ["subvol=documents" "compress=zstd"];
     };
+    "/steam_lib" = {
+      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+      fsType = "btrfs";
+      options = ["subvol=SteamLibrary" "compress=zstd"];
+    };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/EBB4-A933";
