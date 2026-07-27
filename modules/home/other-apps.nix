@@ -84,12 +84,11 @@
     kdePackages.qtmultimedia
     nix-index
     (poedit.override {boost = boost188;})
-    self'.packages.legcord
     postman
     openai-whisper
     bun
     ollama
     opencode
-    inputs'.droidpad-gamepad.packages.default
+    goofcord
   ];
 }
