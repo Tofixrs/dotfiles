@@ -240,11 +240,11 @@ in {
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.pass({window = \"class:^(legcord)$\"})";
+        dsp = "hl.dsp.exec_cmd(\"goofcord --keybind-down='Push To Talk'\")";
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.pass({window = \"class:^(legcord)$\"})";
+        dsp = "hl.dsp.exec_cmd(\"goofcord --keybind-up='Push To Talk'\")";
         flags = {release = true;};
       })
       (mkBind {
