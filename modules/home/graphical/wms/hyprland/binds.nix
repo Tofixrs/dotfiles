@@ -240,11 +240,11 @@ in {
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.exec_cmd(\"goofcord --keybind-down='Push To Talk'\")";
+        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SINK@ 0\")";
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.exec_cmd(\"goofcord --keybind-up='Push To Talk'\")";
+        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SINK@ 1\")";
         flags = {release = true;};
       })
       (mkBind {
