@@ -240,11 +240,11 @@ in {
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SINK@ 0\")";
+        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SOURCE@ 0\")";
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SINK@ 1\")";
+        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SOURCE@ 1\")";
         flags = {release = true;};
       })
       (mkBind {
