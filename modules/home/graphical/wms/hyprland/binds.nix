@@ -244,7 +244,7 @@ in {
       })
       (mkBind {
         key = "F10";
-        dsp = "hl.timer(function() hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SOURCE@ 1\") end, {timeout = 250, type = \"oneshot\"})";
+        dsp = "function() hl.timer(function() hl.exec_cmd(\"wpctl set-mute @DEFAULT_SOURCE@ 1\") end, {timeout = 250, type = \"oneshot\"}) end";
         flags = {release = true;};
       })
       (mkBind {
