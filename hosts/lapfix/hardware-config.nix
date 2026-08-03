@@ -16,6 +16,10 @@
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
   };
+  # allow proton to see /saves
+  environment.sessionVariables = {
+    STEAM_COMPAT_MOUNTS = "/saves";
+  };
 
   fileSystems = {
     "/windows" = {
