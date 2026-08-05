@@ -88,6 +88,24 @@
   openPanel = panel: "qs ipc call panels toggle ${panel}";
   openLauncherMode = mode: "qs ipc call launcher toggle ${builtins.toString mode}";
 in {
+  wayland.windowManager.hyprland.extraConfig = ''
+    function start_mute_timer()
+      return hl.timer(function()
+        hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 1")
+        hl.exec_cmd("${pkgs.ffmpeg-full}/bin/ffplay -nodisp ${./ptt-off.mp3}")
+      end, {timeout = 250, type = "oneshot"})
+    end
+    local mute_timer = start_mute_timer()
+    hl.bind("F10", function ()
+      mute_timer:cancel()
+      hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 0")
+        hl.exec_cmd("${pkgs.ffmpeg-full}/bin/ffplay -nodisp ${./ptt-on.mp3}")
+    end)
+
+    hl.bind("F10", function ()
+      mute_timer = start_mute_timer()
+    end, {release = true})
+  '';
   wayland.windowManager.hyprland.settings.bind =
     [
       (mkBind {
@@ -237,15 +255,6 @@ in {
       (mkBind {
         key = "${mainMod} + mouse_down";
         dsp = zoom (-0.25);
-      })
-      (mkBind {
-        key = "F10";
-        dsp = "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_SOURCE@ 0\")";
-      })
-      (mkBind {
-        key = "F10";
-        dsp = "function() hl.timer(function() hl.exec_cmd(\"wpctl set-mute @DEFAULT_SOURCE@ 1\") end, {timeout = 250, type = \"oneshot\"}) end";
-        flags = {release = true;};
       })
       (mkBind {
         key = "${mainMod} + CONTROL + W";
