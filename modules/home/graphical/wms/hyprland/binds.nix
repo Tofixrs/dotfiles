@@ -95,9 +95,9 @@ in {
         hl.exec_cmd("${pkgs.ffmpeg-full}/bin/ffplay -nodisp ${./ptt_off.mp3}")
       end, {timeout = 250, type = "oneshot"})
     end
-    local mute_timer = start_mute_timer()
+    local mute_timer = null
     hl.bind("F10", function ()
-      mute_timer:set_enabled(false)
+      if mute_timer then mute_timer:set_enabled(false) end
       hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 0")
         hl.exec_cmd("${pkgs.ffmpeg-full}/bin/ffplay -nodisp ${./ptt_on.mp3}")
     end)
