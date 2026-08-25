@@ -105,6 +105,9 @@ in {
           filetypes = ["qml" "qmljs"];
           root_markers = [".git"];
         };
+        typescript-language-server = {
+          filetypes = ["typescript" "javascript" "typescriptreact" "javascriptreact"];
+        };
         gdscript = {
           cmd = lib.generators.mkLuaInline ''
             (function()
