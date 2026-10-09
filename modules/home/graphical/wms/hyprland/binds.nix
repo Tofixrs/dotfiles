@@ -94,19 +94,37 @@
   pttOn = cue "ptt_on";
   pttOff = cue "ptt_off";
   play = "${pkgs.pipewire}/bin/pw-play";
+  ptt = pkgs.writeShellScript "ptt" ''
+    seq=$1 state=$2
+    (
+      ${pkgs.util-linux}/bin/flock 9
+      cur=$(cat "$XDG_RUNTIME_DIR/ptt.seq" 2>/dev/null || echo 0)
+      [ "$seq" -le "$cur" ] && exit 1   # stale event, newer one already applied
+      echo "$seq" > "$XDG_RUNTIME_DIR/ptt.seq"
+      if [ "$state" = on ]; then m=0; else m=1; fi
+      ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SOURCE@ $m
+    ) 9>"$XDG_RUNTIME_DIR/ptt.lock" || exit 0
+    ${pkgs.pipewire}/bin/pw-play "$3"
+  '';
 in {
   wayland.windowManager.hyprland.extraConfig = ''
+    hl.exec_cmd("rm -f $XDG_RUNTIME_DIR/ptt.seq")
+    local seq = 0
     local mute_timer = nil
-    hl.bind("F10", function ()
-      if mute_timer then mute_timer:set_enabled(false) end
-      hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 0; ${play} ${pttOn}")
-    end)
 
     hl.bind("F10", function ()
+      if mute_timer then mute_timer:set_enabled(false) end
+      seq = seq + 1
+      hl.exec_cmd("${ptt} " .. seq .. " on ${pttOn}")
+    end, {ignore_mods = true})
+
+    hl.bind("F10", function ()
+      seq = seq + 1
+      local my = seq
       mute_timer = hl.timer(function()
-        hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 1; ${play} ${pttOff}")
+        hl.exec_cmd("${ptt} " .. my .. " off ${pttOff}")
       end, {timeout = 150, type = "oneshot"})
-    end, {release = true})
+    end, {release = true, ignore_mods = true})
   '';
   wayland.windowManager.hyprland.settings.bind =
     [
