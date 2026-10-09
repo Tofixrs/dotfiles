@@ -18,50 +18,45 @@
   };
   # allow proton to see /saves
   environment.sessionVariables = {
-    STEAM_COMPAT_MOUNTS = "/saves";
+    STEAM_COMPAT_MOUNTS = "/games";
   };
 
   fileSystems = {
     "/windows" = {
-      device = "/dev/disk/by-uuid/AAC0C793C0C763E3";
+      device = "/dev/disk/by-uuid/1CC248C02489FBE";
       fsType = "ntfs";
       options = ["nofail"];
     };
     "/" = {
-      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+      device = "/dev/disk/by-uuid/5454cf17-881b-4567-8025-41ed37358c73";
       fsType = "btrfs";
       options = ["subvol=root" "compress=zstd"];
     };
 
     "/home" = {
-      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+      device = "/dev/disk/by-uuid/5454cf17-881b-4567-8025-41ed37358c73";
       fsType = "btrfs";
       options = ["subvol=home" "compress=zstd"];
     };
 
     "/nix" = {
-      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+      device = "/dev/disk/by-uuid/5454cf17-881b-4567-8025-41ed37358c73";
       fsType = "btrfs";
       options = ["subvol=nix" "noatime" "compress=zstd"];
     };
     "/games" = {
-      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+      device = "/dev/disk/by-uuid/5454cf17-881b-4567-8025-41ed37358c73";
       fsType = "btrfs";
-      options = ["subvol=games" "compress=zstd"];
+      options = ["subvol=game" "compress=zstd"];
     };
-    "/documents" = {
-      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
+    "/files" = {
+      device = "/dev/disk/by-uuid/5454cf17-881b-4567-8025-41ed37358c73";
       fsType = "btrfs";
-      options = ["subvol=documents" "compress=zstd"];
-    };
-    "/saves" = {
-      device = "/dev/disk/by-uuid/3b1ab498-b937-46b2-b935-cfcc9ea43364";
-      fsType = "btrfs";
-      options = ["subvol=saves" "compress=zstd"];
+      options = ["subvol=files" "compress=zstd"];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/EBB4-A933";
+      device = "/dev/disk/by-uuid/7937-B61F";
       fsType = "vfat";
     };
   };

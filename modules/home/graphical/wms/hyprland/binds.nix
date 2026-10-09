@@ -87,23 +87,25 @@
   changeBrightness = delta: "qs ipc call brightness change ${builtins.toString delta}";
   openPanel = panel: "qs ipc call panels toggle ${panel}";
   openLauncherMode = mode: "qs ipc call launcher toggle ${builtins.toString mode}";
+  cue = name:
+    pkgs.runCommand "${name}.wav" {nativeBuildInputs = [pkgs.ffmpeg-headless];} ''
+      ffmpeg -i ${./. + "/${name}.mp3"} -f wav $out
+    '';
+  pttOn = cue "ptt_on";
+  pttOff = cue "ptt_off";
+  play = "${pkgs.pipewire}/bin/pw-play";
 in {
   wayland.windowManager.hyprland.extraConfig = ''
-    function start_mute_timer()
-      return hl.timer(function()
-        hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 1")
-        hl.exec_cmd("${pkgs.ffmpeg-full}/bin/ffplay -nodisp ${./ptt_off.mp3}")
-      end, {timeout = 250, type = "oneshot"})
-    end
-    local mute_timer = null
+    local mute_timer = nil
     hl.bind("F10", function ()
       if mute_timer then mute_timer:set_enabled(false) end
-      hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 0")
-        hl.exec_cmd("${pkgs.ffmpeg-full}/bin/ffplay -nodisp ${./ptt_on.mp3}")
+      hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 0; ${play} ${pttOn}")
     end)
 
     hl.bind("F10", function ()
-      mute_timer = start_mute_timer()
+      mute_timer = hl.timer(function()
+        hl.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ 1; ${play} ${pttOff}")
+      end, {timeout = 150, type = "oneshot"})
     end, {release = true})
   '';
   wayland.windowManager.hyprland.settings.bind =

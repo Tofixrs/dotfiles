@@ -11,7 +11,7 @@
     # Needed for portals
     dbus = {
       enable = true;
-      packages = with pkgs; [dconf gcr udisks2];
+      packages = with pkgs; [dconf gcr_4 udisks2];
       implementation = "broker";
     };
   };

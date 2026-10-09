@@ -41,7 +41,7 @@ in {
       typescript = {
         enable = true;
         extraDiagnostics.types = [];
-        format.type = ["prettierd"];
+        format.type = ["prettier"];
       };
       nix.enable = true;
       html = {

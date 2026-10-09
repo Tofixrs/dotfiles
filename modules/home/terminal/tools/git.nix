@@ -6,7 +6,7 @@ _: {
       email = "73693639+Tofixrs@users.noreply.github.com";
     };
     signing = {
-      key = "C9F8078D690686C4";
+      key = "FD76B900B0F9DDD8";
       format = "openpgp";
       signByDefault = true;
     };

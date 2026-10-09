@@ -55,7 +55,6 @@
     wineWow64Packages.waylandFull
     nil
     alejandra
-    zig
     qpwgraph
     btop
     libreoffice
@@ -83,12 +82,10 @@
     kdePackages.qtimageformats
     kdePackages.qtmultimedia
     nix-index
-    (poedit.override {boost = boost188;})
-    postman
-    openai-whisper
     bun
-    ollama
-    opencode
     goofcord
+    clang
+    just
+    ninja
   ];
 }
