@@ -15,6 +15,12 @@
       droidcam-obs
     ];
   };
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
+  };
   home.packages = with pkgs; [
     keepassxc
     nerd-fonts.jetbrains-mono
@@ -22,7 +28,6 @@
     inputs'.hyprland-contrib.packages.grimblast
     viewnior
     kdePackages.ark
-    gh
     playerctl
     hyprpicker
     swappy
