@@ -60,6 +60,12 @@ in {
         };
         float = true;
       }
+      {
+        match = {
+          class = "^(kitty)$";
+        };
+        suppress_event = "fullscreen maximize";
+      }
     ];
   };
 }

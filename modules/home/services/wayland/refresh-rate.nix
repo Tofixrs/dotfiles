@@ -5,88 +5,160 @@
   ...
 }: let
   env = osConfig.modules.usrEnv;
+
+  monitorName = "eDP-1";
+  acRefresh = "144.00301"; # exact mode string as listed by hyprctl monitors
+  batteryRefresh = "60";
+
   refreshScript = pkgs.writeShellApplication {
     name = "hypr-refresh-rate";
-    runtimeInputs = with pkgs; [
-      coreutils
-      gawk
-      jq
+    runtimeInputs = [
+      osConfig.programs.hyprland.package # fallback hyprctl if the running one can't be found
+      pkgs.coreutils
+      pkgs.gawk
+      pkgs.jq
+      pkgs.procps # pgrep
+      pkgs.systemd # udevadm
     ];
     text = ''
-      AC_PATH="/sys/class/power_supply/ACAD/online"
-      MONITOR_NAME="eDP-1"
-      BATTERY_REFRESH="60"
-      AC_REFRESH="144.00301"
+      MON="${monitorName}"
+      AC_HZ="${acRefresh}"
+      BAT_HZ="${batteryRefresh}"
 
-      if [ ! -r "$AC_PATH" ]; then
-        exit 0
-      fi
+      # Log to stderr (-> journal), skipping consecutive duplicate messages
+      # so the 30 s re-check doesn't flood the log.
+      last_msg=""
+      log() {
+        if [ "$*" != "$last_msg" ]; then
+          echo "$*" >&2
+          last_msg="$*"
+        fi
+      }
 
-      if ! hyprctl -j instances >/dev/null 2>&1; then
-        exit 0
-      fi
+      on_ac() {
+        local ps
+        for ps in /sys/class/power_supply/*; do
+          if [ "$(cat "$ps/type" 2>/dev/null)" = "Mains" ] \
+             && [ "$(cat "$ps/online" 2>/dev/null)" = "1" ]; then
+            return 0
+          fi
+        done
+        return 1
+      }
 
-      instance="$(hyprctl -j instances | jq -r '.[0].instance // empty')"
-      if [ -z "$instance" ]; then
-        exit 0
-      fi
+      # Newest live Hyprland instance (changes every time Hyprland restarts)
+      find_instance() {
+        local newest="" d
+        for d in "$XDG_RUNTIME_DIR"/hypr/*/; do
+          [ -S "$d/.socket.sock" ] || continue
+          if [ -z "$newest" ] || [ "$d" -nt "$newest" ]; then
+            newest="$d"
+          fi
+        done
+        [ -n "$newest" ] || return 1
+        basename "$newest"
+      }
 
-      monitor_json="$(hyprctl -i "$instance" -j monitors all | jq -c --arg name "$MONITOR_NAME" '.[] | select(.name == $name)' | head -n1)"
-      if [ -z "$monitor_json" ]; then
-        exit 0
-      fi
+      # hyprctl from the same store path as the running compositor,
+      # so client and compositor versions always match
+      find_hyprctl() {
+        local pid exe dir
+        pid="$(pgrep -x -u "$(id -u)" 'Hyprland|\.Hyprland-wrapped' | head -n1)"
+        [ -n "$pid" ] || return 1
+        exe="$(readlink -f "/proc/$pid/exe")" || return 1
+        dir="$(dirname "$exe")"
+        [ -x "$dir/hyprctl" ] || return 1
+        echo "$dir/hyprctl"
+      }
 
-      if [ "$(cat "$AC_PATH")" = "1" ]; then
-        target_refresh="$AC_REFRESH"
-      else
-        target_refresh="$BATTERY_REFRESH"
-      fi
+      apply() {
+        local sig state target all json cur new w h x y s t lua out HCTL
 
-      current_refresh="$(printf '%s\n' "$monitor_json" | jq -r '.refreshRate // .refresh // 0')"
-      width="$(printf '%s\n' "$monitor_json" | jq -r '.width')"
-      height="$(printf '%s\n' "$monitor_json" | jq -r '.height')"
-      pos_x="$(printf '%s\n' "$monitor_json" | jq -r '.x')"
-      pos_y="$(printf '%s\n' "$monitor_json" | jq -r '.y')"
-      scale="$(printf '%s\n' "$monitor_json" | jq -r '.scale')"
-      transform="$(printf '%s\n' "$monitor_json" | jq -r '.transform // 0')"
+        if ! sig="$(find_instance)"; then
+          log "no live Hyprland instance found in $XDG_RUNTIME_DIR/hypr"
+          return 0
+        fi
+        export HYPRLAND_INSTANCE_SIGNATURE="$sig"
 
-      if awk -v current="$current_refresh" -v target="$target_refresh" 'BEGIN { diff = current - target; if (diff < 0) diff = -diff; exit !(diff < 0.5) }'; then
-        exit 0
-      fi
+        HCTL="$(find_hyprctl || echo hyprctl)"
+        log "using $HCTL: $("$HCTL" version 2>&1 | head -n1 || true)"
 
-      monitor_arg="$MONITOR_NAME,''${width}x''${height}@''${target_refresh},''${pos_x}x''${pos_y},''${scale}"
-      if [ "$transform" != "0" ]; then
-        monitor_arg="$monitor_arg,transform,''${transform}"
-      fi
+        if on_ac; then
+          state="AC"
+          target="$AC_HZ"
+        else
+          state="battery"
+          target="$BAT_HZ"
+        fi
 
-      hyprctl -i "$instance" keyword monitor "$monitor_arg" >/dev/null
+        if ! all="$("$HCTL" -j monitors all 2>&1)"; then
+          log "hyprctl monitors failed: $all"
+          return 0
+        fi
+
+        if ! json="$(jq -c --arg n "$MON" '.[] | select(.name == $n)' <<<"$all" | head -n1)"; then
+          log "could not parse hyprctl output: $all"
+          return 0
+        fi
+        if [ -z "$json" ]; then
+          log "monitor $MON not found; available: $(jq -r '[.[].name] | join(", ")' <<<"$all")"
+          return 0
+        fi
+
+        cur="$(jq -r '.refreshRate // .refresh // 0' <<<"$json")"
+        log "state=$state current=$cur target=$target (instance $sig)"
+
+        # Already at the target rate (within 0.5 Hz)? Nothing to do.
+        if awk -v c="$cur" -v t="$target" 'BEGIN { d = c - t; if (d < 0) d = -d; exit !(d < 0.5) }'; then
+          return 0
+        fi
+
+        read -r w h x y s t < <(jq -r '[.width, .height, .x, .y, .scale, (.transform // 0)] | @tsv' <<<"$json")
+
+        # Lua config (Hyprland 0.55+): set the monitor through eval + hl.monitor
+        lua="hl.monitor({ output = \"$MON\", mode = \"''${w}x''${h}@''${target}\", position = \"''${x}x''${y}\", scale = $s"
+        if [ "$t" != "0" ]; then
+          lua="$lua, transform = $t"
+        fi
+        lua="$lua })"
+
+        out="$("$HCTL" eval "$lua" 2>&1)" || true
+        log "hyprctl eval $lua -> $out"
+
+        sleep 1
+        new="$("$HCTL" -j monitors all 2>/dev/null | jq -r --arg n "$MON" '.[] | select(.name == $n) | .refreshRate' | head -n1)" || true
+        log "after switch: $MON is at $new Hz"
+      }
+
+      log "starting: monitor=$MON ac=$AC_HZ bat=$BAT_HZ runtime_dir=$XDG_RUNTIME_DIR"
+      for ps in /sys/class/power_supply/*; do
+        log "supply $(basename "$ps"): type=$(cat "$ps/type" 2>/dev/null || echo n/a) online=$(cat "$ps/online" 2>/dev/null || echo n/a)"
+      done
+
+      # Re-check on every power_supply event, and at least every 30 s
+      # (covers resume from suspend and Hyprland restarts)
+      exec 3< <(udevadm monitor --udev --subsystem-match=power_supply)
+      while true; do
+        apply || true
+        read -r -t 30 -u 3 _ || true
+        sleep 1
+      done
     '';
   };
 in {
   config = lib.mkIf (env.desktop == "Hyprland") {
-    home.packages = [refreshScript];
-
     systemd.user.services.hypr-refresh-rate = {
       Unit = {
-        Description = "Adjust the Hyprland internal display refresh rate based on AC power";
+        Description = "Switch Hyprland refresh rate on AC/battery";
         After = ["graphical-session.target"];
         PartOf = ["graphical-session.target"];
       };
       Service = {
-        Type = "oneshot";
         ExecStart = lib.getExe refreshScript;
+        Restart = "on-failure";
+        RestartSec = 3;
       };
       Install.WantedBy = ["graphical-session.target"];
-    };
-
-    systemd.user.timers.hypr-refresh-rate = {
-      Unit.Description = "Periodically sync the Hyprland internal display refresh rate with AC power";
-      Timer = {
-        OnBootSec = "20s";
-        OnUnitActiveSec = "30s";
-        Unit = "hypr-refresh-rate.service";
-      };
-      Install.WantedBy = ["timers.target"];
     };
   };
 }

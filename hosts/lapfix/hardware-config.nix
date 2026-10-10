@@ -23,7 +23,7 @@
 
   fileSystems = {
     "/windows" = {
-      device = "/dev/disk/by-uuid/1CC248C02489FBE";
+      device = "/dev/disk/by-uuid/1CC248C0C2489FBE";
       fsType = "ntfs";
       options = ["nofail"];
     };
