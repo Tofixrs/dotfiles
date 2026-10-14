@@ -93,5 +93,6 @@
     just
     ninja
     opencode
+    proton-vpn
   ];
 }
