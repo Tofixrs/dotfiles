@@ -92,5 +92,6 @@
     clang
     just
     ninja
+    opencode
   ];
 }
