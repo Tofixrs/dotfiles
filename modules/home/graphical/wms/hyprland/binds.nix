@@ -77,6 +77,8 @@
         return
       end
 
+      next_zoom = math.max(next_zoom, 1)
+
       hl.config({ cursor = { zoom_factor = next_zoom } })
     '';
   };
