@@ -22,6 +22,7 @@ in {
     distrobox
     godot_4
     android-tools
+    mongodb-compass
   ];
   services = {
     # Php server for school
@@ -94,6 +95,7 @@ in {
       enable = true;
       package = pkgs.postgresql_18;
     };
+    mongodb.enable = true;
     flatpak.enable = true;
   };
   systemd.services = {
