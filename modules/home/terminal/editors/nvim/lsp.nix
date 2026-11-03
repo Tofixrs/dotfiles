@@ -20,6 +20,7 @@ in {
         typescript
         qmljs
         blade
+        tsx
       ];
     };
     debugger.nvim-dap = {
