@@ -95,7 +95,10 @@ in {
       enable = true;
       package = pkgs.postgresql_18;
     };
-    mongodb.enable = true;
+    mongodb = {
+      enable = true;
+      package = pkgs.mongodb-ce;
+    };
     flatpak.enable = true;
   };
   systemd.services = {
