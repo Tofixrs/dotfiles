@@ -38,6 +38,8 @@
     nodejs
     ripgrep
     lazygit
+    just
+    ninja
     (pkgs.lutris-free.override {
       # Override the underlying lutris package
       lutris = pkgs.lutris.override {
