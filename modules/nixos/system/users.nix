@@ -1,4 +1,8 @@
-{pkgs, config, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   user = config.modules.usrEnv.mainUser;
 in {
   users = {
@@ -7,6 +11,7 @@ in {
       isNormalUser = true;
       initialPassword = "changeMe";
       extraGroups = [
+        "kvm"
         "wheel"
         "networkmanager"
         "docker"
